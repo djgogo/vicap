@@ -1,0 +1,16 @@
+{% if app.request.hasPreviousSession %}
+    <div class="messages" style="position: fixed; top: 20px; right: 20px; z-index: 1050; max-width: 300px;">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div {{ stimulus_controller('closeable') }}>
+                    <div class="alert alert-dismissible alert-{{ type }} fade show" role="alert">
+                        <button {{ stimulus_action('closeable', 'close') }}>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message|trans }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}

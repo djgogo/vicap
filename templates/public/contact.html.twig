@@ -1,0 +1,86 @@
+{% extends 'public.html.twig' %}
+
+{% block meta_description %}
+    <meta name="description" content="Wir freuen uns auf Ihre Kontaktaufnahme und sind in Basel und Zürich auch gerne persönlich für Sie da.">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <!-- Start Main Team Area  -->
+    <div class="main-content">
+
+        <!-- Start Contact page  -->
+        <div class="rainbow-blog-area rainbow-section-gap">
+            <div class="container">
+                <!-- Contact Header -->
+                <div class="row mb--20">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <h2 class="page-title w-500 mt--50 mb--20">contact</h2>
+                            <p class="description b1">Wir freuen uns auf Ihre Kontaktaufnahme und sind in Basel und Zürich auch gerne persönlich für Sie da.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Companies Cards -->
+                {% if companies|length %}
+                    <div class="row mt--30 justify-content-center">
+                        {% for company in companies %}
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--30 g-5" data-sal="slide-up" data-sal-duration="700">
+                                <div class="card card-contact text-center">
+                                    {# Image on top #}
+                                    <img src="{{ asset('media/companies/' ~ company.image) }}"
+                                         class="card-img-top"
+                                         alt="{{ company.name }}">
+
+                                    {# Body with translucent badge at bottom #}
+                                    <div class="card-body position-relative p-0">
+                                        <div class="badge-text px-3 py-2">
+                                            <h5 class="card-title mb-1">{{ company.name }}</h5>
+                                            <p class="mb-0">{{ company.address }}</p>
+                                            <p class="mb-0">{{ company.zip }} {{ company.city }}</p>
+                                            <p class="link-hover mb-1">
+                                                <a href="tel:{{ company.phone|replace({' ': ''}) }}">
+                                                    <i class="mdi mdi-phone"></i> {{ company.phone }}
+                                                </a>
+                                            </p>
+                                            <p class="link-hover mb-1">
+                                                <a href="mailto:{{ company.email }}">
+                                                    <i class="mdi mdi-email"></i> {{ company.email }}
+                                                </a>
+                                            </p>
+                                            {% if company.googleMaps|length %}
+                                                <p class="link-hover mb-0">
+                                                    <a href="{{ company.googleMaps }}" target="_blank" rel="noopener noreferrer">
+                                                        <i class="mdi mdi-map-marker"></i> Google Maps
+                                                    </a>
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+    <!-- End Solutions Detail Area  -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!--homepage init -->
+    <script src="{{ asset('assets/js/pages/homepage.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

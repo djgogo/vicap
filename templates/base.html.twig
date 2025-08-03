@@ -1,0 +1,73 @@
+{#
+   This is the base template used as the application layout which contains the
+   common elements and decorates all the other templates.
+#}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+    <head>
+{#        <title>{% block title %}{{ page_title(page_title|default('')|trans) }}{% endblock %}</title>#}
+        <title>{% block title %}Websitemaster | Professional Web Solutions{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-Language" content="en"/>
+        <meta name="msapplication-TileColor" content="#2d89ef">
+        <meta name="theme-color" content="#4188c9">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta content="Beauty & Lifestyle Job Portal" name="description" />
+        <meta content="Websitemaster" name="author" />
+
+        {#
+        The following styles and js files are included for velzon templates! TODO: add the files into app.scss
+        #}
+        {% block headjs %}
+            <!-- Layout config Js -->
+            <script src="{{ asset('assets/js/layout.js') }}"></script>
+            <!-- Toasts notifications -->
+            <script src="{{ asset('assets/libs/toastify-js/src/toastify.js') }}"></script>
+        {% endblock %}
+
+        {% block stylesheets %}
+            <!-- Bootstrap Css -->
+            <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+            <!-- Icons Css -->
+            <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+            <!-- App Css-->
+            <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+            <!-- custom Css-->
+            <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo/favicon.ico') }}">
+    </head>
+
+    <body>
+        {% set _route = app.request.get('_route') %}
+        {% include 'default/_toast_messages.html.twig' %}
+
+        {#
+            App Content starts here
+        #}
+        {% block content %}{% endblock %}
+
+        {% block javascripts %}
+            <!-- App js -->
+            <script src="{{ asset('assets/js/app.js') }}"></script>
+            <!-- locale config Js -->
+            <script src="{{ asset('assets/js/locale.js') }}"></script>
+            <!-- App Search js -->
+            <script src="{{ asset('assets/js/pages/app-search.init.js') }}"></script>
+            <!-- apexcharts -->
+            <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+        {% endblock %}
+
+        {# it's not mandatory to set the timezone in localizeddate(). This is done to
+           avoid errors when the 'intl' PHP extension is not available and the application
+           is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+        <!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
+    </body>
+</html>

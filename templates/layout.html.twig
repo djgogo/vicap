@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+{% include "public/partials/head.html.twig" %}
+<body>
+    <main class="page-wrapper">
+
+        <!-- Start Header Area  -->
+        {% include "public/partials/header.html.twig" %}
+        <!-- End Header Area  -->
+
+        {% include "public/partials/popupMobileMenu.html.twig" %}
+
+        <!-- Start Breadcarumb area  -->
+        {% if title is defined %}
+            {% include "public/partials/breadCrumb.html.twig" %}
+        {% endif %}
+        <!-- End Breadcarumb area  -->
+
+        <!-- Start Theme Style  -->
+        {% if theme is defined and theme == "true" %}
+            {% include "public/partials/theme.html.twig" %}
+        {% endif %}
+        <!-- End Theme Style  -->
+
+        {% block content %}
+
+        {% endblock %}
+
+        <!-- Start Footer Area  -->
+        {% if footer is defined and footer == "true" %}
+            {% include "public/partials/footer.html.twig" %}
+        {% endif %}
+        <!-- End Footer Area  -->
+
+        <!-- Start Copy Right Area  -->
+        {% include "public/partials/copyRightArea.html.twig" %}
+        <!-- End Copy Right Area  -->
+
+    </main>
+
+<!-- Start Top To Bottom Area  -->
+{% include "public/partials/topToBottom.html.twig" %}
+<!-- End Top To Bottom Area  -->
+
+{% include "public/partials/front-scripts.html.twig" %}
+
+</body>
+</html>

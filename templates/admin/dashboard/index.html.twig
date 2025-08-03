@@ -1,0 +1,204 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    <!-- jsvectormap css -->
+    <link href="{{ asset('assets/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- gridjs css -->
+    <link rel="stylesheet" href="{{ asset('assets/libs/gridjs/theme/mermaid.min.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {{ include('partials/page-title.html.twig', {pagetitle: 'page_title.dashboard'|trans, title: 'page_title.dashboard'|trans}) }}
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card card-animate overflow-hidden">
+                        <div class="position-absolute start-0" style="z-index: 0;">
+                            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+                                <style>
+                                    .s0 {
+                                        opacity: .05;
+                                        fill: var(--vz-info)
+                                    }
+                                </style>
+                                <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                            </svg>
+                        </div>
+                        <div class="card-body" style="z-index:1 ;">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> {{ 'text.widget.online_users'|trans }}</p>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="{{ online_count }}">{{ online_count }}</span></h4>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <div id="online_users" data-colors='["--vz-success"]' data-percent="{{ percent_online }}" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!--end col-->
+                <div class="col-xl-4">
+                    <!-- card -->
+                    <div class="card card-animate overflow-hidden">
+                        <div class="position-absolute start-0" style="z-index: 0;">
+                            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+                                <style>
+                                    .s0 {
+                                        opacity: .05;
+                                        fill: var(--vz-info)
+                                    }
+                                </style>
+                                <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                            </svg>
+                        </div>
+                        <div class="card-body" style="z-index:1 ;">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> {{ 'text.widget.total_users'|trans }}</p>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="{{ total_count }}">{{ total_count }}</span></h4>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <div id="total_users" data-colors='["--vz-success"]' data-percent="100" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+                <div class="col-xl-4">
+                    <!-- card -->
+                    <div class="card card-animate overflow-hidden">
+                        <div class="position-absolute start-0" style="z-index: 0;">
+                            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+                                <style>
+                                    .s0 {
+                                        opacity: .05;
+                                        fill: var(--vz-info)
+                                    }
+                                </style>
+                                <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                            </svg>
+                        </div>
+                        <div class="card-body" style="z-index:1 ;">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> {{ 'text.widget.unconfirmed_users'|trans }}</p>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="{{ unconfirmed_count }}">{{ unconfirmed_count }}</span></h4>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <div id="unconfirmed_users" data-colors='["--vz-success"]' data-percent="{{ percent_unconfirmed }}" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+                <div class="col-xl-4">
+                    <!-- card -->
+                    <div class="card card-animate overflow-hidden">
+                        <div class="position-absolute start-0" style="z-index: 0;">
+                            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+                                <style>
+                                    .s0 {
+                                        opacity: .05;
+                                        fill: var(--vz-info)
+                                    }
+                                </style>
+                                <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                            </svg>
+                        </div>
+                        <div class="card-body" style="z-index:1 ;">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> {{ 'text.widget.registered_this_month'|trans }}</p>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="{{ registered_this_month }}">{{ registered_this_month }}</span></h4>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <div id="registered_month" data-colors='["--vz-danger"]' data-percent="0" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+                <div class="col-xl-4">
+                    <div class="card card-animate overflow-hidden">
+                        <div class="position-absolute start-0" style="z-index: 0;">
+                            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+                                <style>
+                                    .s0 {
+                                        opacity: .05;
+                                        fill: var(--vz-info)
+                                    }
+                                </style>
+                                <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                            </svg>
+                        </div>
+                        <div class="card-body" style="z-index:1 ;">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> {{ 'text.widget.registered_today'|trans }} </p>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="{{ registered_today }}">{{ registered_today }}</span></h4>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <div id="registered_today" data-colors='["--vz-success"]' data-percent="0" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!--end col-->
+                <div class="col-xl-4">
+                    <!-- card -->
+                    <div class="card card-animate overflow-hidden">
+                        <div class="position-absolute start-0" style="z-index: 0;">
+                            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+                                <style>
+                                    .s0 {
+                                        opacity: .05;
+                                        fill: var(--vz-info)
+                                    }
+                                </style>
+                                <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
+                            </svg>
+                        </div>
+                        <div class="card-body" style="z-index:1 ;">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> {{ 'text.widget.banned_users'|trans }}</p>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="{{ banned_count }}">{{ banned_count }}</span></h4>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <div id="banned_users" data-colors='["--vz-danger"]' data-percent="{{ percent_banned }}" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+            </div><!--end row-->
+
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- apexcharts -->
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+
+    <!-- Vector map-->
+    <script src="{{ asset('assets/libs/jsvectormap/js/jsvectormap.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jsvectormap/maps/world-merc.js') }}"></script>
+
+    <!-- gridjs js -->
+    <script src="{{ asset('assets/libs/gridjs/gridjs.umd.js') }}"></script>
+
+    <!-- Dashboard init -->
+    <script src="{{ asset('assets/js/pages/dashboard-job.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

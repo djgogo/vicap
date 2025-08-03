@@ -1,0 +1,5 @@
+{{ include('admin/topbar.html.twig') }}
+
+{% if currentUser.isAdmin() or currentUser.isSuperAdmin() %}
+    {{ include('admin/sidebar.html.twig') }}
+{% endif %}

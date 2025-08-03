@@ -1,0 +1,276 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {{ include('partials/page-title.html.twig', {pagetitle: 'page_title.trades'|trans, title: 'page_title.trades'|trans}) }}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card" id="usersList">
+                        <div class="card-header  border-0">
+                            <div class="d-md-flex align-items-center">
+                                <h5 class="card-title mb-3 mb-md-0 flex-grow-1">{{ 'title.trade_archive'|trans }}</h5>
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex gap-1 flex-wrap">
+                                        <button type="button" class="btn btn-dark add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> {{'button.create_trade'|trans }}</button>
+                                        <a href="{{ path('admin_trades_csv_export') }}" class="btn btn-soft-dark"><i class="ri-file-download-line align-bottom me-1"></i>Export</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body border border-dashed border-end-0 border-start-0">
+                            <form method="get">
+                                <div class="row g-3">
+                                    <div class="col-xxl-5 col-sm-6">
+                                        <div class="search-box">
+                                            <input type="text" class="form-control search" name="query" value="{{ app.request.get('query') }}" placeholder="{{ 'text.search'|trans }}">
+                                            <i class="ri-search-line search-icon"></i>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-xxl-1 col-sm-4">
+                                        <div>
+                                            <button type="submit" class="btn btn-dark w-100"> <i class="ri-equalizer-fill me-1 align-bottom"></i>
+                                                {{ 'button.find'|trans }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+
+                        <div class="card-body">
+                            <div>
+
+                                <div class="table-responsive table-card mb-1">
+                                    <table class="table table-nowrap align-middle" id="tradeListTable">
+                                        <thead class="text-muted table-light">
+                                            <tr class="text-uppercase">
+                                                <th scope="col" style="width: 25px;">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                                    </div>
+                                                </th>
+                                                <th class="sort" data-sort="id" style="width: 140px;">{{ knp_pagination_sortable(trades, 'label.id'|trans, 'e.id') }}</th>
+                                                <th class="sort" data-sort="name">{{ knp_pagination_sortable(trades, 'label.name'|trans, 't.name') }}</th>
+                                                <th class="sort" data-sort="category">{{ knp_pagination_sortable(trades, 'label.category'|trans, 't.tradeCategory.name') }}</th>
+                                                <th class="sort" data-sort="created">{{ knp_pagination_sortable(trades, 'label.created'|trans, 't.created') }}</th>
+                                                <th class="sort" data-sort="updated">{{ knp_pagination_sortable(trades, 'label.updated'|trans, 't.updated') }}</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list form-check-all">
+                                        {% for trade in trades %}
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
+                                                    </div>
+                                                </th>
+                                                <td class="id"><a href="#" class="fw-medium link-primary">{{ trade.id }}</a></td>
+                                                <td class="user_displayname">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img src="{{ asset('assets/images/companies/img-3.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2"><a href="{{ url('admin_trades_edit', {'id': trade.id}) }}">{{ trade.name }}</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>{{ trade.tradeCategory.name }}</td>
+                                                <td class="date">{{ trade.created|format_datetime('short', 'short') }}</td>
+                                                <td class="date">{{ trade.updated|format_datetime('short', 'short') }}</td>
+                                                <td>
+                                                    <ul class="list-inline hstack gap-2 mb-0">
+                                                        <!-- Edit icon -->
+                                                        <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
+                                                            <a href="{{ url('admin_trades_edit', {'id': trade.id}) }}" class="text-muted d-inline-block">
+                                                                <i class="ri-pencil-fill fs-16"></i>
+                                                            </a>
+                                                        </li>
+                                                        <!-- Delete icon -->
+                                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">
+                                                            <!-- Notice data-bs-target="#deleteTrade_{{ trade.id }}" -->
+                                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteTrade_{{ trade.id }}">
+                                                                <i class="ri-delete-bin-5-fill fs-16"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <!-- Delete Trade Modal -->
+                                            <div class="modal fade flip" id="deleteTrade_{{ trade.id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body p-5 text-center">
+                                                            <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px"></lord-icon>
+                                                            <div class="mt-4 text-center">
+                                                                <h4>Sie sind dabei, ein Gewerbe zu löschen!</h4>
+                                                                <p class="text-muted fs-15 mb-4">Das Löschen eines Gewerbes entfernt alle zugehörigen Informationen aus unserer Datenbank.</p>
+                                                                <form action="{{ url('admin_trades_delete', {'id': trade.id}) }}" method="POST">
+                                                                    <div class="hstack gap-2 justify-content-center remove">
+                                                                        <button type="button" class="btn btn-link link-success fw-medium text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal">
+                                                                            <i class="ri-close-line me-1 align-middle"></i> {{ 'button.close'|trans }}
+                                                                        </button>
+                                                                        <button class="btn btn-danger" type="submit">{{ 'label.delete'|trans }}</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end modal -->
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <div class="noresult" style="display: none">
+                                        <div class="text-center">
+                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                            <h5 class="mt-2">Sorry! No Result Found</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="p-2">{{ 'text.total_items'|trans({'%number%': trades.getTotalItemCount}) }}</div>
+                                        <div class="p-2">{{ knp_pagination_render(trades) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--create trade modal -->
+                    <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="createTrade" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light p-3">
+                                    <h5 class="modal-title" id="createTrade">{{ 'label.create_trade'|trans }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                                </div>
+
+                                {{ form_errors(form) }}
+
+                                <form id="tradeForm" autocomplete="off" class="needs-validation" novalidate action="{{ path('admin_trades_create') }}" method="post">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                {{ form_row(form.name) }}
+                                                <div class="invalid-feedback">Bitte Namen eingeben</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                {{ form_row(form.lead) }}
+                                                <div class="invalid-feedback">Bitte Lead eingeben</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                {{ form_label(form.description) }}
+                                                {{ form_widget(form.description, {'id': 'ckeditor-classic'}) }}
+                                                {{ form_errors(form.description) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                {{ form_row(form.tradeCategory) }}
+                                                <div class="invalid-feedback">Bitte Kategorie auswählen</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <div class="form-check text-primary">
+                                                {{ form_row(form.isMultiConsultant, {
+                                                    label_attr: { 'class': 'form-check-label fw-normal text-primary' },
+                                                    attr:       { 'class': 'form-check-input' }
+                                                }) }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <!-- Submit Button -->
+                                            <div class="form-group d-flex justify-content-end gap-3">
+                                                <button type="submit" class="btn btn-dark right">{{ 'button.create'|trans }}</button>
+                                            </div>
+                                            <button type="button" class="btn btn-soft-dark" data-bs-dismiss="modal">{{ 'button.close'|trans }}</button>
+                                        </div>
+                                    </div>
+                                    {{ form_row(form._token) }}
+                                    {{ form_rest(form) }}
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--end modal-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- ckeditor -->
+    <script src="{{ asset('assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/ckeditor-config.init.js') }}"></script>
+    <!-- validation init -->
+    <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
+    <!-- Custom Company js -->
+    <script src="{{ asset('assets/js/pages/trade.init.js') }}"></script>
+    <!-- choices.js -->
+    <script src="{{ asset('assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+    <!-- choices js override for symfony's default basic multi-select field! -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // find all .js-choices elements
+            const elements = document.querySelectorAll('.js-choices');
+            elements.forEach(function(element) {
+                new Choices(element, {
+                    removeItemButton: true,        // user can remove selected items
+                    placeholderValue: 'Auswählen...',
+                    searchPlaceholderValue: 'Search...',
+                    allowHTML: false
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // ckeditor
+        var ckeditorClassic = document.querySelector('#ckeditor-classic');
+        if (ckeditorClassic) {
+            ClassicEditor
+                .create(document.querySelector('#ckeditor-classic'))
+                .then(function (editor) {
+                    editor.ui.view.editable.element.style.height = '200px';
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        }
+    </script>
+
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,51 @@
+liip_imagine:
+    twig:
+        mode: lazy
+    filter_sets:
+        user_avatar:
+            jpeg_quality:          85
+            png_compression_level: 8
+
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail:
+                    size:          [128, 128]
+                    mode:          outbound
+                    allow_upscale: true
+
+        user_avatar_512:
+            jpeg_quality:          85
+            png_compression_level: 8
+
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail:
+                    size:          [512, 512]
+                    mode:          outbound
+                    allow_upscale: true
+
+        seo_image_thumb:
+            jpeg_quality: 85
+            png_compression_level: 8
+
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail:
+                    size: [306, 160]
+                    mode: inset
+                    allow_upscale: true
+
+        reference_thumb:
+            jpeg_quality: 85
+            png_compression_level: 8
+
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail:
+                    size: [ 100, 57 ]
+                    mode: outbound
+                    allow_upscale: true

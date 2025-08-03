@@ -1,0 +1,121 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    <!-- Sweet Alert css-->
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {{ include('partials/page-title.html.twig', {pagetitle: 'page_title.options'|trans, title: 'page_title.options'|trans}) }}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card" id="usersList">
+                        <div class="card-header  border-0">
+                            <div class="d-md-flex align-items-center">
+                                <h5 class="card-title mb-3 mb-md-0 flex-grow-1">{{ 'card_title.admin_options'|trans }}</h5>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div>
+
+                                {{ form_start(form, { 'action': path('admin_settings_options_edit') }) }}
+                                {{ form_errors(form) }}
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        {{ form_row(form.adminEmail) }}
+                                        <div class="form-text mb-4">{{ 'text.admin_email_notification'|trans }}</div>
+                                        <div class="invalid-feedback">{{ 'error.enter_admin_email'|trans }}</div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        {{ form_row(form.salesEmail) }}
+                                        <div class="form-text mb-4">{{ 'text.admin_sales_notification'|trans }}</div>
+                                        <div class="invalid-feedback">{{ 'error.enter_sales_email'|trans }}</div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        {{ form_row(form.companyName) }}
+                                        <div class="invalid-feedback">{{ 'error.enter_company_name'|trans }}</div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        {{ form_row(form.companyAddress) }}
+                                        <div class="invalid-feedback">{{ 'error.enter_company_address'|trans }}</div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        {{ form_row(form.companyPhone) }}
+                                        <div class="invalid-feedback">{{ 'error.enter_company_phone'|trans }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <!-- Submit Button -->
+                                    <div class="form-group d-flex justify-content-end gap-3 mt-4">
+                                        <button type="submit" class="btn btn-primary right">{{ 'button.update'|trans }}</button>
+                                    </div>
+                                </div>
+
+                                {{ form_end(form) }}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card" id="usersList">
+                        <div class="card-header  border-0">
+                            <div class="d-md-flex align-items-center">
+                                <h5 class="card-title mb-3 mb-md-0 flex-grow-1">{{ 'card_title.email_test'|trans }}</h5>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div>
+
+                                <form action="{{ path('admin_settings_email_test', {'id': currentUser.id}) }}" method="post">
+                                    <div class="col-lg-12">
+                                        <div class="form-text mb-4">{{ 'text.email_test_notification'|trans }}</div>
+                                        <!-- Submit Button for email test -->
+                                        <div class="form-group d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary right">{{ 'button.send_test_email'|trans }}</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- Sweet Alerts js -->
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <!-- validation init -->
+    <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

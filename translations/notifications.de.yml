@@ -1,0 +1,26 @@
+notification:
+    candidate:
+        course_registration: "Kandidat %userName% hat sich für den Kurs: %courseTitle% angemeldet"
+        course_cancellation: "Kandidat %userName% hat sich für den Kurs: %courseTitle% abgemeldet"
+        account_removal: "Kandidat %userName% hat sein Konto gelöscht"
+        info_event_visited: "Hallo %userFirstname%, Du hast die Infoveranstaltung erfolgreich absolviert. Melde Dich jetzt für einen Schnupperkurs an."
+        post_info_accepted: "Kandidat %userName% hat sich für die Weiterführung des Bewerbungsprozess entschieden nach dem Info Event"
+        rejected_by_candidate: "Kandidat %userName% hat den Bewerbungsprozess beendet"
+        rejected_by_admin: "Hallo, %userFirstname%, dein Bewerbungsprozess bei Exedra wurde abgelehnt"
+        taster_course_visited: "Hallo %userFirstname%, Du hast den Schnupperkurs erfolgreich absolviert. Werde jetzt ein/e exedra Mitarbeiter/in."
+        post_taster_accepted: "Kandidat %userName% hat sich für die Weiterführung des Bewerbungsprozess entschieden nach dem Schnupperkurs"
+        contract_signed: "Kandidat %userName% hat den Arbeitsvertrag unterschrieben"
+    employee:
+        course_registration: "Kandidat %userName% hat sich für den Kurs: %courseTitle% angemeldet"
+        course_cancellation: "Kandidat %userName% hat sich für den Kurs: %courseTitle% abgemeldet"
+        account_removal: "Kandidat %userName% hat sein Konto gelöscht"
+        project_employee_added: "Hi %userFirstname%, Du bist nun Teil des Projekts %project%"
+        project_employee_removed: "Hi %userFirstname%, Du bist nun nicht mehr Teil des Projekts %project%"
+    user:
+        course_registration: "Hi, du hast dich für den Kurs: %courseTitle% angemeldet"
+        course_cancellation: "Hi, Dein Kurs %courseTitle% ist abgesagt"
+        project_set_leader: "Hi %userFirstname%, Du hast nun den Projekt Lead für das Projekt %project%"
+        project_member_added: "Hi %userFirstname%, Du bist nun Teil des Projekts %project%"
+        project_member_removed: "Hi %userFirstname%, Du bist nun nicht mehr Teil des Projekts %project%"
+        project_document_uploaded: "%userFirstname% hat ein Dokument hochgeladen für das Projekt %project%"
+        project_document_removed: "%userFirstname% hat ein Dokument entfernt im Projekt %project%"

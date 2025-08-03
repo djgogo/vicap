@@ -1,0 +1,268 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    <!-- Sweet Alert css-->
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {{ include('partials/page-title.html.twig', {pagetitle: 'page_title.users'|trans, title: 'page_title.users'|trans}) }}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card" id="usersList">
+                        <div class="card-header  border-0">
+                            <div class="d-md-flex align-items-center">
+                                <h5 class="card-title mb-3 mb-md-0 flex-grow-1">{{ 'title.user_archive'|trans }}</h5>
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex gap-1 flex-wrap">
+                                        <button type="button" class="btn btn-dark add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> {{ 'button.create_user'|trans }}</button>
+                                        <a href="{{ path('admin_users_csv_export') }}" class="btn btn-soft-dark"><i class="ri-file-download-line align-bottom me-1"></i>Export</a>
+                                        <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body border border-dashed border-end-0 border-start-0">
+                            <form method="get">
+                                <div class="row g-3">
+                                    <div class="col-xxl-5 col-sm-6">
+                                        <div class="search-box">
+                                            <input type="text" class="form-control search" name="query" value="{{ app.request.get('query') }}" placeholder="{{ 'text.search'|trans }}">
+                                            <i class="ri-search-line search-icon"></i>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-xxl-1 col-sm-4">
+                                        <div>
+                                            <button type="submit" class="btn btn-dark w-100"> <i class="ri-equalizer-fill me-1 align-bottom"></i>
+                                                {{ 'button.find'|trans }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+
+                        <div class="card-body">
+                            <div>
+
+                                <div class="table-responsive table-card mb-1">
+                                    <table class="table table-nowrap align-middle" id="userListTable">
+                                        <thead class="text-muted table-light">
+                                            <tr class="text-uppercase">
+                                                <th scope="col" style="width: 25px;">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                                    </div>
+                                                </th>
+                                                <th class="sort" data-sort="id" style="width: 140px;">{{ knp_pagination_sortable(items, 'label.id'|trans, 'u.id') }}</th>
+                                                <th class="sort" data-sort="lastName">{{ knp_pagination_sortable(items, 'label.name'|trans, 'u.lastName') }}</th>
+                                                <th class="sort" data-sort="registered">{{ knp_pagination_sortable(items, 'label.registered'|trans, 'u.created') }}</th>
+                                                <th class="sort" data-sort="lastSeen">{{ knp_pagination_sortable(items, 'label.activity'|trans, 'u.lastSeen') }}</th>
+                                                <th class="sort" data-sort="emailConfirmed">{{ knp_pagination_sortable(items, 'label.is_email_confirmed'|trans, 'u.isEmailConfirmed') }}</th>
+                                                <th class="sort" data-sort="isActive">{{ knp_pagination_sortable(items, 'label.is_active'|trans, 'u.isActive') }}</th>
+                                                <th class="sort" data-sort="role">{{ knp_pagination_sortable(items, 'label.role'|trans, 'u.role') }}</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list form-check-all">
+                                        {% for item in items %}
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
+                                                    </div>
+                                                </th>
+                                                <td class="id"><a href="#" class="fw-medium link-primary">{{ item.id }}</a></td>
+                                                <td class="user_displayname">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            {% set photoUrl = user_photo(item) %}
+                                                            {% if photoUrl matches '#^(https?://|//)#' %}
+                                                                <img src="{{ photoUrl }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                            {% else %}
+                                                                <img src="{{ photoUrl | imagine_filter('user_avatar') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2"><a href="{{ url('admin_user_edit', {'id': item.id}) }}">{{ item.displayName }}</a></div>
+                                                    </div>
+                                                </td>
+                                                <td class="date">{{ item.created|format_datetime('short', 'short') }}</td>
+                                                <td class="date">{{ item.lastSeen|format_datetime('short', 'short') }}</td>
+                                                <td>
+                                                    {{ item.isEmailConfirmed ? '<i class="ri-check-fill text-success"></i>' : '<i class="ri-close-fill text-danger"></i>' }}
+                                                    {{ (item.isEmailConfirmed ? 'label.email_confirmed' : 'label.email_not_confirmed')|trans }}
+                                                </td>
+                                                <td>
+                                                    {{ item.isActive ? '<i class="ri-check-fill text-success"></i>' : '<i class="ri-close-fill text-danger"></i>' }}
+                                                    {{ (item.isActive ? 'label.status_active' : 'label.status_inactive')|trans }}
+                                                </td>
+                                                <td class="role">{{ item.roles|join }}</td>
+                                                <td>
+                                                    <ul class="list-inline hstack gap-2 mb-0">
+                                                        <!-- Edit icon -->
+                                                        <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
+                                                            <a href="{{ url('admin_user_edit', {'id': item.id}) }}" class="text-muted d-inline-block">
+                                                                <i class="ri-pencil-fill fs-16"></i>
+                                                            </a>
+                                                        </li>
+                                                        <!-- Delete icon -->
+                                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">
+                                                            <!-- Notice data-bs-target="#deleteUser_{{ item.id }}" -->
+                                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteUser_{{ item.id }}">
+                                                                <i class="ri-delete-bin-5-fill fs-16"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <!-- Delete User Modal -->
+                                            <div class="modal fade flip" id="deleteUser_{{ item.id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body p-5 text-center">
+                                                            <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px"></lord-icon>
+                                                            <div class="mt-4 text-center">
+                                                                <h4>Sie sind dabei, einen Benutzer zu löschen!</h4>
+                                                                <p class="text-muted fs-15 mb-4">Das Löschen eines Benutzers entfernt alle zugehörigen Informationen aus unserer Datenbank.</p>
+                                                                <form action="{{ url('admin_user_delete', {'id': item.id}) }}" method="POST">
+                                                                    <div class="hstack gap-2 justify-content-center remove">
+                                                                        <button type="button" class="btn btn-link link-success fw-medium text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal">
+                                                                            <i class="ri-close-line me-1 align-middle"></i> {{ 'button.close'|trans }}
+                                                                        </button>
+                                                                        <button class="btn btn-danger" type="submit">{{ 'label.delete'|trans }}</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end modal -->
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <div class="noresult" style="display: none">
+                                        <div class="text-center">
+                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                            <h5 class="mt-2">Sorry! No Result Found</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="p-2">{{ 'text.total_items'|trans({'%number%': items.getTotalItemCount}) }}</div>
+                                        <div class="p-2">{{ knp_pagination_render(items) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--create user modal -->
+                    <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="registerUser" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light p-3">
+                                    <h5 class="modal-title" id="registerUser">Create User</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                                </div>
+
+                                {{ form_errors(form) }}
+
+                                <form class="needs-validation" novalidate action="{{ path('admin_users_create') }}" method="post">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            {{ form_row(form.email) }}
+                                            <div class="invalid-feedback">
+                                                {{ 'error.enter_email'|trans }}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form_row(form.firstName) }}
+                                            <div class="invalid-feedback">
+                                                {{ 'error.enter_firstname'|trans }}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form_row(form.lastName) }}
+                                            <div class="invalid-feedback">
+                                                {{ 'error.enter_lastname'|trans }}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form_row(form.roles) }}
+                                            <div class="invalid-feedback">
+                                                {{ 'error.enter_roles'|trans }}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="position-relative auth-pass-inputgroup">
+                                                {{ form_row(form.plainPassword) }}
+                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none shadow-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                <div class="invalid-feedback">
+                                                    {{ 'error.enter_password'|trans }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="password-contain" class="p-3 bg-light mb-2 rounded">
+                                            <h5 class="fs-13">{{ 'error.password_must_contain'|trans }}:</h5>
+                                            <p id="pass-length" class="invalid fs-12 mb-2">{{ 'text.minimum'|trans }} <b>{{ 'text.8_characters'|trans }}</b></p>
+                                            <p id="pass-lower" class="invalid fs-12 mb-2">{{ 'text.at'|trans }} <b>{{ 'text.lowercase'|trans }}</b> {{ 'text.letter_(a-z)'|trans }}</p>
+                                            <p id="pass-upper" class="invalid fs-12 mb-2">{{ 'text.at_least'|trans }} <b>{{ 'text.uppercase'|trans }}</b> {{ 'text.letter_(A-Z)'|trans }}</p>
+                                            <p id="pass-number" class="invalid fs-12 mb-0">{{ 'text.at_least'|trans }} <b>{{ 'text.number'|trans }}</b> (0-9)</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <button type="button" class="btn btn-soft-dark" data-bs-dismiss="modal">{{ 'button.close'|trans }}</button>
+                                            {{ form_widget(form.submit) }}
+                                        </div>
+                                    </div>
+                                    {{ form_row(form._token) }}
+                                    {{ form_rest(form) }}
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- list.js min js -->
+    <script src="{{ asset('assets/libs/list.js/list.min.js') }}"></script>
+
+    <!-- ecommerce-order init js -->
+    <script src="{{ asset('assets/js/pages/users.init.js') }}"></script>
+    <!-- Sweet Alerts js -->
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <!-- password-addon init -->
+    <script src="{{ asset('assets/js/pages/password-addon.init.js') }}"></script>
+    <!-- validation init -->
+    <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
+    <!-- password create init -->
+    <script src="{{ asset('assets/js/pages/password-create-modal.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

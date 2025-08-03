@@ -1,0 +1,110 @@
+{% extends 'public.html.twig' %}
+
+{% block meta_description %}
+    <meta name="robots" content="noindex, nofollow">
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="rainbow-prfile-area rainbow-section-gap">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card mt-4">
+                        <div class="card-body p-4 text-left">
+
+                            <div class="edu-contact-form contact-form-style-1 w-100">
+                                <div class="section-title text-center">
+                                    <h2 class="title w-500 mb--40">Login</h2>
+                                </div>
+
+                                {{ include('default/_flash_messages.html.twig') }}
+
+                                {% if error %}
+                                    <div class="alert alert-danger">
+                                        {{ error.messageKey|trans(error.messageData, 'messages') }}
+                                    </div>
+                                {% endif %}
+
+                                {% if app.user %}
+                                    <div class="mb-3">
+                                        You are logged in as {{ app.user.userIdentifier }}, <a
+                                                href="{{ path('security_logout') }}">Logout</a>
+                                    </div>
+                                {% endif %}
+
+                                <form action="{{ path('security_login') }}" method="post">
+
+                                    <div class="form-group position-relative">
+                                        <label for="email" class="form-label">E-Mail</label>
+                                        <input type="text" class="form-control" id="email" name="_email"
+                                               value="{{ last_username }}">
+                                        <span class="focus-border"></span>
+                                    </div>
+
+                                    <div class="form-group position-relative auth-pass-inputgroup">
+                                        <label for="password-input" class="form-label">Passwort</label>
+                                        <input type="password" id="password" name="_password" class="form-control pe-5 password-input" {{ stimulus_target('login', 'password') }} />
+                                        <button class="btn btn-link position-absolute end-0 top-50 text-decoration-none text-muted shadow-none password-addon fs-15"
+                                                type="button" id="password-addon">
+                                            <i class="ri-eye-fill align-middle"></i>
+                                        </button>
+                                        <span class="focus-border"></span>
+                                    </div>
+
+                                    <div class="row mb--30">
+                                        <div class="col-lg-6">
+                                            <div class="edu-checkbox">
+                                                <input class="form-check-input" type="checkbox" name="_remember_me" value="" id="auth-remember-check">
+                                                <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="edu-lost-password text-end">
+                                                <a href="{{ path('security_reset') }}" class="text-muted">Passwort vergessen?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+                                    <div class="form-submit-group">
+                                        <button type="submit" class="btn-default btn-dark w-100">
+                                            Log In <i class="feather-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ include('partials/vendor-scripts.html.twig') }}
+
+    <!-- password-addon init -->
+    <script src="{{ asset('assets/js/pages/password-addon.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

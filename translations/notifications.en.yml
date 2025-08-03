@@ -1,0 +1,26 @@
+notification:
+    candidate:
+        course_registration: "Candidate %userName% has registered for course: %courseTitle%"
+        course_cancellation: "Candidate %userName% has cancelled course: %courseTitle%"
+        account_removal: "Candidate %userName% has deleted his account"
+        info_event_visited: "Hi %userFirstname%, you have successfully visited the info event. register now for a taster course."
+        post_info_accepted: "Candidate %userName% has accepted the post info decision"
+        rejected_by_candidate: "Candidate %userName% has rejected the application process"
+        rejected_by_admin: "Hi, %userFirstname%, your application was rejected"
+        taster_course_visited: "Hi %userFirstname%, you have successfully visited the taster course. become an exedra employee now."
+        post_taster_accepted: "Candidate %userName% has accepted the post taster course decision"
+        contract_signed: "Candidate %userName% has signed the employment contract"
+    employee:
+        course_registration: "Employee %userName% has registered for course: %courseTitle%"
+        course_cancellation: "Candidate %userName% has cancelled course: %courseTitle%"
+        account_removal: "Candidate %userName% has deleted his account"
+        project_employee_added: "Hi %userFirstname%, you are now part of the Project %project%"
+        project_employee_removed: "Hi %userFirstname%, you was removed from the Project Employee %project%"
+    user:
+        course_registration: "Hi, you have registered for course: %courseTitle%"
+        course_cancellation: "Hi, your course %courseTitle% has been cancelled"
+        project_set_leader: "Hi %userFirstname%, you are now set as Project Leader for project %project%"
+        project_member_added: "Hi %userFirstname%, you are now part of the Project %project%"
+        project_member_removed: "Hi %userFirstname%, you was removed from the Project Employee %project%"
+        project_document_uploaded: "%userFirstname% uploaded a document to the Project %project%"
+        project_document_removed: "%userFirstname% removed a document from the Project %project%"

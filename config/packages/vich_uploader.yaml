@@ -1,0 +1,40 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        avatars:
+            uri_prefix: /media/users
+            upload_destination: '%kernel.project_dir%/public/media/users'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        employees:
+            uri_prefix: /media/employees
+            upload_destination: '%kernel.project_dir%/public/media/employees'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        employee_vcards:
+            uri_prefix: /media/employee_vcards
+            upload_destination: '%kernel.project_dir%/public/media/employee_vcards'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        companies:
+            uri_prefix: /media/companies
+            upload_destination: '%kernel.project_dir%/public/media/companies'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        references:
+            uri_prefix: /media/references
+            upload_destination: '%kernel.project_dir%/public/media/references'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        trade_categories:
+            uri_prefix: /media/trade_categories
+            upload_destination: '%kernel.project_dir%/public/media/trade_categories'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        job_categories:
+            uri_prefix: /media/job_categories
+            upload_destination: '%kernel.project_dir%/public/media/job_categories'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        seo_images:
+            uri_prefix: /media/seo_images
+            upload_destination: '%kernel.project_dir%/public/media/seo_images'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        application_files:
+            uri_prefix: /media/application_files
+            upload_destination: '%kernel.project_dir%/public/media/application_files'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer

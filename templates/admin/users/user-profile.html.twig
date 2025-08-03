@@ -1,0 +1,300 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    <!-- Sweet Alert css-->
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="position-relative mx-n4 mt-n4">
+                <div class="profile-wid-bg profile-setting-img">
+                    <img src="{{ asset('assets/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
+                    <div class="overlay-content">
+                        <div class="text-end p-3">
+                            <div class="p-0 ms-auto rounded-circle profile-photo-edit">
+                                <input id="profile-foreground-img-file-input" type="file" class="profile-foreground-img-file-input">
+                                <label for="profile-foreground-img-file-input" class="profile-photo-edit btn btn-dark">
+                                    <i class="ri-image-edit-line align-bottom me-1"></i> {{ 'text.change_cover'|trans }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xxl-3">
+                    <div class="card mt-n5">
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
+                                    {% set photoUrl = user_photo(user) %}
+                                    {% if photoUrl matches '#^(https?://|//)#' %}
+                                        <img src="{{ photoUrl }}" class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
+                                    {% else %}
+                                        <img src="{{ user_photo(user) | imagine_filter('user_avatar') }}" class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
+                                    {% endif %}
+
+                                    <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                        <input id="profile-img-file-input" type="file" class="profile-img-file-input" data-id="{{ user.id }}">
+                                        <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
+                                            <span class="avatar-title rounded-circle bg-light text-body shadow">
+                                                <i class="ri-camera-fill"></i>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <h5 class="fs-16 mb-1">{{ user.displayName() }}</h5>
+                                        <p class="text-muted mb-0">{{ user.jobDesignation }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+                <div class="col-xxl-9">
+
+                    {{ form_start(personalDetails, { 'action': path('admin_user_update_personal_details', {'id': user.id}), 'attr': { 'id': 'personal-details-form' } }) }}
+
+                    <div class="card mt-xxl-n5">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="personalDetails-tab" data-bs-toggle="tab" href="#personalDetails" role="tab" aria-controls="personalDetails" aria-selected="true">
+                                        <i class="fas fa-home"></i> {{ 'title.personal_details'|trans }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="changePassword-tab" data-bs-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="true">
+                                        <i class="far fa-user"></i> {{ 'title.change_password'|trans }}
+                                    </a>
+                                </li>
+                                {% if user == currentUser %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="options-tab" data-bs-toggle="tab" href="#options" role="tab" aria-controls="options" aria-selected="true">
+                                            <i class="far fa-envelope"></i> {{ 'title.options'|trans }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="personalDetails" role="tabpanel" aria-labelledby="personalDetails-tab">
+
+                                    {{ form_errors(personalDetails) }}
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.firstName) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.lastName) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.phone, { 'id': 'cleave-phone' }) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.email) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.jobDesignation) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.birthdate) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.company) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.roles) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.address) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.zip) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.city) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.country) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    {{ form_row(personalDetails.about) }}
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-4">
+                                                {{ form_row(personalDetails.isEmailConfirmed) }}
+                                                {{ form_row(personalDetails.isActive) }}
+                                                {% if currentUser.isSuperAdmin() %}
+                                                    {{ form_row(personalDetails.isSuperAdmin) }}
+                                                {% endif %}
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+
+                                        <div class="col-lg-12">
+                                            <!-- Submit Button -->
+                                            <div class="form-group d-flex justify-content-end gap-3 mt-4">
+                                                <button type="submit" class="btn btn-dark right">{{ 'button.update'|trans }}</button>
+                                            </div>
+                                        </div>
+                                    {{ form_end(personalDetails) }}
+
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="changePassword-tab">
+                                    {{ form_start(changePassword, { 'action': path('admin_user_change_password', {'id': user.id }), 'attr': { 'id': 'change-password-form' } }) }}
+                                        <div class="mb-3">
+                                            <div class="position-relative auth-pass-inputgroup">
+                                                {{ form_row(changePassword.plainPassword) }}
+                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none shadow-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                            </div>
+                                        </div>
+                                        <div id="password-contain" class="p-3 bg-light mb-2 rounded">
+                                            <h5 class="fs-13">{{ 'error.password_must_contain'|trans }}:</h5>
+                                            <p id="pass-length" class="invalid fs-12 mb-2">{{ 'text.minimum'|trans }} <b>{{ 'text.8_characters'|trans }}</b></p>
+                                            <p id="pass-lower" class="invalid fs-12 mb-2">{{ 'text.at'|trans }} <b>{{ 'text.lowercase'|trans }}</b> {{ 'text.letter_(a-z)'|trans }}</p>
+                                            <p id="pass-upper" class="invalid fs-12 mb-2">{{ 'text.at_least'|trans }} <b>{{ 'text.uppercase'|trans }}</b> {{ 'text.letter_(A-Z)'|trans }}</p>
+                                            <p id="pass-number" class="invalid fs-12 mb-0">{{ 'text.at_least'|trans }} <b>{{ 'text.number'|trans }}</b> (0-9)</p>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <!-- Submit Button -->
+                                            <div class="form-group d-flex justify-content-end gap-3 mt-4">
+                                                <button type="submit" class="btn btn-dark right">Update</button>
+                                            </div>
+                                        </div>
+                                    {{ form_end(changePassword) }}
+                                </div>
+                                <!--end tab-pane-->
+                                {% if user == currentUser %}
+                                    <div class="tab-pane" id="options" role="tabpanel">
+                                        <div class="mb-3">
+                                            <h5 class="card-title text-decoration-underline mb-3">{{ 'title.application_notifications'|trans }}:</h5>
+                                            <ul class="list-unstyled mb-0">
+                                                <!-- In-App Notifications Switch -->
+                                                <li class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <label class="form-check-label fs-14" for="desktopNotification">
+                                                            {{ 'label.send_in_app_notifications'|trans }}
+                                                        </label>
+                                                        <p class="text-muted">
+                                                            {{ 'text.Deactivate this option if you no longer wish to receive in-app notifications.'|trans }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox"
+                                                                   role="switch"
+                                                                   id="desktopNotification"
+                                                                   data-endpoint="{{ path('admin_user_profile_options_edit', {'option': 'notifications_enabled'}) }}"
+                                                                    {% if options['notifications_enabled']|default(0) == 1 %}
+                                                                        checked
+                                                                    {% endif %} />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- Email Notifications Switch -->
+                                                <li class="d-flex mt-2">
+                                                    <div class="flex-grow-1">
+                                                        <label class="form-check-label fs-14" for="emailNotification">
+                                                            {{ 'label.send_email_notifications'|trans }}
+                                                        </label>
+                                                        <p class="text-muted">
+                                                            {{ 'text.Deactivate this option if you no longer wish to receive email notifications.'|trans }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox"
+                                                                   role="switch"
+                                                                   id="emailNotification"
+                                                                   data-endpoint="{{ path('admin_user_profile_options_edit', {'option': 'email_notifications_enabled'}) }}"
+                                                                    {% if options['email_notifications_enabled']|default(0) == 1 %}
+                                                                        checked
+                                                                    {% endif %} />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <!--end tab-pane-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="id" id="id-field" value="{{ app.request.get('id') }}"/>
+
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div><!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- profile-setting init js -->
+    <script src="{{ asset('assets/js/pages/user-profile-setting.init.js') }}"></script>
+    <!-- password-addon init -->
+    <script src="{{ asset('assets/js/pages/password-profile.init.js') }}"></script>
+    <!-- cleave.js -->
+    <script src="{{ asset('assets/libs/cleave.js/cleave.min.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

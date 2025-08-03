@@ -1,0 +1,12 @@
+{% extends 'mail.html.twig' %}
+
+{% block content %}
+    <p>Hallo Admin</p>
+    <p>{{ name }} hat soeben die folgende Nachricht mit dem Kontaktformular gesendet:</p>
+
+    <p>{{ comments }}</p>
+
+    <p>Absender Email: {{ email }}</p>
+
+    <p>Grüsse, dein freundlicher Exedra Bot</p>
+{% endblock %}

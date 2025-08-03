@@ -1,0 +1,78 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {{ include('partials/page-title.html.twig', {pagetitle: 'Email Templates', title: 'Auth & Register Emails'}) }}
+
+            {{ form_start(form, { 'action': path('admin_settings_email_templates_auth') }) }}
+
+            <div class="row">
+                {% for groupForm in form.groups %}
+                    <div class="col-xxl-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                {# Display the Template Name #}
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="flex-grow-1">
+                                        <h5 class="card-title mb-0">
+                                            {{ groupForm.name.vars.value | replace({'_': ' '}) | title }}
+                                        </h5>
+                                    </div>
+                                </div>
+                                {# Iterate over translations #}
+                                {% for translationForm in groupForm.translations %}
+                                    <div class="mb-3">
+                                        <h6 class="bg-primary-subtle p-md-2"><strong>Locale: {{ translationForm.locale.vars.value }}</strong></h6>
+                                        <div class="mb-2">
+                                            {{ form_label(translationForm.subject) }}
+                                            {{ form_widget(translationForm.subject, {'attr': {'class': 'form-control needs-validation'}}) }}
+                                            {{ form_errors(translationForm.subject) }}
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form_label(translationForm.content) }}
+                                            {{ form_widget(translationForm.content, {'attr': {'class': 'form-control needs-validation', 'rows': 15}}) }}
+                                            {{ form_errors(translationForm.content) }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                {% endfor %}
+            </div>
+            <!--end row-->
+
+            <div class="col-lg-12">
+                <!-- Submit Button -->
+                <div class="form-group d-flex justify-content-end gap-3 mt-4">
+                    <button type="submit" class="btn btn-dark right">Update</button>
+                </div>
+            </div>
+
+            {{ form_row(form._token) }}
+            {{ form_end(form, {'render_rest': false}) }}
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- validation init -->
+    <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

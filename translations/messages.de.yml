@@ -1,0 +1,264 @@
+note: HINWEIS
+
+tip: TIPP
+
+not_available: 'Nicht verfügbar'
+
+mit_license: MIT-Lizenz
+
+http_error:
+    name: 'Fehler {status_code, number}'
+    description: 'Es gab einen unbekannten Fehler (HTTP {status_code, number}), sodass deine Anfrage nicht bearbeitet werden konnte.'
+    suggestion: 'Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="{url}">gehe zurück zur Startseite</a>.'
+
+http_error_403:
+    description: 'Du hast keine Berechtigung, auf diese Ressource zuzugreifen.'
+    suggestion: 'Frage deinen Manager oder Systemadministrator, um dir Zugriff auf diese Ressource zu gewähren.'
+
+http_error_404:
+    description: 'Wir konnten die von dir angeforderte Seite nicht finden.'
+    suggestion: 'Überprüfe Rechtschreibfehler in der URL oder <a href="{url}">gehe zurück zur Startseite</a>.'
+
+http_error_500:
+    description: 'Es gab einen internen Serverfehler.'
+    suggestion: 'Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="{url}">gehe zurück zur Startseite</a>.'
+
+title:
+    login: Login
+    edit_user: 'Benutzer bearbeiten'
+    change_password: 'Passwort ändern'
+    post_new: 'Beitrag erstellen'
+    trade_category: 'Gewerbe Kategorie'
+    reference: 'Referenz'
+    trade_archive: 'Gewerbe Archiv'
+    personal_details: 'Persönliche Details'
+    options: 'Optionen'
+    application_notifications: 'Anwendungsbenachrichtigungen'
+    user_archive: 'Benutzer Archiv'
+    job_archive: 'Job Archiv'
+    job_category: 'Job Kategorie'
+    seo_image: 'SEO-Bild'
+    api_keys: 'API-Schlüssel'
+    employee_archive: 'Mitarbeiter Archiv'
+    employee_category: 'Mitarbeiter Kategorie'
+    social_links: 'Soziale Netzwerke'
+
+action:
+    show: Anzeigen
+    show_post: 'Beitrag anzeigen'
+    show_code: 'Code anzeigen'
+    edit: Bearbeiten
+    edit_post: 'Beitrag bearbeiten'
+    save: 'Änderungen speichern'
+    delete_post: 'Beitrag löschen'
+    create_post: 'Neuen Beitrag erstellen'
+    back_to_list: 'Zurück zur Beitragsliste'
+    publish_comment: 'Kommentar veröffentlichen'
+    sign_in: Anmelden
+    browse_app: 'Zur Applikation'
+    browse_admin: 'Zum Backend'
+    edit_user: 'Benutzer bearbeiten'
+    change_password: 'Passwort ändern'
+    close: Schließen
+    edit_contents: 'Inhalt bearbeiten'
+
+delete_post_modal:
+    title: 'Bist du sicher, dass du diesen Beitrag löschen möchtest?'
+    body: 'Diese Aktion kann nicht rückgängig gemacht werden.'
+
+label:
+    delete: Löschen
+    location: Ort
+    phone: Telefon
+    company: Firma
+    delete_post: 'Beitrag löschen'
+    cancel: Abbrechen
+    create_post: 'Beitrag erstellen'
+    save_and_create_new: 'Speichern und neuen Beitrag erstellen'
+    title: Titel
+    author: Autor
+    author_email: 'E-Mail des Autors'
+    username: Benutzername
+    fullname: 'Vollständiger Name'
+    email: E-Mail
+    password: Passwort
+    current_password: 'Aktuelles Passwort'
+    new_password: 'Neues Passwort'
+    new_password_confirm: 'Passwort bestätigen'
+    role: Rolle
+    content: Inhalt
+    summary: Zusammenfassung
+    published_at: 'Veröffentlicht am'
+    tags: Tags
+    actions: Aktionen
+    created: Erstellt
+    updated: Aktualisiert
+    id: ID
+    category: Kategorie
+    create_trade: 'Gewerbe erstellen'
+    solution: Solution
+    send_in_app_notifications: 'In-App-Benachrichtigungen senden'
+    send_email_notifications: 'E-Mail-Benachrichtigungen senden'
+    registered: Registriert
+    short: Kurz
+    create_employee: 'Mitarbeiter erstellen'
+    joining_date: 'Eintrittsdatum'
+    position: Position
+
+menu:
+    toggle_nav: 'Navigation ein-/ausblenden'
+    choose_language: 'Sprache auswählen'
+    post_list: Beitragsliste
+    back_to_blog: 'Zurück zum Blog'
+    homepage: Start
+    process: Prozess
+    contact: Kontakt
+    admin: Backend
+    user: Konto
+    logout: Abmelden
+    rss: 'Blog Posts RSS'
+    search: Suchen
+
+post:
+    to_publish_a_comment: 'um einen Kommentar zu veröffentlichen'
+    num_comments: '{count, plural, one {# Kommentar} other {# Kommentare}}'
+    commented_on: kommentierte
+    no_comments: 'Hinterlasse als Erste/r einen Kommentar zu diesem Beitrag.'
+    no_posts_found: 'Keine Beiträge gefunden.'
+    created_successfully: 'Der Beitrag wurde erfolgreich erstellt!'
+    updated_successfully: 'Der Beitrag wurde erfolgreich bearbeitet!'
+    deleted_successfully: 'Der Beitrag wurde erfolgreich gelöscht!'
+    search_for: 'Suchen nach...'
+    search_no_results: 'Keine Ergebnisse gefunden'
+
+user:
+    updated_successfully: 'Der Benutzer wurde erfolgreich aktualisiert!'
+
+notification:
+    comment_created:
+        description: 'Dein Beitrag "{title}" hat einen Kommentar erhalten. Du kannst den Kommentar lesen, indem du <a href="{link}">diesem Link</a> folgst.'
+
+help:
+    app_description: 'Dies ist eine <strong>Demo-Applikation</strong>, die mit dem Symfony-Framework erstellt wurde, um den empfohlenen Weg zur Entwicklung von Symfony-Applikationen zu veranschaulichen.'
+    show_code: 'Klicke auf diesen Button, um den Quellcode des <strong>Controllers</strong> und des <strong>Templates</strong> anzuzeigen, der zum Rendern dieser Seite verwendet wird.'
+    browse_app: 'Gehe zum <strong>öffentlichen Bereich</strong> der Demo-Applikation.'
+    browse_admin: 'Gehe zum <strong>Backend</strong> der Demo-Applikation.'
+    login_users: 'Versuche einen der folgenden Benutzer'
+    role_user: 'Normaler Benutzer'
+    role_admin: Administrator
+    reload_fixtures: 'Wenn keiner der Benutzer funktioniert, spiele die Fixtures mit folgendem Befehl auf der Kommandozeile erneut ein:'
+    add_user: 'Wenn du einen neuen Benutzer erstellen willst, benutze diesen Befehl:'
+    more_information: 'Für mehr Informationen besuche die offizielle <a href="https://symfony.com/doc">Symfony-Dokumentation</a>.'
+    post_summary: 'Zusammenfassungen können weder Markdown noch HTML beinhalten; nur Plaintext.'
+    post_publication: 'Setze das Datum in die Zukunft, um die Veröffentlichung zu planen.'
+    post_content: 'Benutze Markdown, um den Inhalt des Beitrags zu formatieren. HTML ist ebenfalls erlaubt.'
+    comment_content: 'Kommentare, die nicht unserem Verhaltenskodex entsprechen, werden moderiert.'
+
+info:
+    change_password: 'Nach dem Ändern deines Passworts wirst du von der Applikation abgemeldet.'
+
+rss:
+    title: 'Symfony Demo Blog'
+    description: 'Die neuesten Beiträge, die auf dem Symfony Demo Blog veröffentlicht wurden.'
+
+paginator:
+    previous: Vorherige
+    next: Nächste
+    current: (aktuell)
+
+mail:
+    password_changed:
+        footer: 'Wenn Sie diese Passwortänderung nicht angefordert haben, ignorieren Sie bitte diese E-Mail.'
+
+page_title:
+    employee_categories: 'Mitarbeiter Kagegorien'
+    dashboard: Dashboard
+    users: Benutzer
+    job_categories: 'Job Kategorien'
+    applications: 'Bewerbungen'
+    application_list: 'Bewerbungen Archiv'
+    term_templates: 'Vorlagen'
+    certificates: 'Zertifikate'
+    impressum: Impressum
+    privacy-policy: 'Datenschutzbestimmungen'
+    email_templates: 'E-Mail-Vorlagen'
+    school_emails: 'School E-Mails'
+    job_emails: 'Job E-Mails'
+    trades: 'Gewerbe'
+    references: Referenzen
+    solutions: Solutions
+    edit_solution: 'Solution bearbeiten'
+    jobs: Jobs
+    seo-images: 'SEO-Bilder'
+    companies: Firmen
+    edit_company: 'Firma bearbeiten'
+    employees: Mitarbeiter
+
+error:
+    no_categories_found: 'Keine Kategorien gefunden'
+    enter_name: 'Name eingeben'
+    no_references_found: 'Keine Referenzen gefunden'
+    select_company: 'Firma auswählen'
+    select_at_least_1_contact: 'Mindestens einen Kontakt auswählen'
+    password_must_contain: 'Passwort muss bestimmte Zeichen enthalten'
+    enter_email: 'E-Mail eingeben'
+    enter_firstname: 'Vorname eingeben'
+    enter_lastname: 'Nachnamen eingeben'
+    enter_roles: 'Rollen eingeben'
+    enter_password: 'Passwort eingeben'
+    enter_slug: 'Slug eingeben'
+    enter_lead: 'Inhalt eingeben'
+    select_at_least_one_rubric: 'Mindestens eine Rubrik auswählen'
+    no_seo_images_found: 'Keine SEO-Bilder gefunden'
+
+button:
+    edit_trade_category: 'Gewerbe Kategorie aktualisieren'
+    create_trade_category: 'Gewerbe Kategorie erstellen'
+    edit_employee_category: 'Mitarbeiter Kategorie aktualisieren'
+    create_employee_category: 'Mitarbeiter Kategorie erstellen'
+    edit_job_category: 'Job Kategorie aktualisieren'
+    create_category: 'Kategorie ertellen'
+    edit_solution: 'Solution aktualisieren'
+    create_solution: 'Solution erstellen'
+    edit_references: 'Referenz aktualisieren'
+    create_reference: 'Referenz erstellen'
+    create_company: 'Firma erstellen'
+    edit_company: 'Firma aktualisieren'
+    create_user: 'Benutzer erstellen'
+    update_user: 'Benutzer aktualisieren'
+    create_trade: 'Gewerbe erstellen'
+    update_trade: 'Gewerbe aktualisieren'
+    find: Finden
+    update: Aktualisieren
+    close: Schließen
+    create: Erstellen
+    view_all_results: 'Alle Ergebnisse anzeigen'
+
+text:
+    total_items: 'Insgesamt %number% Einträge'
+    widget:
+        online_users: 'Benutzer Online'
+        total_users: 'Total Benutzer'
+        unconfirmed_users: 'Nicht bestätigte Benutzer'
+        registered_this_month: 'Diesen Monat registriert'
+        registered_today: 'Heute registriert'
+        banned_users: 'Gesperrte Benutzer'
+    total_jobs: 'Gesamtanzahl Jobs'
+    apply_jobs: 'Auf Jobs beworben'
+    hired: 'Eingestellt'
+    rejected: 'Abgelehnt'
+    search: 'Suchen...'
+    change_cover: 'Cover ändern'
+    minimum: 'Minimum'
+    8_characters: '8 Zeichen'
+    at: 'bei'
+    lowercase: 'Kleinbuchstaben'
+    letter_(a-z): 'Buchstabe (a-z)'
+    at_least: 'Mindestens'
+    uppercase: 'Großbuchstaben'
+    letter_(A-Z): 'Buchstabe (A-Z)'
+    number: 'Zahl'
+    'Deactivate this option if you no longer wish to receive in-app notifications':
+        '': 'Deaktiviere diese Option, wenn du keine In-App-Benachrichtigungen mehr erhalten möchtest.'
+    'Deactivate this option if you no longer wish to receive email notifications':
+        '': 'Deaktiviere diese Option, wenn du keine E-Mail-Benachrichtigungen mehr erhalten möchtest.'

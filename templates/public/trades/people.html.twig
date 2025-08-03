@@ -1,0 +1,92 @@
+{% extends 'public.html.twig' %}
+
+{% block meta_description %}
+    <meta name="description" content="Finden Sie die richtigen Leute mit einwandfreien Referenzen in folgenden Bereichen">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <!-- Start Main Team Area  -->
+    <div class="main-content">
+
+        <!-- Start Team-Style-Default Style-Four Area  -->
+        <div class="rainbow-blog-area rainbow-section-gap">
+            <div class="container">
+
+                <div class="row mb--20">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <h2 class="page-title w-500 mt--50 mb--20">people</h2>
+                            <p class="description b1">Finden Sie die richtigen Leute mit einwandfreien Referenzen in folgenden Bereichen</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-filter mb-4">
+                    <div class="row justify-content-center row--15">
+                        {% for category in categories %}
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--30"
+                                 data-sal="slide-up"
+                                 data-sal-duration="700"
+                                 data-sal-delay="{{ loop.index0 * 100 }}">
+                                <a href="{{ path('homepage_people', {'category': category.id}) }}" class="square-category {{ selectedCategoryId == category.id ? 'active' : '' }}"
+                                   style="background-image: url('{{ category_image(category) | imagine_filter('user_avatar_512') }}');">
+                                    <div class="square-txt">
+                                        <span>{{ category.name }}</span>
+                                        <i class="mdi mdi-chevron-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row mt_dec--30">
+                    <div class="row mb--20">
+                        <div class="col-lg-12">
+                            <div class="text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                                {% if selectedCategory is not null %}
+                                    <h2 class="w-500 mt--100 mb--20">{{ selectedCategory.name }}</h2>
+                                    <p class="description b1">{{ selectedCategory.lead }}</p>
+                                {% else %}
+                                    <h2 class="w-500 mt--100 mb--20">alle gewerbe</h2>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if trades|length %}
+                        <div class="row mt--30 justify-content-start row--15">
+                            {% for trade in trades %}
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--30">
+                                    <a href="{{ path('homepage_people_details', {'id': trade.id}) }}" class="square-solution">
+                                        <div class="solution-title fs-20">
+                                            {{ trade.name }}
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Main Solutions Area  -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!--homepage init -->
+    <script src="{{ asset('assets/js/pages/homepage.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

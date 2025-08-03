@@ -1,0 +1,41 @@
+# Do not ignore /public/assets/ as it contains both development and production assets
+# /public/assets/ was previously ignored but is now committed to Git
+
+.php-version
+.idea
+.junie
+
+###> symfony/upload media  ###
+/public/media/
+###> symfony/upload media ###
+
+# ignore generated sitemap files
+/public/sitemap*.xml
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/.env.prod
+/.env.prod.php
+/.env.*.prod
+/.env.dev
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

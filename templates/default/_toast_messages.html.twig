@@ -1,0 +1,32 @@
+{% for type, messages in app.flashes %}
+    {% for flash_message in messages %}
+        <script>
+            let backgroundColor;
+
+            // Define colors based on message type
+            switch ("{{ type }}") {
+                case "success":
+                    backgroundColor = "linear-gradient(to right, #00b09b, #96c93d)"; // Green
+                    break;
+                case "error":
+                case "danger": // Add this case for "danger"
+                    backgroundColor = "linear-gradient(to right, #ff5f6d, #ffc371)"; // Red
+                    break;
+                default:
+                    backgroundColor = "linear-gradient(to right, #1a73e8, #66a6ff)"; // Default color (blue)
+            }
+
+            // Show Toastify notification
+            Toastify({
+                text: "{{ flash_message|escape('js') }}",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: 'right',
+                style: {
+                    background: backgroundColor,
+                },
+            }).showToast();
+        </script>
+    {% endfor %}
+{% endfor %}

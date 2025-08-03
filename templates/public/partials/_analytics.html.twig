@@ -1,0 +1,24 @@
+{# Google Analytics (gtag.js) #}
+{% if ga_tracking_id is not empty %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_tracking_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ ga_tracking_id }}');
+    </script>
+{% endif %}
+
+{# Friendly Analytics Tag Manager #}
+{% if friendly_container_id is not empty %}
+    <script>
+        var _mtm = window._mtm = window._mtm || [];
+        _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+        (function() {
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true;
+            g.src='https://app.friendlyanalytics.ch/js/container_{{ friendly_container_id }}.js';
+            s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+{% endif %}

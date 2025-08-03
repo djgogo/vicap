@@ -1,0 +1,132 @@
+{% extends 'public.html.twig' %}
+
+{% block meta_description %}
+    <meta name="description" content="{{ trade.lead }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <!-- Start Main Team Area  -->
+    <div class="main-content">
+
+        <!-- Start Solutions Details page  -->
+        <div class="rainbow-blog-area rainbow-section-gap">
+            <div class="container">
+                <!-- Solution Header -->
+                <div class="row mb--20">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <h2 class="page-title w-500 mt--50 mb--50">{{ trade.name }}</h2>
+                            <p class="description b1">{{ trade.lead }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employees Cards -->
+                {% if trade.employees|length %}
+                    <div class="row justify-content-center g-5">
+                        {% for employee in trade.employees %}
+                            {% set contactTitle = null %}
+                            {% for cat in employee.employeeCategories %}
+                                {% if cat.name == 'Basel' %}
+                                    {% set contactTitle = 'Kontakt Basel' %}
+                                {% elseif cat.name == 'Zürich' %}
+                                    {% set contactTitle = 'Kontakt Zürich' %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if trade.isMultiConsultant %}
+                                {% set contactTitle = 'Kontakt Basel und Zürich' %}
+                            {% endif %}
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--30" data-sal="slide-up" data-sal-duration="700">
+                                {% if contactTitle %}
+                                    <h6 class="fw-bold text-left">{{ contactTitle }}</h6>
+                                {% endif %}
+                                <div class="card card-contact text-center">
+                                    {# Image on top #}
+                                    <img src="{{ asset('media/employees/' ~ employee.image2) }}"
+                                         class="card-img-top"
+                                         alt="{{ employee.firstname }} {{ employee.lastname }}">
+
+                                    {# Body with translucent badge at bottom #}
+                                    <div class="card-body position-relative p-0">
+                                        <div class="badge-text px-3 py-2">
+                                            <h5 class="card-title mb-1">{{ employee.firstname }} {{ employee.lastname }}</h5>
+                                            <p class="mb-2">{{ employee.position }}</p>
+                                            <p class="mb-2">{{ employee.description }}</p>
+                                            <p class="link-hover mb-1">
+                                                <a href="tel:{{ employee.phone|replace({' ': ''}) }}">
+                                                    <i class="mdi mdi-phone"></i> {{ employee.phone }}
+                                                </a>
+                                            </p>
+                                            <p class="link-hover mb-1">
+                                                <a href="mailto:{{ employee.email }}">
+                                                    <i class="mdi mdi-email"></i> {{ employee.email }}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Trade Description -->
+                <div class="row pt-5 justify-content-center">
+                    <div class="col-12 col-md-6">
+                        <div class="text-left mt--20">{{ trade.description|raw }}</div>
+                    </div>
+                </div>
+
+                <!-- Start Seperator Area  -->
+                <div class="rbt-separator-mid rainbow-section-gap">
+                    <div class="container">
+                        <hr class="rbt-separator m-0">
+                    </div>
+                </div>
+                <!-- End Seperator Area  -->
+
+                <!-- Start References Area  -->
+                <div class="rainbow-brand-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="section-title text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                                    <h2 class="title w-500 mb--20">Referenzen</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="brand-list brand-style-2 pb--10">
+                                    {% for reference in trade.references %}
+                                        {% set imagePath = reference.logo ? '/media/references/' ~ reference.logo : '/assets-front/images/team/default.jpg' %}
+                                        <li><a href="{{ reference.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ absolute_url(asset(imagePath)) }}" alt="Reference Image"></a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Brand Style-4  -->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- End Solutions Detail Area  -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!--homepage init -->
+    <script src="{{ asset('assets/js/pages/homepage.init.js') }}"></script>
+
+    {{ parent() }}
+
+{% endblock %}

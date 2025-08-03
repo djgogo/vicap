@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-style-mode" content="0"> <!-- 0 == light, 1 == dark -->
+
+    {# Allow pages to override the title #}
+    <title>{% block title %}Websitemaster | Professional Web Solutions{% endblock %}</title>
+
+    {# Default meta description which can be overridden #}
+    {% block meta_description %}
+        <meta name="description" content="Ob Sie einen passenden Job suchen oder die richtige Arbeitskraft finden, wir bringen die perfekten Partner zusammen.">
+    {% endblock %}
+
+    <meta content="Websitemaster" name="author" />
+
+    {# Analytics #}
+    {% include 'public/partials/_analytics.html.twig' %}
+
+    {# Facebook Open Graph Tags Block - default values #}
+    {% block opengraph %}
+        <meta property="og:url" content="https://websitemaster.ch" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Professional Web Solutions" />
+        <meta property="og:description" content="Website, App & E-Commerce Development Expert" />
+        <meta property="og:image" content="{{ asset('assets/images/logo/logo-light.png') }}" />
+    {% endblock %}
+
+    {# Twitter Meta Tags Block - default values #}
+    {% block twitter_meta %}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Professional Web Solutions">
+        <meta name="twitter:description" content="Website, App & E-Commerce Development Expert">
+        <meta name="twitter:image" content="{{ asset('assets/images/logo/logo-light.png') }}">
+    {% endblock %}
+
+    <!-- mobile favicons -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo/favicon.ico') }}">
+    <!-- mobile favicons -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/logo/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logo/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/logo/favicon-16x16.png') }}">
+
+    {% block stylesheets %}
+        <!-- SEO -->
+        <link rel="canonical" href="{{ app.request.schemeAndHttpHost }}{{ app.request.pathInfo }}" />
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('/assets-front/vendor/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- Frontend Website styles -->
+        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/fontawesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/swiper-bundle.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/progressbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/meanmenu.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/carouselTicker.css') }}">
+        <!-- Template Main CSS File -->
+        <link rel="stylesheet" href="{{ asset('/assets-front/css/style.css') }}">
+    {% endblock %}
+
+    {% block jsonLd %}{% endblock %}
+</head>
+<body class="web-design">
+    {% set _route = app.request.get('_route') %}
+    {% include 'default/_toast_messages.html.twig' %}
+
+    <!-- Start PreLoader Area -->
+    {% include "public/partials/preloader.html.twig" %}
+    <!-- End PreLoader Area  -->
+
+    <!-- Start ScrollToTop Area -->
+    {% include "public/partials/scroll_to_top.html.twig" %}
+    <!-- End PreLoader Area  -->
+
+    <!-- Start OffCanvas Side Area -->
+    {% include "public/partials/offcanvas.html.twig" %}
+    <!-- End OffCanvas Side Area -->
+
+    <!-- Start Header Area  -->
+    {% include "public/partials/header.html.twig" %}
+    <!-- End Header Area -->
+
+    <!-- Start Theme Style -->
+    {% if theme is defined and theme == "true" %}
+        {% include "public/partials/theme.html.twig" %}
+    {% endif %}
+    <!-- End Theme Style -->
+
+    <div class="has-smooth" id="has_smooth"></div>
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <main>
+                    {% block content %}
+
+                    {% endblock %}
+                    <!-- Start Footer Area -->
+                    {% include "public/partials/footer.html.twig" %}
+                    <!-- End Footer Area -->
+                </main>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {% include "public/partials/front-scripts.html.twig" %}
+    {% endblock %}
+</body>
+</html>

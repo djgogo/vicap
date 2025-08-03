@@ -1,0 +1,106 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {{ include('partials/page-title.html.twig', {pagetitle: 'Pages', title: 'Search Results'}) }}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="row mb-4">
+                                <div class="col-lg-6">
+                                    <form id="search-form">
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                <div class="position-relative mb-3">
+                                                    <input type="text"
+                                                           name="term"
+                                                           class="form-control form-control-lg bg-light border-light"
+                                                           placeholder="Search here.."
+                                                           value="{{ searchTerm }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">
+                                                    <i class="mdi mdi-magnify me-1"></i> Search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-lg-12">
+                                    <h5 class="fs-16 fw-semibold mb-0">
+                                        Showing results for "<span class="text-primary fw-medium fst-italic">{{ searchTerm }}</span> "
+                                    </h5>
+                                </div>
+                            </div>
+                            <!--end row-->
+                        </div>
+
+
+                        <div class="card-body p-4">
+
+                            <div class="tab-content text-muted">
+                                {% for type, items in results %}
+                                    <div class="dropdown-header mt-2">
+                                        <h6 class="text-overflow text-muted mb-2 text-uppercase">{{ type }}</h6>
+                                    </div>
+                                    <div class="border border-dashed mb-3"></div>
+                                    {% for item in items %}
+                                        <div class="tab-pane active" id="all" role="tabpanel">
+                                            <div class="pb-3">
+                                                <h5 class="mb-1">
+                                                    <a href="{{ item.url }}">{{ item.label }}</a>
+                                                </h5>
+                                                <p class="text-success mb-2">{{ absolute_url(item.url) }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                            <!--end tab-content-->
+                            <div class="mt-3 text-center">
+                                {{ knp_pagination_render(pagination) }}
+                            </div>
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card -->
+                </div>
+                <!--end card -->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- redirect to the route and the search term as parameter -->
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const term = this.querySelector('input[name="term"]').value.trim();
+            if (term !== '') {
+                // we use Twig to generate a URL with a placeholder (here 'TERM_PLACEHOLDER')
+                const urlTemplate = "{{ path('admin_search_result_page', {'term': 'TERM_PLACEHOLDER'}) }}";
+                const url = urlTemplate.replace('TERM_PLACEHOLDER', encodeURIComponent(term));
+                window.location.href = url;
+            }
+        });
+    </script>
+
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,7 @@
+parameters:
+  tracking.pixels:
+    jobcloud:
+      detail: 'https://img.jobcloud.ai?c=3t3y&a=2'
+      submit: 'https://img.jobcloud.ai?c=3t3y&a=3'
+    talent:
+      submit: 'https://www.talent.com/tracker/img-pixel.php?tracker=exedra-ag'

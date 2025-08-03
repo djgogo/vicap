@@ -1,0 +1,8 @@
+{% block recaptcha_widget %}
+    <div class="g-recaptcha"
+         data-sitekey="{{ attr['data-sitekey'] }}"
+         {% if attr['data-theme'] is defined %}data-theme="{{ attr['data-theme'] }}"{% endif %}
+         data-callback="onReCaptchaSuccess">
+    </div>
+    <input type="hidden" id="{{ id }}" name="{{ full_name }}" value="{{ value }}">
+{% endblock %}

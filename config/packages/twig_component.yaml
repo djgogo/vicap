@@ -1,0 +1,6 @@
+twig_component:
+    # This removes the “Not setting the ‘twig_component.anonymous_template_directory’” deprecation
+    anonymous_template_directory: 'components'
+
+    # This removes the “Not setting the ‘twig_component.defaults’” deprecation
+    defaults: {}

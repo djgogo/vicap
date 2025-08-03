@@ -1,0 +1,310 @@
+button:
+    continue_with_social_account: Continue with %provider%
+    connect_social_account: Connect
+    disconnect_social_account: Disconnect
+    copy: Copy
+    save: Save
+    print: Print
+    change: Change
+    enable: Enable
+    disable: Disable
+    find: Find
+    create_user: Create
+    delete: Delete
+    remove: Remove
+    reset: Reset
+    next: Next
+    save_and_return: Save and return to list
+    save_and_add: Save and add another
+    email_verification:
+        resend_email: resend the confirmation email.
+    confirm_delete: Yes, delete it
+    sign_in: Sign in
+    verify: Verify
+    start_over: Start over
+    register: Register
+    current_device: This device
+    create_role: Create role
+    update: Update
+
+choice:
+    email: Email
+    google_authenticator: Google Authenticator
+
+card_title:
+    login: Login to your account
+    linked_social_accounts: Linked social accounts
+    save_backup_codes: Save backup codes
+    two_factor_authentication: Two-step verification
+    2fa_select_method: Select verification method
+    connect_google_authenticator: Connect Google Authenticator
+    location: Company
+    photo: Photo
+    change_password: Change password
+    set_password: Set password
+    edit_user: Edit user
+    create_user: Create user
+    user_profile: User profile
+    confirm_action: Confirm action
+    register: Create a new account
+    reset_password: Reset password
+    set_new_password: Set new password
+    two_step_verification: Two-step verification
+    dashboard: Dashboard
+    registrations_per_month: Registrations per month
+    recently_registered: Recently registered
+    devices: Devices
+    edit_role: Edit role
+    create_role: Create role
+    permissions_list: Permissions
+
+error:
+    verification_code_invalid: The verification code is invalid.
+    email_is_required: Email is a required field.
+    passwords_did_not_match: Passwords did not match.
+    cannot_delete_yourself: You cannot delete yourself.
+    social_account_owner_by_other_user: This social account is linked with another user.
+    form_invalid: Form data is invalid.
+    user_not_found: A user was not found.
+    accept_terms: You have to accept terms.
+    account_disabled: Account has been disabled.
+    account_suspended_due_to_failed_attempts: Too many failed attempts. Sign in is temporary suspended.
+    currrent_password_invalid: The value is not the current password.
+    captcha_invalid: This value if not a valid captcha.
+    email_is_taken: Email already taken.
+    device_does_not_exist: The device does not exist.
+    cannot_remove_current_device: Could not remove currently active device.
+    role_exists: A role with given name already exists.
+
+flash_message:
+    link_social_account_success: A social account has been connected.
+    unlink_social_account_success: A social account has been disconnected.
+    two_step_verification_enabled: Two-step verification has been enabled.
+    two_step_verification_disabled: Two-step verification has been disabled.
+    user_deleted: User has been deleted.
+    password_changed: Password has been changed.
+    confirmation_email_resent: The confirmation email has been resent.
+    registration_successful: Registration successful. Please, follow the instructions sent to your inbox.
+    email_confirmed: Account was confirmed.
+    password_reset_link_sent: A reset link has been sent to the registered email address.
+    user_created: User has been created.
+    user_updated: User has been updated.
+    device_removed: Device has been removed.
+    object_created: Object has been created.
+    object_updated: Object has been updated.
+    object_deleted: Object has been deleted.
+    access_denied: Access denied.
+
+label:
+    id: ID
+    name: Name
+    password: Password
+    current_password: Current password
+    new_password: New password
+    confirm_password: Confirm Password
+    confirm_new_password: Confirm New Password
+    enter_verification_code: Enter the six-digit code from the application
+    registration_date: Registration Date
+    registered: Registered At
+    last_seen_date: Last seen date
+    is_email_confirmed: Is confirmed?
+    is_active: Is active?
+    is_frontend: Is frontend?
+    yes: yes
+    no: no
+    impersonate: Impersonate
+    first_name: First name
+    last_name: Last name
+    about: About
+    phone: Phone
+    edit: Edit
+    company: Company
+    activity: Activity
+    email: Email
+    birthday: Birthday
+    country: Country
+    city: City
+    address: Address
+    location: Location:
+    last_access: Last access:
+    zip: ZIP
+    email_confirmation_status: Email is confirmed
+    user_active_status: Is active
+    last_login: Last login
+    avatar_upload: |
+        <btn size="sm" outline icon="fe fe-upload" trigger>Select</btn> a file to upload.
+    agree_with_terms: Agree with <a href="%terms_url%" target="_blank">terms and policies</a>.
+    remember_me: Remember me
+    trust_device: Trust this device.
+    email_confirmed: Confirmed
+    email_not_confirmed: Not confirmed
+    status_active: Active
+    status_inactive: Disabled
+    delete: Delete
+    number_of_registrations: "# of new users"
+    user_roles: Roles
+    user_is_superadmin: Is superadmin?
+    user_is_frontend: Is frontend?
+    description: Description
+    permissions: Permissions
+    permission_group:
+        users: Users
+        roles: Roles
+
+link:
+    forgot_password: I forgot password
+    back_to_settings: Back to settings
+    email_confirmation_resend_email: Didn't receive an email?
+    login: Sign in
+    send_me_back: send me back
+    return_to_signin_screen: Forget it, %link% to the sign in screen.
+
+menu:
+    team: Employee
+    dashboard: Dashboard
+    users: Users
+    roles: Roles
+    create_user: Create
+    view_user: View
+    delete_user: Delete
+    profile: Profile
+    user_settings: Settings
+    sign_out: Sign out
+
+page_title:
+    account_settings: Settings
+    2fa_select_method: Select method
+    2fa_save_backup_codes: Save codes
+    2fa_setup_google_authenticator: Setup Google Authenticator
+    delete_user: Delete user
+    users: Users
+    view_user: View
+    create_user: Create user
+    edit_user: Edit user
+    verify_account: Verify your account.
+    dashboard: Dashboard
+    registration: Registration
+    login: Sign in
+    terms_and_conditions: Terms and conditions
+    roles: Roles
+    edit_role: Edit role
+    create_role: Create role
+    delete_role: Delete role
+
+social_provider:
+    facebook: Facebook
+    google: Google
+
+text:
+    or_use_social_account: OR
+    call_to_signup: Don't have account yet? <a href="%url%">Sign up</a>
+    exit_impersonation: Exit impersonation
+    print_backup_codes_header: "%app_title% backup codes"
+    enter_current_password: Enter current password.
+    enter_new_password: Enter new password
+    confirm_new_password: Confirm new password
+    2fa_is_enabled: Two-factor authentication is currently on.
+    2fa_is_disabled: Setup two-factor authentication to improve account security.
+    enter_verification_code: Enter verification code
+    search: Search
+    email_address: Email address
+    email_confirmation_message: Verify your email to get the most out of the app.
+    email_verification:
+        email_was_sent: Please verify your email address. We’ve sent a confirmation email to:
+        click_the_link_in_email: Click the confirmation link in that email to begin using the App.
+        missed_email_help: Didn't receive the email? Check the Spam folder, it may have been caught by a filter. If you still don't see it, you can
+    two_step_backup_codes_save_alert: |
+        Keep these backup codes somewhere safe but accessible.<br/>
+        You can only use each backup code once.
+    install_google_authenticator_alert: |
+        Before you start, make sure you have installed
+        <a href="//support.google.com/accounts/answer/1066447" target="_blank">Google Authenticator</a>.
+        <br />
+        Then scan the image below with the two-step authentication app on your phone.
+    warning_action_cannot_be_undone: This could not be undone.
+    question_confirm_user_delete: Delete user "%name%"? This will also delete all associated entities.
+    question_confirm_object_delete: Delete "%name%"? This will also delete all associated entities.
+    email_already_confirmed: You email is already confirmed.
+    question_have_an_account: Already have account?
+    enter_first_name: Enter first name
+    enter_last_name: Enter last name
+    enter_email: Enter email
+    enter_password: Enter password
+    enter_code: Enter Code
+    confirm_password: Confirm password
+    reset_password_help: Enter your email address and your password will be reset and emailed to you.
+    2fa_code_sent_to_email: Enter the code we just sent to you via email.
+    all_rights_reserved: All rights reserved.
+    registered_at: Registered:
+    last_seen: Last seen
+    total_items: "Total: %number%"
+    widget:
+        online_users: online users
+        total_users: total users
+        unconfirmed_users: unconfirmed users
+        registered_this_month: registered this month
+        registered_today: registered today
+        banned_users: banned users
+
+toast:
+    copied: Copied!
+
+mail:
+    welcome:
+        greeting: Hello!
+        subject: You have been registered
+        content: Please take a second to confirm %email% as your email address.
+        footer: If it is not clickable, please copy and paste the URL into your browser's address bar.
+        thanks: Thanks!
+
+    password_reset:
+        subject: Reset your password.
+        greeting: Hello!
+        warning: |
+            You're receiving this email because you requested a password reset for your account.
+            If you did not request to have your password reset you can safely ignore this email.
+        content: To choose a new password and complete your request, please follow the link below:
+        footer: If it is not clickable, please copy and paste the URL into your browser's address bar.
+        thanks: Thanks!
+
+    password_changed:
+        subject: Password has been changed.
+        greeting: Hello!
+        content: |
+            When your password is changed, we'll let you know.<br/>
+            If you didn't make this change, you should contact our support or reset your password.
+        footer:
+        thanks: Thanks!
+
+    2fa_code:
+        subject: Two-step verification code.
+        greeting: Hello!
+        content: Here is the two step verification code you need to login to your account:
+        footer: If you are not attempting to login then please change your password to ensure your account security.
+        thanks: Thanks!
+
+    new_device:
+        subject: Please, verify your new device
+        greeting: Hello!
+        content: Looks like there was a login attempt from a new device or location.
+        footer: If you don't recognize this activity then please change your password to ensure your account security.
+        thanks: Thanks!
+        label:
+            date: "Date:"
+            browser: "Browser:"
+            os: "Operating System:"
+            location: "Approximate Company:"
+
+    decision:
+        greeting: Hello!
+        subject: You have successfully visited the Info Event
+        content: Please take a second to send us your decision. Login to your Dashboard and decide if you want to go further with us.
+        footer: Thank you for taking the time to visit our info event.
+        thanks: Thanks!
+
+    accepted:
+        greeting: Hello!
+        subject: You have been accepted and confirmed as employee of exedra
+        content: Please take a second to finalize your onboarding. Login to your Dashboard and complete your profile settings.
+        footer: Welcome to Exedra.
+        thanks: Thanks!

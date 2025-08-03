@@ -1,0 +1,65 @@
+/* Reset all font styling for animated headline */
+.ah-headline.type .ah-words-wrapper b,
+.ah-headline.type .ah-words-wrapper b.is-visible,
+.ah-headline.type .ah-words-wrapper b.is-hidden,
+.ah-headline.type .ah-words-wrapper b[style*="italic"],
+.ah-headline.type .ah-words-wrapper b[style*="bold"] {
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+}
+
+/* Target any dynamically added inline styles */
+.ah-headline.type .ah-words-wrapper * {
+    font-style: normal !important;
+    font-weight: 600 !important;
+}
+
+/* Rest of your existing CSS */
+.hero-section-4 {
+    position: relative;
+}
+
+.hero-section-4 .hero-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.animated-headline {
+    height: auto;
+    overflow: hidden;
+}
+
+.ah-headline.type .ah-words-wrapper {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    height: 1.2em;
+    vertical-align: top;
+}
+
+.hero-content-4 .sub-title {
+    font-size: 100px;
+    font-weight: unset !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .hero-content-4 {
+        padding: 120px 0 !important;
+    }
+    h6 {
+        font-size: 14px !important;
+    }
+    .hero-content-4 .sub-title {
+        font-size: 30px !important;
+    }
+}
+
+/* Tablets: 768px to 1024px */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .hero-content-4 {
+        padding: 160px 0 !important;
+    }
+}

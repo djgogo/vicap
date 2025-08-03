@@ -1,0 +1,189 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="profile-foreground position-relative mx-n4 mt-n4">
+                <div class="profile-wid-bg">
+                    <img src="{{ asset('assets/images/profile-bg.jpg') }}" alt="" class="profile-wid-img" />
+                </div>
+            </div>
+            <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
+                <div class="row g-4">
+                    <div class="col-auto">
+                        <div class="avatar-lg">
+                            <img src="{{ asset('assets/images/companies/img-3.png') }}" alt="user-img" class="img-thumbnail rounded-circle" />
+                        </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col">
+                        <div class="p-2">
+                            <h3 class="text-white mb-1">{{ trade.name }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <div class="d-flex profile-wrapper">
+                        <div class="tab-content pt-4 text-muted">
+                            <div class="tab-pane fade show active" id="overview-tab" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-xxl-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3">Info</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless mb-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="ps-0" scope="row">{{ 'label.name'|trans }} :</th>
+                                                                <td class="text-muted">{{ trade.name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="ps-0" scope="row">{{ 'label.created'|trans }} :</th>
+                                                                <td class="text-muted">{{ trade.created|format_datetime('short', 'short') }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="ps-0" scope="row">{{ 'label.updated'|trans }} :</th>
+                                                                <td class="text-muted">{{ trade.updated|format_datetime('short', 'short') }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3">Lead</h5>
+                                                <p>{{ trade.lead }}</p>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-xxl-9">
+                                        <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-3">Details</h5>
+                                            <div class="row">
+                                                {{ form_start(form) }}
+                                                    {{ form_errors(form) }}
+                                                    <div class="row">
+                                                        <div class="col-12 mb-3">
+                                                            {{ form_row(form.name) }}
+                                                            <div class="invalid-feedback">
+                                                                Bitte Namen eingeben
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            {{ form_row(form.lead) }}
+                                                            <div class="invalid-feedback">
+                                                                Bitte Lead eingeben
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            {{ form_label(form.description) }}
+                                                            {{ form_widget(form.description, {'id': 'ckeditor-classic'}) }}
+                                                            {{ form_errors(form.description) }}
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            {{ form_row(form.tradeCategory) }}
+                                                            <div class="invalid-feedback">
+                                                                Bitte Kategorie auswählen
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            <div class="form-check text-primary">
+                                                                {{ form_row(form.isMultiConsultant, {
+                                                                    label_attr: { 'class': 'form-check-label fw-normal text-primary' },
+                                                                    attr:       { 'class': 'form-check-input' }
+                                                                }) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end row-->
+                                                    <div class="col-lg-12">
+                                                        <!-- Submit Button -->
+                                                        <div class="form-group d-flex justify-content-end gap-3 mt-4">
+                                                            <button type="submit" class="btn btn-dark right">{{ 'button.update'|trans }}</button>
+                                                        </div>
+                                                    </div>
+                                                {{ form_end(form) }}
+
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-body-->
+                                    </div><!-- end card -->
+
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </div>
+
+                        </div>
+                        <!--end tab-content-->
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div><!-- container-fluid -->
+    </div><!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- ckeditor -->
+    <script src="{{ asset('assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/ckeditor-config.init.js') }}"></script>
+    <!-- Custom Trade js -->
+    <script src="{{ asset('assets/js/pages/trade.init.js') }}"></script>
+    <!-- choices.js -->
+    <script src="{{ asset('assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+    <!-- choices js override for symfony's default basic multi-select field! -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // find all .js-choices elements
+            const elements = document.querySelectorAll('.js-choices');
+            elements.forEach(function(element) {
+                new Choices(element, {
+                    removeItemButton: true,        // user can remove selected items
+                    placeholderValue: 'Auswählen...',
+                    searchPlaceholderValue: 'Suche...',
+                    allowHTML: false
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // ckeditor
+        var ckeditorClassic = document.querySelector('#ckeditor-classic');
+        if (ckeditorClassic) {
+            ClassicEditor
+                .create(document.querySelector('#ckeditor-classic'))
+                .then(function (editor) {
+                    editor.ui.view.editable.element.style.height = '200px';
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        }
+    </script>
+
+    {{ parent() }}
+{% endblock %}

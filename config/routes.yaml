@@ -1,0 +1,48 @@
+# These lines define a route using YAML configuration. The controller used by
+# the route (FrameworkBundle:Template:template) is a convenient shortcut when
+# the template can be rendered without executing any logic in your own controller.
+# See https://symfony.com/doc/current/templates.html#rendering-a-template-directly-from-a-route
+homepage:
+    path: /{_locale}
+    controller: App\Controller\HomepageController::index
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+login_redirect:
+    path:       /login
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path:      '/de/login'
+        permanent: true
+    methods:    [GET]
+
+controllers:
+    resource:
+        path: '../src/Controller/'
+        namespace: App\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+    exclude: ../../src/Controller/JobApplicationController.php
+
+job_apply_plain:
+    path: /bewerben/{sopropId}
+    controller: App\Controller\JobApplicationController::applyBsl
+    methods: [GET,POST]
+
+job_apply_bslag:
+    path: /bewerben-bslag/{sopropId}
+    controller: App\Controller\JobApplicationController::applyBslag
+    methods: [GET,POST]
+
+job_apply_talent:
+    path: /jobs/{sopropId}
+    controller: App\Controller\JobApplicationController::applyTalent
+    methods: [ GET,POST ]
+    requirements:
+        sopropId: '\d+'

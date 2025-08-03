@@ -1,0 +1,27 @@
+parameters:
+    env(MAIL_FROM_ADDRESS): no-reply@localhost
+    env(MAIL_FROM_NAME): Exedra
+    cookie_lifetime: 1209600 # 2 weeks
+    # google recaptcha parameters
+    registration.use_recaptcha: '%env(bool:REGISTRATION_USE_RECAPTCHA)%'
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+
+app:
+    auth:
+        enable_throttling: true
+        max_login_failures: 5
+        cooldown_seconds: 300 # 5 minutes
+
+    general:
+        title: Exedra
+        title_separator: " / "
+        title_position: "right" # values: left, right
+        mail_from_address: "%env(string:MAIL_FROM_ADDRESS)%"
+        mail_from_name: "%env(string:MAIL_FROM_NAME)%"
+
+    registration:
+        use_recaptcha: "%env(bool:REGISTRATION_USE_RECAPTCHA)%"
+
+    recaptcha:
+        site_key: "%env(string:GOOGLE_RECAPTCHA_SITE_KEY)%"
+        secret_key: "%env(string:GOOGLE_RECAPTCHA_SECRET_KEY)%"

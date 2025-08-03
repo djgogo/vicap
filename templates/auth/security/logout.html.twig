@@ -1,0 +1,54 @@
+{% extends 'public.html.twig' %}
+
+{% block meta_description %}
+    <meta name="robots" content="noindex, nofollow">
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="rainbow-prfile-area rainbow-section-gap">
+        <div class="container">
+
+            {{ include('default/_flash_messages.html.twig') }}
+
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card mt-4">
+                        <div class="card-body p-4 text-center">
+                            <lord-icon src="https://cdn.lordicon.com/hzomhqxz.json" trigger="loop" colors="primary:#4b38b3,secondary:#08a88a" style="width:180px;height:180px">
+                            </lord-icon>
+
+                            <div class="mt-4 pt-2">
+                                <h5>You are Logged Out</h5>
+                                <p class="text-muted">Thank you for using <span class="fw-semibold">Exedra</span>Job App</p>
+                                <div class="mt-4">
+                                    <a href="{{ path('security_login') }}" class="btn btn-default w-100">Sign In</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ include('partials/vendor-scripts.html.twig') }}
+
+    {{ parent() }}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'public.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <!-- Start Main Team Area  -->
+    <div class="main-content">
+
+        <!-- Start Impressum page  -->
+        <div class="rainbow-blog-area rainbow-section-gap">
+            <div class="container">
+                <!-- Impressum Header -->
+                <div class="row mb--20">
+                    <div class="col-lg-12">
+                        <div class="section-title text-left" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <h2 class="page-title w-500 mt--50 mb--20">Datenschutzerklärung</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-muted text-left mt--20">{{ privacyPolicy.content|raw }}</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- End Solutions Detail Area  -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!--homepage init -->
+    <script src="{{ asset('assets/js/pages/homepage.init.js') }}"></script>
+
+    <!-- remove the unwanted &nbsp; in the description field -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Use a short delay to ensure the CKEditor content is fully rendered.
+            setTimeout(function () {
+                document.querySelectorAll('.text-muted p').forEach(function(p) {
+                    let html = p.innerHTML.trim();
+                    let text = p.textContent.trim();
+                    // Check if the paragraph contains only a non-breaking space or is effectively empty.
+                    if (html === '&nbsp;' || text === "\u00a0" || html === '' || text === '') {
+                        p.remove();
+                    }
+                });
+            }, 100); // Delay of 100ms; adjust if needed
+        });
+    </script>
+
+    {{ parent() }}
+
+{% endblock %}

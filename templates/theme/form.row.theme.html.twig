@@ -1,0 +1,37 @@
+{#
+    This snippet theme overrides the form_row block so that the .invalid-feedback div is generated directly
+    after the input and in the right div! if not the error message will not be displayed!
+#}
+{% block form_row %}
+    <div class="mb-3">
+
+        {{ form_label(form) }}
+        {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+
+        {% set fieldName = form.vars.name %}
+        {% set errorMessage = 'This field cannot be empty!' %}
+
+        {% if fieldName == 'phone' %}
+            {% set errorMessage = 'Please enter a valid phone number.' %}
+        {% elseif fieldName == 'birthdate' %}
+            {% set errorMessage = 'Please provide your birthdate.' %}
+        {% elseif fieldName == 'company' %}
+            {% set errorMessage = 'Please add your company.' %}
+        {% elseif fieldName == 'address' %}
+            {% set errorMessage = 'Please provide your private address.' %}
+        {% elseif fieldName == 'zip' %}
+            {% set errorMessage = 'Please add zip code.' %}
+        {% elseif fieldName == 'city' %}
+            {% set errorMessage = 'Please provide your city name.' %}
+        {% elseif fieldName == 'country' %}
+            {% set errorMessage = 'Please add your contry.' %}
+        {% elseif fieldName == 'about' %}
+            {% set errorMessage = 'Please provide details about yourself.' %}
+        {% endif %}
+
+        <div class="invalid-feedback">
+            {{ errorMessage }}
+        </div>
+
+    </div>
+{% endblock %}

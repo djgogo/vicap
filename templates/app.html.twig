@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        {{ include('partials/menu.html.twig') }}
+        <!-- ============================================================== -->
+        <!-- Start right Main Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+            {% block main_content %}{% endblock %}
+            {{ include('partials/footer.html.twig') }}
+        </div>
+        <!-- end main content-->
+    </div>
+    <!-- END layout-wrapper -->
+
+    {{ include('partials/vendor-scripts.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

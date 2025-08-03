@@ -1,0 +1,13 @@
+{% extends 'mail.html.twig' %}
+
+{% block content %}
+    {{ 'mail.welcome.greeting'|trans }}<br/>
+    <p>{{ 'mail.welcome.content'|trans({'%email%': user.email})|raw }}</p>
+
+    {% set link = url('registration_confirm', {'code': code}) %}
+    <a href="{{ link }}">{{ link }}</a>
+
+    <br/>
+    <p>{{ 'mail.welcome.footer'|trans }}</p>
+    <p>{{ 'mail.welcome.thanks'|trans }}</p>
+{% endblock %}
