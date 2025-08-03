@@ -1,13 +1,12 @@
-Exedra Job Recruiting Website and App
-=====================================
+Websitemaster Website
+=====================
 
-The "Exedra Website App" is a professional Job recruiting website application developed with the symfony framework.
+The "Websitemaster Website App" is a professional website application developed with the symfony framework.
 
 Requirements
 ------------
 
   * PHP 8.2.0 or higher;
-  * PDO-SQLite PHP extension enabled;
   * and the [usual Symfony application requirements][2].
 
 ## Build/Configuration Instructions
@@ -21,7 +20,7 @@ Requirements
 2. **Clone the Repository**:
    ```bash
    git clone [repository-url]
-   cd exedra-website
+   cd websitemaster
    ```
 
 3. **Install Dependencies**:
