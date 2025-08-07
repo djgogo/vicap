@@ -8,12 +8,9 @@
 namespace App\Controller;
 
 use App\Entity\TermTemplate;
-use App\Entity\TradeCategory;
 use App\Entity\User;
-use App\Repository\TradeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
@@ -32,50 +29,6 @@ class HomepageController extends AbstractController
     ): Response {
         return $this->render('default/homepage.html.twig', []);
     }
-
-    #[Route('/people', name: 'homepage_people', options: ['sitemap' => true])]
-    public function viewPeople(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        TradeRepository $tradeRepository,
-    ): Response {
-        // Retrieve the selected category from the query string (if any)
-        $categoryId = $request->query->getInt('category', 0);
-        $selectedCategory = $entityManager->getRepository(TradeCategory::class)->find($categoryId);
-
-        if ($categoryId) {
-            // Filter employees by selected category
-            $trades = $tradeRepository->getTradesByCategory($categoryId);
-        } else {
-            // No category filter – get all employees
-            $trades = $tradeRepository->findAll();
-        }
-
-        // Retrieve all categories for the filter bar
-        $categories = $entityManager->getRepository(TradeCategory::class)->findAll();
-
-        return $this->render('public/trades/people.html.twig', [
-            'trades' => $trades,
-            'categories' => $categories,
-            'selectedCategoryId' => $categoryId,
-            'selectedCategory' => $selectedCategory,
-        ]);
-    }
-
-    #[Route('/people/trade/{id}', name: 'homepage_people_details')]
-    public function viewTradeDetails(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        TradeRepository $tradeRepository,
-    ): Response {
-        // Fetch trade
-        $trade = $tradeRepository->find($request->get('id'));
-
-        return $this->render('public/trades/trade-details.html.twig', [
-            'trade' => $trade,
-        ]);
-    }
-
 
     #[Route('/contact', name: 'homepage_contact', options: ['sitemap' => true])]
     public function contact(
