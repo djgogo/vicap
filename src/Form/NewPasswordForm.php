@@ -46,7 +46,7 @@ class NewPasswordForm extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'button.change',
                 'attr' => [
-                    'class' => 'btn-default btn-dark w-100'
+                    'class' => 'rr-primary-btn w-100 text-center'
                 ]
             ]);
     }

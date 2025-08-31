@@ -7,91 +7,104 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets-front/css/auth.css') }}">
 {% endblock %}
 
 {% block content %}
 
-    <div class="rainbow-prfile-area rainbow-section-gap">
-        <div class="container">
+    <div class="has-smooth" id="has_smooth"></div>
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
 
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card mt-4">
-                        <div class="card-body p-4 text-left">
+            <main>
 
-                            <div class="edu-contact-form contact-form-style-1 w-100">
-                                <div class="section-title text-center">
-                                    <h2 class="title w-500 mb--40">Login</h2>
-                                </div>
-
-                                {{ include('default/_flash_messages.html.twig') }}
-
-                                {% if error %}
-                                    <div class="alert alert-danger">
-                                        {{ error.messageKey|trans(error.messageData, 'messages') }}
-                                    </div>
-                                {% endif %}
-
-                                {% if app.user %}
-                                    <div class="mb-3">
-                                        You are logged in as {{ app.user.userIdentifier }}, <a
-                                                href="{{ path('security_logout') }}">Logout</a>
-                                    </div>
-                                {% endif %}
-
-                                <form action="{{ path('security_login') }}" method="post">
-
-                                    <div class="form-group position-relative">
-                                        <label for="email" class="form-label">E-Mail</label>
-                                        <input type="text" class="form-control" id="email" name="_email"
-                                               value="{{ last_username }}">
-                                        <span class="focus-border"></span>
-                                    </div>
-
-                                    <div class="form-group position-relative auth-pass-inputgroup">
-                                        <label for="password-input" class="form-label">Passwort</label>
-                                        <input type="password" id="password" name="_password" class="form-control pe-5 password-input" {{ stimulus_target('login', 'password') }} />
-                                        <button class="btn btn-link position-absolute end-0 top-50 text-decoration-none text-muted shadow-none password-addon fs-15"
-                                                type="button" id="password-addon">
-                                            <i class="ri-eye-fill align-middle"></i>
-                                        </button>
-                                        <span class="focus-border"></span>
-                                    </div>
-
-                                    <div class="row mb--30">
-                                        <div class="col-lg-6">
-                                            <div class="edu-checkbox">
-                                                <input class="form-check-input" type="checkbox" name="_remember_me" value="" id="auth-remember-check">
-                                                <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="edu-lost-password text-end">
-                                                <a href="{{ path('security_reset') }}" class="text-muted">Passwort vergessen?</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
-                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-
-                                    <div class="form-submit-group">
-                                        <button type="submit" class="btn-default btn-dark w-100">
-                                            Log In <i class="feather-arrow-right"></i>
-                                        </button>
-                                    </div>
-                                </form>
-
+                <!-- page title area start  -->
+                <section class="page-title-area">
+                    <div class="container large">
+                        <div class="page-title-area-inner section-spacing-top">
+                            <div class="page-title-wrapper text-center">
+                                <div class="page-title-small fade-anim">Login</div>
                             </div>
-
                         </div>
-                        <!-- end card body -->
                     </div>
-                    <!-- end card -->
-                </div>
-                <!-- end col -->
-            </div>
-            <!-- end row -->
+                </section>
+                <!-- page title area end  -->
+
+                <!-- login area start  -->
+                <section class="contact-area-contact-page pb-130">
+                    <div class="container">
+                        <div class="section-spacing-top">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 col-md-8 col-sm-10">
+                                    <div class="auth-form-wrapper">
+                                        {{ include('default/_flash_messages.html.twig') }}
+
+                                        {% if error %}
+                                            <div class="alert alert-danger">
+                                                {{ error.messageKey|trans(error.messageData, 'messages') }}
+                                            </div>
+                                        {% endif %}
+
+                                        {% if app.user %}
+                                            <div class="mb-3">
+                                                You are logged in as {{ app.user.userIdentifier }}, <a
+                                                        href="{{ path('security_logout') }}">Logout</a>
+                                            </div>
+                                        {% endif %}
+
+                                        <form action="{{ path('security_login') }}" method="post" class="login-form">
+
+                                            <div class="form-group position-relative mb-4">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="text" class="form-control" id="email" name="_email"
+                                                       value="{{ last_username }}" placeholder="Enter your email">
+                                                <span class="focus-border"></span>
+                                            </div>
+
+                                            <div class="form-group position-relative mb-4 auth-pass-inputgroup">
+                                                <label for="password" class="form-label">Password</label>
+                                                <div class="password-container position-relative">
+                                                    <input type="password" id="password" name="_password" class="form-control pe-5 password-input" {{ stimulus_target('login', 'password') }} placeholder="Enter your password" />
+                                                    <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon fs-15"
+                                                            type="button" id="password-addon">
+                                                        <i class="fa fa-eye align-middle"></i>
+                                                    </button>
+                                                </div>
+                                                <span class="focus-border"></span>
+                                            </div>
+
+                                            <div class="row mb-4">
+                                                <div class="col-md-6">
+                                                    <div class="form-check custom-checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="_remember_me" value="" id="auth-remember-check">
+                                                        <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="text-end">
+                                                        <a href="{{ path('security_reset') }}" class="forgot-password-link">Forgot password?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+                                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+                                            <div class="form-submit-group mt-4">
+                                                <button type="submit" class="rr-primary-btn w-100 text-center">
+                                                    <span class="d-inline-block w-100 text-center">Log In <i class="fa fa-arrow-right"></i></span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- contact area end  -->
+
+            </main>
 
         </div>
     </div>

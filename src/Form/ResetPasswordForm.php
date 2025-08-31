@@ -14,11 +14,11 @@ class ResetPasswordForm extends AbstractType
         $builder
             ->add('identity', null, [
                 'label' => false,
-                'label_attr' => ['
-                    class' => 'form-label'
+                'label_attr' => [
+                    'class' => 'form-label'
                 ],
                 'attr' => [
-                    'placeholder' => 'E-Mail',
+                    'placeholder' => 'Email',
                     'autocomplete' => 'email'
                 ],
                 'constraints' => [
@@ -27,9 +27,9 @@ class ResetPasswordForm extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Zurücksetzen',
+                'label' => 'Reset',
                 'attr' => [
-                    'class' => 'btn-default btn-dark w-100'
+                    'class' => 'rr-primary-btn w-100 text-center'
                 ]
             ]);
     }

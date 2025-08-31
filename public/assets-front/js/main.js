@@ -2853,4 +2853,3 @@
     var swiper2 = new Swiper(".runok-slider", slider2Options);
   });
 })(jQuery);
-

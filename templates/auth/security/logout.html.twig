@@ -7,38 +7,61 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets-front/css/auth.css') }}">
 {% endblock %}
 
 {% block content %}
 
-    <div class="rainbow-prfile-area rainbow-section-gap">
-        <div class="container">
+    <div class="has-smooth" id="has_smooth"></div>
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
 
-            {{ include('default/_flash_messages.html.twig') }}
+            <main>
 
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card mt-4">
-                        <div class="card-body p-4 text-center">
-                            <lord-icon src="https://cdn.lordicon.com/hzomhqxz.json" trigger="loop" colors="primary:#4b38b3,secondary:#08a88a" style="width:180px;height:180px">
-                            </lord-icon>
+                <!-- login area start  -->
+                <section class="contact-area-contact-page pb-130">
+                    <div class="container">
+                        <div class="section-spacing-top">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6 col-md-8 col-sm-10">
+                                    <div class="auth-form-wrapper py-lg-5">
 
-                            <div class="mt-4 pt-2">
-                                <h5>You are Logged Out</h5>
-                                <p class="text-muted">Thank you for using <span class="fw-semibold">Exedra</span>Job App</p>
-                                <div class="mt-4">
-                                    <a href="{{ path('security_login') }}" class="btn btn-default w-100">Sign In</a>
+                                        {{ include('default/_flash_messages.html.twig') }}
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-12">
+                                                <div class="card mt-4">
+                                                    <div class="card-body p-4 text-center">
+                                                        <lord-icon src="https://cdn.lordicon.com/hzomhqxz.json" trigger="loop" colors="primary:#4b38b3,secondary:#08a88a" class="logout-icon">
+                                                        </lord-icon>
+
+                                                        <div class="mt-4 pt-2">
+                                                            <h5>You are Logged Out</h5>
+                                                            <p class="text-muted">Thank you for using <span class="fw-semibold">Websitemaster</span> App</p>
+                                                            <div class="mt-4">
+                                                                <a href="{{ path('security_login') }}" class="rr-primary-btn w-100 text-center">Sign In</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end card body -->
+                                                </div>
+                                                <!-- end card -->
+
+                                            </div>
+                                            <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- end card body -->
                     </div>
-                    <!-- end card -->
+                </section>
+                <!-- contact area end  -->
 
-                </div>
-                <!-- end col -->
-            </div>
-            <!-- end row -->
+            </main>
 
         </div>
     </div>

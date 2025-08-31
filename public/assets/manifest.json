@@ -1336,6 +1336,7 @@
   "assets/images/flags/select2/hi.png": "/assets/images/flags/select2/hi.png",
   "assets/libs/moment/src/locale/hy-am.js": "/assets/libs/moment/src/locale/hy-am.js",
   "assets/images/users/multi-user.jpg": "/assets/images/users/multi-user.jpg",
+  "assets/js/pages/password-create.init.js": "/assets/js/pages/password-create.init.js",
   "assets/js/pages/password-create-modal.init.js": "/assets/js/pages/password-create-modal.init.js",
   "assets/js/pages/password-register.init.js": "/assets/js/pages/password-register.init.js",
   "assets/libs/prismjs/plugins/wpd/prism-wpd.min.js": "/assets/libs/prismjs/plugins/wpd/prism-wpd.min.js",

@@ -11,6 +11,7 @@ use App\Entity\TermTemplate;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
@@ -29,6 +30,49 @@ class HomepageController extends AbstractController
     ): Response {
         return $this->render('default/homepage.html.twig', []);
     }
+//
+//    #[Route('/portfolio', name: 'homepage_portfolio', options: ['sitemap' => true])]
+//    public function viewPortfolio(
+//        Request $request,
+//        EntityManagerInterface $entityManager,
+//        ProjectRepository $projectRepository,
+//    ): Response {
+//        // Retrieve the selected category from the query string (if any)
+//        $categoryId = $request->query->getInt('category', 0);
+//        $selectedCategory = $entityManager->getRepository(ProjectCategory::class)->find($categoryId);
+//
+//        if ($categoryId) {
+//            // Filter employees by selected category
+//            $rojects = $projectRepository->getTradesByCategory($categoryId);
+//        } else {
+//            // No category filter – get all employees
+//            $rojects = $projectRepository->findAll();
+//        }
+//
+//        // Retrieve all categories for the filter bar
+//        $categories = $entityManager->getRepository(ProjectCategory::class)->findAll();
+//
+//        return $this->render('public/portfolio/portfolio.html.twig', [
+//            'projects' => $rojects,
+//            'categories' => $categories,
+//            'selectedCategoryId' => $categoryId,
+//            'selectedCategory' => $selectedCategory,
+//        ]);
+//    }
+//
+//    #[Route('/portfolio/project/{id}', name: 'homepage_portfolio_details')]
+//    public function viewProjectDetails(
+//        Request $request,
+//        EntityManagerInterface $entityManager,
+//        ProjectRepository $projectRepository,
+//    ): Response {
+//        // Fetch trade
+//        $project = $projectRepository->find($request->get('id'));
+//
+//        return $this->render('public/portfolio/portfolio-details.html.twig', [
+//            'project' => $project,
+//        ]);
+//    }
 
     #[Route('/contact', name: 'homepage_contact', options: ['sitemap' => true])]
     public function contact(
@@ -36,32 +80,6 @@ class HomepageController extends AbstractController
         EntityManagerInterface $entityManager,
     ): Response {
         return $this->render('public/contact.html.twig', []);
-    }
-
-    #[Route('/impressum', name: 'homepage_impressum', options: ['sitemap' => true])]
-    public function viewImpressum(
-        #[CurrentUser] ?User $user,
-        EntityManagerInterface $entityManager,
-    ): Response {
-        // Find the TermTemplate for the impressum and locale
-        $impressum = $entityManager->getRepository(TermTemplate::class)->findOneBy(['name' => 'website_impressum', 'locale' => 'de']);
-
-        return $this->render('public/impressum.html.twig', [
-            'impressum' => $impressum,
-        ]);
-    }
-
-    #[Route('/certifiates', name: 'homepage_certifiates', options: ['sitemap' => true])]
-    public function viewCertifiates(
-        #[CurrentUser] ?User $user,
-        EntityManagerInterface $entityManager,
-    ): Response {
-        // Find the TermTemplate for the certificates and locale
-        $certificates = $entityManager->getRepository(TermTemplate::class)->findOneBy(['name' => 'website_certificates', 'locale' => 'de']);
-
-        return $this->render('public/certificates.html.twig', [
-            'certificates' => $certificates,
-        ]);
     }
 
     #[Route('/privacy-policy', name: 'homepage_privacy_policy', options: ['sitemap' => true])]
