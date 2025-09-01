@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Repository\TradeRepository;
+use App\Repository\PortfolioRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,12 +23,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted(User::ROLE_ADMIN)]
 class SearchController extends AbstractController
 {
-    private TradeRepository $tradeRepository;
+    private PortfolioRepository $portfolioRepository;
 
     public function __construct(
-        TradeRepository $tradeRepository,
+        PortfolioRepository $portfolioRepository,
     ) {
-        $this->tradeRepository = $tradeRepository;
+        $this->portfolioRepository = $portfolioRepository;
     }
 
     /**
@@ -94,13 +94,13 @@ class SearchController extends AbstractController
     {
         $results = [];
 
-        // trades
-        $trades = $this->tradeRepository->getSearchResults($term, $limit);
-        foreach ($trades as $trade) {
+        // portfolios
+        $portfolios = $this->portfolioRepository->getSearchResults($term, $limit);
+        foreach ($portfolios as $portfolio) {
             $results[] = [
-                'type'  => 'Trade',
-                'label' => $trade->getName(),
-                'url'   => $this->generateUrl('admin_trades_edit', ['id' => $trade->getId()], UrlGeneratorInterface::ABSOLUTE_URL),
+                'type'  => 'Portfolio',
+                'label' => $portfolio->getName(),
+                'url'   => $this->generateUrl('admin_portfolios_edit', ['id' => $portfolio->getId()], UrlGeneratorInterface::ABSOLUTE_URL),
             ];
         }
 

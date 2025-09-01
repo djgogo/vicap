@@ -7,8 +7,10 @@
 
 namespace App\Controller;
 
+use App\Entity\PortfolioCategory;
 use App\Entity\TermTemplate;
 use App\Entity\User;
+use App\Repository\PortfolioRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,49 +32,49 @@ class HomepageController extends AbstractController
     ): Response {
         return $this->render('default/homepage.html.twig', []);
     }
-//
-//    #[Route('/portfolio', name: 'homepage_portfolio', options: ['sitemap' => true])]
-//    public function viewPortfolio(
-//        Request $request,
-//        EntityManagerInterface $entityManager,
-//        ProjectRepository $projectRepository,
-//    ): Response {
-//        // Retrieve the selected category from the query string (if any)
-//        $categoryId = $request->query->getInt('category', 0);
-//        $selectedCategory = $entityManager->getRepository(ProjectCategory::class)->find($categoryId);
-//
-//        if ($categoryId) {
-//            // Filter employees by selected category
-//            $rojects = $projectRepository->getTradesByCategory($categoryId);
-//        } else {
-//            // No category filter – get all employees
-//            $rojects = $projectRepository->findAll();
-//        }
-//
-//        // Retrieve all categories for the filter bar
-//        $categories = $entityManager->getRepository(ProjectCategory::class)->findAll();
-//
-//        return $this->render('public/portfolio/portfolio.html.twig', [
-//            'projects' => $rojects,
-//            'categories' => $categories,
-//            'selectedCategoryId' => $categoryId,
-//            'selectedCategory' => $selectedCategory,
-//        ]);
-//    }
-//
-//    #[Route('/portfolio/project/{id}', name: 'homepage_portfolio_details')]
-//    public function viewProjectDetails(
-//        Request $request,
-//        EntityManagerInterface $entityManager,
-//        ProjectRepository $projectRepository,
-//    ): Response {
-//        // Fetch trade
-//        $project = $projectRepository->find($request->get('id'));
-//
-//        return $this->render('public/portfolio/portfolio-details.html.twig', [
-//            'project' => $project,
-//        ]);
-//    }
+
+    #[Route('/portfolio', name: 'homepage_portfolio', options: ['sitemap' => true])]
+    public function viewPortfolio(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        PortfolioRepository $portfolioRepository,
+    ): Response {
+        // Retrieve the selected category from the query string (if any)
+        $categoryId = $request->query->getInt('category', 0);
+        $selectedCategory = $entityManager->getRepository(PortfolioCategory::class)->find($categoryId);
+
+        if ($categoryId) {
+            // Filter employees by selected category
+            $projects = $portfolioRepository->getProjectsByCategory($categoryId);
+        } else {
+            // No category filter – get all employees
+            $projects = $portfolioRepository->findAll();
+        }
+
+        // Retrieve all categories for the filter bar
+        $categories = $entityManager->getRepository(PortfolioCategory::class)->findAll();
+
+        return $this->render('public/portfolio/portfolio.html.twig', [
+            'projects' => $projects,
+            'categories' => $categories,
+            'selectedCategoryId' => $categoryId,
+            'selectedCategory' => $selectedCategory,
+        ]);
+    }
+
+    #[Route('/portfolio/project/{id}', name: 'homepage_portfolio_details')]
+    public function viewProjectDetails(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        PortfolioRepository $portfolioRepository,
+    ): Response {
+        // Fetch project
+        $project = $portfolioRepository->find($request->get('id'));
+
+        return $this->render('public/portfolio/portfolio-details.html.twig', [
+            'project' => $project,
+        ]);
+    }
 
     #[Route('/contact', name: 'homepage_contact', options: ['sitemap' => true])]
     public function contact(

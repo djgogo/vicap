@@ -23,7 +23,7 @@
                     <!--end col-->
                     <div class="col">
                         <div class="p-2">
-                            <h3 class="text-white mb-1">{{ trade.name }}</h3>
+                            <h3 class="text-white mb-1">{{ portfolio.name }}</h3>
                         </div>
                     </div>
                 </div>
@@ -46,15 +46,15 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th class="ps-0" scope="row">{{ 'label.name'|trans }} :</th>
-                                                                <td class="text-muted">{{ trade.name }}</td>
+                                                                <td class="text-muted">{{ portfolio.name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th class="ps-0" scope="row">{{ 'label.created'|trans }} :</th>
-                                                                <td class="text-muted">{{ trade.created|format_datetime('short', 'short') }}</td>
+                                                                <td class="text-muted">{{ portfolio.created|format_datetime('short', 'short') }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th class="ps-0" scope="row">{{ 'label.updated'|trans }} :</th>
-                                                                <td class="text-muted">{{ trade.updated|format_datetime('short', 'short') }}</td>
+                                                                <td class="text-muted">{{ portfolio.updated|format_datetime('short', 'short') }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -64,8 +64,8 @@
 
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title mb-3">Lead</h5>
-                                                <p>{{ trade.lead }}</p>
+                                                <h5 class="card-title mb-3">Features</h5>
+                                                <p>{{ portfolio.features }}</p>
                                             </div><!-- end card body -->
                                         </div><!-- end card -->
 
@@ -82,13 +82,31 @@
                                                         <div class="col-12 mb-3">
                                                             {{ form_row(form.name) }}
                                                             <div class="invalid-feedback">
-                                                                Bitte Namen eingeben
+                                                                Please enter name
                                                             </div>
                                                         </div>
                                                         <div class="col-12 mb-3">
-                                                            {{ form_row(form.lead) }}
+                                                            {{ form_row(form.client) }}
                                                             <div class="invalid-feedback">
-                                                                Bitte Lead eingeben
+                                                                Please enter client name
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            {{ form_row(form.websiteUrl) }}
+                                                            <div class="invalid-feedback">
+                                                                Please enter client website url
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            {{ form_row(form.features) }}
+                                                            <div class="invalid-feedback">
+                                                                Please enter features
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            {{ form_row(form.technologies) }}
+                                                            <div class="invalid-feedback">
+                                                                Please enter technologies
                                                             </div>
                                                         </div>
                                                         <div class="col-12 mb-3">
@@ -97,17 +115,21 @@
                                                             {{ form_errors(form.description) }}
                                                         </div>
                                                         <div class="col-12 mb-3">
-                                                            {{ form_row(form.tradeCategory) }}
+                                                            {{ form_row(form.portfolioCategory) }}
                                                             <div class="invalid-feedback">
-                                                                Bitte Kategorie auswählen
+                                                                Please select Category
                                                             </div>
                                                         </div>
-                                                        <div class="col-12 mb-3">
-                                                            <div class="form-check text-primary">
-                                                                {{ form_row(form.isMultiConsultant, {
-                                                                    label_attr: { 'class': 'form-check-label fw-normal text-primary' },
-                                                                    attr:       { 'class': 'form-check-input' }
-                                                                }) }}
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3">
+                                                                {{ form_label(form.imageFile) }}
+                                                                {% if portfolio.image %}
+                                                                    <div class="mb-3">
+                                                                        <img src="{{ vich_uploader_asset(portfolio, 'imageFile') }}" alt="Portfolio Image" width="100" height="100" />
+                                                                    </div>
+                                                                {% endif %}
+                                                                {{ form_widget(form.imageFile) }}
+                                                                {{ form_errors(form.imageFile) }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,8 +172,8 @@
     <!-- ckeditor -->
     <script src="{{ asset('assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
     <script src="{{ asset('assets/js/pages/ckeditor-config.init.js') }}"></script>
-    <!-- Custom Trade js -->
-    <script src="{{ asset('assets/js/pages/trade.init.js') }}"></script>
+    <!-- Custom Portfolio js -->
+    <script src="{{ asset('assets/js/pages/portfolio.init.js') }}"></script>
     <!-- choices.js -->
     <script src="{{ asset('assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
     <!-- choices js override for symfony's default basic multi-select field! -->

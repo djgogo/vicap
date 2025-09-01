@@ -11,7 +11,7 @@
 
 namespace App\Form;
 
-use App\Entity\TradeCategory;
+use App\Entity\PortfolioCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,7 +20,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class TradeCategoryType extends AbstractType
+class PortfolioCategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -29,27 +29,10 @@ class TradeCategoryType extends AbstractType
                 'label' => 'Name',
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Name eingeben'
-                ]
-            ])
-            ->add('lead', TextareaType::class, [
-                'required' => false,
-                'label' => 'Lead',
-                'attr' => [
-                    'rows' => 4,
-                    'placeholder' => 'Lead eingeben'
+                    'placeholder' => 'enter name'
                 ]
             ])
         ;
-
-        $builder
-            ->add('imageFile', VichImageType::class, [
-                'required' => !$options['edit'],
-                'allow_delete' => true,
-                'download_uri' => false,
-                'image_uri' => false,
-                'label' => 'Frontpage Bild',
-            ]);
 
         // submit buttons
         $builder->add('submit', SubmitType::class, [
@@ -63,8 +46,8 @@ class TradeCategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => TradeCategory::class,
-            'submit_label' => 'Kategorie erstellen', // Default label
+            'data_class' => PortfolioCategory::class,
+            'submit_label' => 'Create Category', // Default label
             'edit' => false
         ]);
     }

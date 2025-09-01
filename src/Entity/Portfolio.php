@@ -11,20 +11,18 @@
 
 namespace App\Entity;
 
-use App\Repository\TradeCategoryRepository;
+use App\Repository\PortfolioRepository;
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Index(name: "name_idx", columns: ["name"])]
-#[ORM\Entity(repositoryClass: TradeCategoryRepository::class)]
+#[ORM\Entity(repositoryClass: PortfolioRepository::class)]
 #[Vich\Uploadable]
-class TradeCategory
+class Portfolio
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -39,24 +37,36 @@ class TradeCategory
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private \DateTime $updated;
 
-    #[ORM\OneToMany(targetEntity: Trade::class, mappedBy: 'tradeCategory', cascade: ['persist', 'remove'])]
-    private Collection $trades;
+    #[ORM\ManyToOne(targetEntity: PortfolioCategory::class, inversedBy: 'projects')]
+    private ?PortfolioCategory $portfolioCategory = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: "string", length: 255, nullable: true)]
-    private ?string $image = null;
+    #[ORM\Column(length: 255)]
+    private ?string $client = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $websiteUrl = null;
 
     #[ORM\Column(length: 2048, nullable: true)]
-    private ?string $lead = null;
+    private ?string $features = null;
+
+    #[ORM\Column(length: 2048, nullable: true)]
+    private ?string $technologies = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private ?string $image = null;
 
     /**
      * Holds temporarily the uploaded file.
      *
      * Not persisted.
      */
-    #[Vich\UploadableField(mapping: "trade_categories", fileNameProperty: "image")]
+    #[Vich\UploadableField(mapping: "portfolios", fileNameProperty: "image")]
     private ?File $imageFile = null;
 
     /**
@@ -71,7 +81,6 @@ class TradeCategory
     {
         $this->created = new DateTime('now');
         $this->updated = new DateTime('now');
-        $this->trades = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,33 +112,14 @@ class TradeCategory
         return $this;
     }
 
-    /**
-     * @return Collection<int, Trade>
-     */
-    public function getTrades(): Collection
+    public function getPortfolioCategory(): ?PortfolioCategory
     {
-        return $this->trades;
+        return $this->portfolioCategory;
     }
 
-    public function addTrade(Trade $trade): static
+    public function setPortfolioCategory(?PortfolioCategory $portfolioCategory): static
     {
-        if (!$this->trades->contains($trade)) {
-            $this->trades->add($trade);
-            $trade->setTradeCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTrade(Trade $trade): static
-    {
-        if ($this->trades->removeElement($trade)) {
-            // set the owning side to null (unless already changed)
-            if ($trade->getTradeCategory() === $this) {
-                $trade->setTradeCategory(null);
-            }
-        }
-
+        $this->portfolioCategory = $portfolioCategory;
         return $this;
     }
 
@@ -141,7 +131,64 @@ class TradeCategory
     public function setName(string $name): static
     {
         $this->name = $name;
+        return $this;
+    }
 
+    public function getClient(): ?string
+    {
+        return $this->client;
+    }
+
+    public function setClient(?string $client): Portfolio
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getWebsiteUrl(): ?string
+    {
+        return $this->websiteUrl;
+    }
+
+    public function setWebsiteUrl(?string $websiteUrl): Portfolio
+    {
+        $this->websiteUrl = $websiteUrl;
+
+        return $this;
+    }
+
+    public function getFeatures(): ?string
+    {
+        return $this->features;
+    }
+
+    public function setFeatures(?string $features): static
+    {
+        $this->features = $features;
+        return $this;
+    }
+
+    public function getTechnologies(): ?string
+    {
+        return $this->technologies;
+    }
+
+    public function setTechnologies(?string $technologies): Portfolio
+    {
+        $this->technologies = $technologies;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
         return $this;
     }
 
@@ -187,17 +234,5 @@ class TradeCategory
     public function setImageCropData($imageCropData): void
     {
         $this->imageCropData = $imageCropData;
-    }
-
-    public function getLead(): ?string
-    {
-        return $this->lead;
-    }
-
-    public function setLead(string $lead): static
-    {
-        $this->lead = $lead;
-
-        return $this;
     }
 }

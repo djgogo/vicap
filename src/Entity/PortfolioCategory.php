@@ -11,7 +11,7 @@
 
 namespace App\Entity;
 
-use App\Repository\TradeRepository;
+use App\Repository\PortfolioCategoryRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,8 +20,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Index(name: "name_idx", columns: ["name"])]
-#[ORM\Entity(repositoryClass: TradeRepository::class)]
-class Trade
+#[ORM\Entity(repositoryClass: PortfolioCategoryRepository::class)]
+class PortfolioCategory
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -36,25 +36,17 @@ class Trade
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private \DateTime $updated;
 
-    #[ORM\ManyToOne(targetEntity: TradeCategory::class, inversedBy: 'trades')]
-    private ?TradeCategory $tradeCategory = null;
+    #[ORM\OneToMany(targetEntity: Portfolio::class, mappedBy: 'portfolioCategory', cascade: ['persist', 'remove'])]
+    private Collection $projects;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
-    #[ORM\Column(length: 2048, nullable: true)]
-    private ?string $lead = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
-
-    #[ORM\Column]
-    private ?bool $isMultiConsultant = null;
 
     public function __construct()
     {
         $this->created = new DateTime('now');
         $this->updated = new DateTime('now');
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,14 +78,33 @@ class Trade
         return $this;
     }
 
-    public function getTradeCategory(): ?TradeCategory
+    /**
+     * @return Collection<int, Portfolio>
+     */
+    public function getProjects(): Collection
     {
-        return $this->tradeCategory;
+        return $this->projects;
     }
 
-    public function setTradeCategory(?TradeCategory $tradeCategory): static
+    public function addProject(Portfolio $project): static
     {
-        $this->tradeCategory = $tradeCategory;
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
+            $project->setPortfolioCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Portfolio $project): static
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getPortfolioCategory() === $this) {
+                $project->setPortfolioCategory(null);
+            }
+        }
+
         return $this;
     }
 
@@ -105,39 +116,6 @@ class Trade
     public function setName(string $name): static
     {
         $this->name = $name;
-        return $this;
-    }
-
-    public function getLead(): ?string
-    {
-        return $this->lead;
-    }
-
-    public function setLead(?string $lead): static
-    {
-        $this->lead = $lead;
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): static
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    public function isMultiConsultant(): ?bool
-    {
-        return $this->isMultiConsultant;
-    }
-
-    public function setIsMultiConsultant(bool $isMultiConsultant): static
-    {
-        $this->isMultiConsultant = $isMultiConsultant;
 
         return $this;
     }

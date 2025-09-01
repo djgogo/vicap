@@ -9,18 +9,18 @@
     <div class="page-content">
         <div class="container-fluid">
 
-            {{ include('partials/page-title.html.twig', {pagetitle: 'page_title.trades'|trans, title: 'page_title.trades'|trans}) }}
+            {{ include('partials/page-title.html.twig', {pagetitle: 'page_title.portfolios'|trans, title: 'page_title.portfolios'|trans}) }}
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card" id="usersList">
                         <div class="card-header  border-0">
                             <div class="d-md-flex align-items-center">
-                                <h5 class="card-title mb-3 mb-md-0 flex-grow-1">{{ 'title.trade_archive'|trans }}</h5>
+                                <h5 class="card-title mb-3 mb-md-0 flex-grow-1">{{ 'title.portfolio_archive'|trans }}</h5>
                                 <div class="flex-shrink-0">
                                     <div class="d-flex gap-1 flex-wrap">
-                                        <button type="button" class="btn btn-dark add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> {{'button.create_trade'|trans }}</button>
-                                        <a href="{{ path('admin_trades_csv_export') }}" class="btn btn-soft-dark"><i class="ri-file-download-line align-bottom me-1"></i>Export</a>
+                                        <button type="button" class="btn btn-dark add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> {{'button.create_portfolio'|trans }}</button>
+                                        <a href="{{ path('admin_portfolios_csv_export') }}" class="btn btn-soft-dark"><i class="ri-file-download-line align-bottom me-1"></i>Export</a>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <div>
 
                                 <div class="table-responsive table-card mb-1">
-                                    <table class="table table-nowrap align-middle" id="tradeListTable">
+                                    <table class="table table-nowrap align-middle" id="portfolioListTable">
                                         <thead class="text-muted table-light">
                                             <tr class="text-uppercase">
                                                 <th scope="col" style="width: 25px;">
@@ -60,54 +60,59 @@
                                                         <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                     </div>
                                                 </th>
-                                                <th class="sort" data-sort="id" style="width: 140px;">{{ knp_pagination_sortable(trades, 'label.id'|trans, 'e.id') }}</th>
-                                                <th class="sort" data-sort="name">{{ knp_pagination_sortable(trades, 'label.name'|trans, 't.name') }}</th>
-                                                <th class="sort" data-sort="category">{{ knp_pagination_sortable(trades, 'label.category'|trans, 't.tradeCategory.name') }}</th>
-                                                <th class="sort" data-sort="created">{{ knp_pagination_sortable(trades, 'label.created'|trans, 't.created') }}</th>
-                                                <th class="sort" data-sort="updated">{{ knp_pagination_sortable(trades, 'label.updated'|trans, 't.updated') }}</th>
+                                                <th class="sort" data-sort="id" style="width: 140px;">{{ knp_pagination_sortable(portfolios, 'label.id'|trans, 'e.id') }}</th>
+                                                <th class="sort" data-sort="name">{{ knp_pagination_sortable(portfolios, 'label.name'|trans, 't.name') }}</th>
+                                                <th class="sort" data-sort="category">{{ knp_pagination_sortable(portfolios, 'label.category'|trans, 't.portfolioCategory.name') }}</th>
+                                                <th class="sort" data-sort="created">{{ knp_pagination_sortable(portfolios, 'label.created'|trans, 't.created') }}</th>
+                                                <th class="sort" data-sort="updated">{{ knp_pagination_sortable(portfolios, 'label.updated'|trans, 't.updated') }}</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                        {% for trade in trades %}
+                                        {% for portfolio in portfolios %}
                                             <tr>
                                                 <th scope="row">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
                                                     </div>
                                                 </th>
-                                                <td class="id"><a href="#" class="fw-medium link-primary">{{ trade.id }}</a></td>
+                                                <td class="id"><a href="#" class="fw-medium link-primary">{{ portfolio.id }}</a></td>
                                                 <td class="user_displayname">
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-shrink-0">
-                                                            <img src="{{ asset('assets/images/companies/img-3.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                            {% if portfolio.image %}
+                                                                <img src="{{ portfolio_image(portfolio) | imagine_filter('user_avatar') }}" alt="" style="width:50px;height:50px" />
+                                                            {% else %}
+                                                                <lord-icon src="https://cdn.lordicon.com/xulniijg.json" trigger="hover" colors="primary:#40e0d0" target="div" style="width:50px;height:50px"></lord-icon>
+                                                            {% endif %}
+{#                                                            <img src="{{ asset('assets/images/companies/img-3.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">#}
                                                         </div>
-                                                        <div class="flex-grow-1 ms-2"><a href="{{ url('admin_trades_edit', {'id': trade.id}) }}">{{ trade.name }}</a></div>
+                                                        <div class="flex-grow-1 ms-2"><a href="{{ url('admin_portfolios_edit', {'id': portfolio.id}) }}">{{ portfolio.name }}</a></div>
                                                     </div>
                                                 </td>
-                                                <td>{{ trade.tradeCategory.name }}</td>
-                                                <td class="date">{{ trade.created|format_datetime('short', 'short') }}</td>
-                                                <td class="date">{{ trade.updated|format_datetime('short', 'short') }}</td>
+                                                <td>{{ portfolio.portfolioCategory.name }}</td>
+                                                <td class="date">{{ portfolio.created|format_datetime('short', 'short') }}</td>
+                                                <td class="date">{{ portfolio.updated|format_datetime('short', 'short') }}</td>
                                                 <td>
                                                     <ul class="list-inline hstack gap-2 mb-0">
                                                         <!-- Edit icon -->
                                                         <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                            <a href="{{ url('admin_trades_edit', {'id': trade.id}) }}" class="text-muted d-inline-block">
+                                                            <a href="{{ url('admin_portfolios_edit', {'id': portfolio.id}) }}" class="text-muted d-inline-block">
                                                                 <i class="ri-pencil-fill fs-16"></i>
                                                             </a>
                                                         </li>
                                                         <!-- Delete icon -->
                                                         <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Delete">
-                                                            <!-- Notice data-bs-target="#deleteTrade_{{ trade.id }}" -->
-                                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteTrade_{{ trade.id }}">
+                                                            <!-- Notice data-bs-target="#deletePortfolio_{{ portfolio.id }}" -->
+                                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" data-bs-target="#deletePortfolio_{{ portfolio.id }}">
                                                                 <i class="ri-delete-bin-5-fill fs-16"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </td>
                                             </tr>
-                                            <!-- Delete Trade Modal -->
-                                            <div class="modal fade flip" id="deleteTrade_{{ trade.id }}" tabindex="-1" aria-hidden="true">
+                                            <!-- Delete Portfolio Modal -->
+                                            <div class="modal fade flip" id="deletePortfolio_{{ portfolio.id }}" tabindex="-1" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-body p-5 text-center">
@@ -115,7 +120,7 @@
                                                             <div class="mt-4 text-center">
                                                                 <h4>Sie sind dabei, ein Gewerbe zu löschen!</h4>
                                                                 <p class="text-muted fs-15 mb-4">Das Löschen eines Gewerbes entfernt alle zugehörigen Informationen aus unserer Datenbank.</p>
-                                                                <form action="{{ url('admin_trades_delete', {'id': trade.id}) }}" method="POST">
+                                                                <form action="{{ url('admin_portfolios_delete', {'id': portfolio.id}) }}" method="POST">
                                                                     <div class="hstack gap-2 justify-content-center remove">
                                                                         <button type="button" class="btn btn-link link-success fw-medium text-decoration-none" data-bs-dismiss="modal" data-bs-toggle="modal">
                                                                             <i class="ri-close-line me-1 align-middle"></i> {{ 'button.close'|trans }}
@@ -141,38 +146,59 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="d-flex justify-content-between">
-                                        <div class="p-2">{{ 'text.total_items'|trans({'%number%': trades.getTotalItemCount}) }}</div>
-                                        <div class="p-2">{{ knp_pagination_render(trades) }}</div>
+                                        <div class="p-2">{{ 'text.total_items'|trans({'%number%': portfolios.getTotalItemCount}) }}</div>
+                                        <div class="p-2">{{ knp_pagination_render(portfolios) }}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!--create trade modal -->
-                    <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="createTrade" aria-hidden="true">
+                    <!--create portfolio modal -->
+                    <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="createPortfolio" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header bg-light p-3">
-                                    <h5 class="modal-title" id="createTrade">{{ 'label.create_trade'|trans }}</h5>
+                                    <h5 class="modal-title" id="createPortfolio">{{ 'label.create_portfolio'|trans }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                 </div>
 
                                 {{ form_errors(form) }}
 
-                                <form id="tradeForm" autocomplete="off" class="needs-validation" novalidate action="{{ path('admin_trades_create') }}" method="post">
+                                <form id="portfolioForm" autocomplete="off" class="needs-validation" novalidate action="{{ path('admin_portfolios_create') }}" method="post">
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-12 mb-3">
                                                 {{ form_row(form.name) }}
-                                                <div class="invalid-feedback">Bitte Namen eingeben</div>
+                                                <div class="invalid-feedback">Please enter name</div>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-12 mb-3">
-                                                {{ form_row(form.lead) }}
-                                                <div class="invalid-feedback">Bitte Lead eingeben</div>
+                                                {{ form_row(form.client) }}
+                                                <div class="invalid-feedback">Please enter client name</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                {{ form_row(form.websiteUrl) }}
+                                                <div class="invalid-feedback">Please enter website url</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                {{ form_row(form.features) }}
+                                                <div class="invalid-feedback">Please enter features</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                {{ form_row(form.technologies) }}
+                                                <div class="invalid-feedback">Please enter technologies</div>
                                             </div>
                                         </div>
 
@@ -186,17 +212,21 @@
 
                                         <div class="row">
                                             <div class="col-12 mb-3">
-                                                {{ form_row(form.tradeCategory) }}
-                                                <div class="invalid-feedback">Bitte Kategorie auswählen</div>
+                                                {{ form_row(form.portfolioCategory) }}
+                                                <div class="invalid-feedback">Please choose Category</div>
                                             </div>
                                         </div>
 
-                                        <div class="col-12 mb-3">
-                                            <div class="form-check text-primary">
-                                                {{ form_row(form.isMultiConsultant, {
-                                                    label_attr: { 'class': 'form-check-label fw-normal text-primary' },
-                                                    attr:       { 'class': 'form-check-input' }
-                                                }) }}
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                {{ form_label(form.imageFile) }}
+                                                {% if form.vars.value.image %}
+                                                    <div class="mb-3">
+                                                        <img src="{{ vich_uploader_asset(form.vars.value, 'imageFile') }}" alt="Profile Picture" width="100" height="100" />
+                                                    </div>
+                                                {% endif %}
+                                                {{ form_widget(form.imageFile) }}
+                                                {{ form_errors(form.imageFile) }}
                                             </div>
                                         </div>
 
@@ -238,7 +268,7 @@
     <!-- validation init -->
     <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
     <!-- Custom Company js -->
-    <script src="{{ asset('assets/js/pages/trade.init.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/portfolio.init.js') }}"></script>
     <!-- choices.js -->
     <script src="{{ asset('assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
     <!-- choices js override for symfony's default basic multi-select field! -->
