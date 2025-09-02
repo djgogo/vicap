@@ -65,7 +65,7 @@
                                                 </div>
                                                 <div class="content">
                                                     <h3 class="title"><a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}">{{ project.name }}</a></h3>
-                                                    <div class="meta">
+                                                    <div class="portfolio-meta-inline">
                                                         <span class="date">{{ project.created|date('d.m.Y') }}</span>
                                                         <div class="tags">
                                                             {% for category in project.portfolioCategories %}

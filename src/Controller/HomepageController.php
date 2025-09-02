@@ -47,8 +47,8 @@ class HomepageController extends AbstractController
             // Filter employees by selected category
             $projects = $portfolioRepository->getProjectsByCategory($categoryId);
         } else {
-            // No category filter – get all employees
-            $projects = $portfolioRepository->findAll();
+            // No category filter – get all projects ordered DESC (latest first)
+            $projects = $portfolioRepository->findAllOrderedDesc();
         }
 
         // Retrieve all categories for the filter bar

@@ -112,4 +112,17 @@ class PortfolioRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * Returns all projects ordered by ID in descending order (latest first)
+     *
+     * @return Portfolio[]
+     */
+    public function findAllOrderedDesc(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

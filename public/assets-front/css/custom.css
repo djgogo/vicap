@@ -97,6 +97,24 @@
 	color: #6c757d;
 }
 
+/* Portfolio meta inline layout - replaces .meta class without separator lines */
+.portfolio-meta-inline {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+}
+
+.portfolio-meta-inline .date {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1;
+	color: #999999;
+}
+
+.portfolio-meta-inline .tags {
+	margin-top: 0;
+}
+
 @media (max-width: 768px) {
 	.filter-buttons {
 		flex-direction: column;
