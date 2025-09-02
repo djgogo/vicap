@@ -40,3 +40,71 @@
 .text div:last-child {
 	margin-bottom: 0;
 }
+
+/* portfolio archive - category filters */
+.category-filter-area {
+	padding: 40px 0;
+	background-color: #f8f9fa;
+}
+
+.filter-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 15px;
+}
+
+.filter-btn {
+	display: inline-block;
+	padding: 12px 24px;
+	background-color: #fff;
+	color: #333;
+	text-decoration: none;
+	border-radius: 25px;
+	border: 2px solid #e0e0e0;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filter-btn:hover {
+	background-color: #326295;
+	color: #fff;
+	border-color: #326295;
+	text-decoration: none;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+}
+
+.filter-btn.active {
+	background-color: #326295;
+	color: #fff;
+	border-color: #326295;
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	margin-top: 5px;
+}
+
+.tag {
+	font-size: 12px;
+	padding: 2px 8px;
+	background-color: #e9ecef;
+	border-radius: 12px;
+	color: #6c757d;
+}
+
+@media (max-width: 768px) {
+	.filter-buttons {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.filter-btn {
+		width: 200px;
+		text-align: center;
+	}
+}

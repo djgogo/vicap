@@ -62,7 +62,7 @@ class PortfolioRepository extends ServiceEntityRepository
     }
 
     /**
-     * Returns team trades filtered by a specific category. Frontend Portfolio display.
+     * Returns projects filtered by a specific category. Frontend Portfolio display.
      *
      * @param int $categoryId
      * @return Portfolio[]
@@ -70,7 +70,7 @@ class PortfolioRepository extends ServiceEntityRepository
     public function getProjectsByCategory(int $categoryId): array
     {
         $qb = $this->createQueryBuilder('p')
-            ->leftJoin('p.portfolioCategory', 'pc')
+            ->leftJoin('p.portfolioCategories', 'pc')
             ->addSelect('pc')
             ->where('pc.id = :categoryId')
             ->setParameter('categoryId', $categoryId)

@@ -6,6 +6,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/assets-front/css/custom.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -28,6 +29,27 @@
                 </section>
                 <!-- page title area end  -->
 
+                <!-- category filter area start -->
+                <section class="category-filter-area">
+                    <div class="container large">
+                        <div class="category-filter-wrapper">
+                            <div class="filter-buttons text-center mb-5">
+                                <a href="{{ path('homepage_portfolio') }}" 
+                                   class="filter-btn {{ selectedCategoryId == 0 ? 'active' : '' }}">
+                                    All Projects
+                                </a>
+                                {% for category in categories %}
+                                    <a href="{{ path('homepage_portfolio', {'category': category.id}) }}" 
+                                       class="filter-btn {{ selectedCategoryId == category.id ? 'active' : '' }}">
+                                        {{ category.name }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- category filter area end -->
+
                 <!-- work area start  -->
                 <section class="work-area-work-page pb-5">
                     <div class="work-area-work-page-inner">
@@ -45,7 +67,13 @@
                                                     <h3 class="title"><a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}">{{ project.name }}</a></h3>
                                                     <div class="meta">
                                                         <span class="date">{{ project.created|date('d.m.Y') }}</span>
-                                                        <span class="tag">{{ project.portfolioCategory.name }}</span>
+                                                        <div class="tags">
+                                                            {% for category in project.portfolioCategories %}
+                                                                <span class="tag">{{ category.name }}</span>
+                                                            {% else %}
+                                                                <span class="tag">Uncategorized</span>
+                                                            {% endfor %}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
