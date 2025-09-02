@@ -71,8 +71,18 @@ class HomepageController extends AbstractController
         // Fetch project
         $project = $portfolioRepository->find($request->get('id'));
 
+        if (!$project) {
+            throw $this->createNotFoundException('Portfolio project not found');
+        }
+
+        // Fetch previous and next portfolio projects for pagination
+        $previousProject = $portfolioRepository->findPreviousPortfolio($project->getId());
+        $nextProject = $portfolioRepository->findNextPortfolio($project->getId());
+
         return $this->render('public/portfolio/portfolio-details.html.twig', [
             'project' => $project,
+            'previousProject' => $previousProject,
+            'nextProject' => $nextProject,
         ]);
     }
 

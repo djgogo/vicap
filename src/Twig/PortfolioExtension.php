@@ -37,7 +37,7 @@ class PortfolioExtension extends AbstractExtension
     /**
      * Returns an URL path to portfolio's picture.
      */
-    public function portfolioImage(Portfolio $portfolio, string $filter = 'user_avatar')
+    public function portfolioImage(Portfolio $portfolio, string $filter = 'portfolio_440')
     {
         // Path to the default image relative to the public directory
         $defaultImagePath = 'assets/images/company-default.png';

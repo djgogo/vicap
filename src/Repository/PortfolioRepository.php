@@ -78,4 +78,38 @@ class PortfolioRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * Find the previous portfolio (higher ID) for pagination
+     *
+     * @param int $currentId
+     * @return Portfolio|null
+     */
+    public function findPreviousPortfolio(int $currentId): ?Portfolio
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.id > :currentId')
+            ->setParameter('currentId', $currentId)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * Find the next portfolio (lower ID) for pagination
+     *
+     * @param int $currentId
+     * @return Portfolio|null
+     */
+    public function findNextPortfolio(int $currentId): ?Portfolio
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.id < :currentId')
+            ->setParameter('currentId', $currentId)
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

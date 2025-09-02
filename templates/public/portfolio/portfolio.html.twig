@@ -29,155 +29,29 @@
                 <!-- page title area end  -->
 
                 <!-- work area start  -->
-                <section class="work-area-work-page">
+                <section class="work-area-work-page pb-5">
                     <div class="work-area-work-page-inner">
                         <div class="works-wrapper-box">
                             <div class="container large">
                                 <div class="works-wrapper-2">
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-7.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Kashtech Doyel</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
+
+                                    {% if projects|length %}
+                                        {% for project in projects %}
+                                            <div class="work-box">
+                                                <div class="thumb" data-cursor-text="View Project">
+                                                    <a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}"><img src="{{ portfolio_image(project) | imagine_filter('portfolio_440')  }}" alt="image"></a>
+                                                </div>
+                                                <div class="content">
+                                                    <h3 class="title"><a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}">{{ project.name }}</a></h3>
+                                                    <div class="meta">
+                                                        <span class="date">{{ project.created|date('d.m.Y') }}</span>
+                                                        <span class="tag">{{ project.portfolioCategory.name }}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-8.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Saudi Lime Green</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-9.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Panda Automap</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-10.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Saudi Venture Capital</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-11.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Rebrand Lawberry</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-12.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Selicon Cloud Cave</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-13.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Mountain Upwork</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-14.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Blacky Motorola</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-15.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Panda Automap</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-16.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Saudi Venture Capital</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-17.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Rebrand Lawberry</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="work-box">
-                                        <div class="thumb" data-cursor-text="View Project">
-                                            <a href="portfolio-details.html"><img src="assets/imgs/project/image-18.webp" alt="image"></a>
-                                        </div>
-                                        <div class="content">
-                                            <h3 class="title"><a href="portfolio-details.html">Selicon Cloud Cave</a></h3>
-                                            <div class="meta">
-                                                <span class="date">2025</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        {% endfor %}
+                                    {% endif %}
+
                                 </div>
                             </div>
                         </div>

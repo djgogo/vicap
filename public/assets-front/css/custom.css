@@ -1,0 +1,42 @@
+/* portfolio detail page */
+.text ul {
+	list-style-type: disc !important;
+	list-style-position: outside !important;
+	margin: 1rem 2rem !important;
+	padding-left: 1.5rem !important;
+	display: block !important;
+}
+.text ul li {
+	list-style-type: disc !important;
+	list-style-position: outside !important;
+	margin: 0.5rem 0 !important;
+	padding-left: 0 !important;
+	display: list-item !important;
+}
+.text li {
+	list-style-type: disc !important;
+	list-style-position: outside !important;
+	margin: 0.5rem 0 !important;
+	display: list-item !important;
+}
+.text p {
+	margin: 1rem 0;
+}
+.text p:first-child {
+	margin-top: 0;
+}
+.text p:last-child {
+	margin-bottom: 0;
+}
+
+/* Plus-prefixed list styling */
+.text div {
+	margin: 0.25rem 0;
+	line-height: 1.4;
+}
+.text div:first-child {
+	margin-top: 0;
+}
+.text div:last-child {
+	margin-bottom: 0;
+}
