@@ -36,7 +36,7 @@ class PortfolioCategory
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private \DateTime $updated;
 
-    #[ORM\OneToMany(targetEntity: Portfolio::class, mappedBy: 'portfolioCategory', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: Portfolio::class, mappedBy: 'portfolioCategories')]
     private Collection $projects;
 
     #[ORM\Column(length: 255)]
@@ -90,7 +90,7 @@ class PortfolioCategory
     {
         if (!$this->projects->contains($project)) {
             $this->projects->add($project);
-            $project->setPortfolioCategory($this);
+            $project->addPortfolioCategory($this);
         }
 
         return $this;
@@ -99,10 +99,7 @@ class PortfolioCategory
     public function removeProject(Portfolio $project): static
     {
         if ($this->projects->removeElement($project)) {
-            // set the owning side to null (unless already changed)
-            if ($project->getPortfolioCategory() === $this) {
-                $project->setPortfolioCategory(null);
-            }
+            $project->removePortfolioCategory($this);
         }
 
         return $this;

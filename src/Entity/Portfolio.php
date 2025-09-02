@@ -13,6 +13,8 @@ namespace App\Entity;
 
 use App\Repository\PortfolioRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -37,8 +39,9 @@ class Portfolio
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private \DateTime $updated;
 
-    #[ORM\ManyToOne(targetEntity: PortfolioCategory::class, inversedBy: 'projects')]
-    private ?PortfolioCategory $portfolioCategory = null;
+    #[ORM\ManyToMany(targetEntity: PortfolioCategory::class, inversedBy: 'projects')]
+    #[ORM\JoinTable(name: 'portfolio_portfolio_category')]
+    private Collection $portfolioCategories;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -81,6 +84,7 @@ class Portfolio
     {
         $this->created = new DateTime('now');
         $this->updated = new DateTime('now');
+        $this->portfolioCategories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,14 +116,27 @@ class Portfolio
         return $this;
     }
 
-    public function getPortfolioCategory(): ?PortfolioCategory
+    /**
+     * @return Collection<int, PortfolioCategory>
+     */
+    public function getPortfolioCategories(): Collection
     {
-        return $this->portfolioCategory;
+        return $this->portfolioCategories;
     }
 
-    public function setPortfolioCategory(?PortfolioCategory $portfolioCategory): static
+    public function addPortfolioCategory(PortfolioCategory $portfolioCategory): static
     {
-        $this->portfolioCategory = $portfolioCategory;
+        if (!$this->portfolioCategories->contains($portfolioCategory)) {
+            $this->portfolioCategories->add($portfolioCategory);
+        }
+
+        return $this;
+    }
+
+    public function removePortfolioCategory(PortfolioCategory $portfolioCategory): static
+    {
+        $this->portfolioCategories->removeElement($portfolioCategory);
+
         return $this;
     }
 

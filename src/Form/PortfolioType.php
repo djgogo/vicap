@@ -70,10 +70,15 @@ class PortfolioType extends AbstractType
                     'class' => 'ckeditor'
                 ],
             ])
-            ->add('portfolioCategory', EntityType::class, [
-                'label' => 'Portfolio Category',
+            ->add('portfolioCategories', EntityType::class, [
+                'label' => 'Portfolio Categories',
                 'class' => PortfolioCategory::class,
                 'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => false,
+                'attr' => [
+                    'class' => 'js-choices'
+                ]
             ])
         ;
 
