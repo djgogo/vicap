@@ -29,8 +29,14 @@ class HomepageController extends AbstractController
 {
     #[Route('/', name: 'app_homepage_index', options: ['sitemap' => true])]
     public function index(
+        PortfolioRepository $portfolioRepository,
     ): Response {
-        return $this->render('default/homepage.html.twig', []);
+        // get all projects for the carousel
+        $projects = $portfolioRepository->findAllOrderedDesc();
+
+        return $this->render('default/homepage.html.twig', [
+            'projects' => $projects,
+        ]);
     }
 
     #[Route('/portfolio', name: 'homepage_portfolio', options: ['sitemap' => true])]
