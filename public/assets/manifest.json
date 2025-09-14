@@ -1436,6 +1436,7 @@
   "assets/libs/moment/locale/de-ch.js": "/assets/libs/moment/locale/de-ch.js",
   "assets/libs/moment/locale/de.js": "/assets/libs/moment/locale/de.js",
   "assets/libs/prismjs/plugins/command-line/prism-command-line.min.js": "/assets/libs/prismjs/plugins/command-line/prism-command-line.min.js",
+  "assets/js/pages/references.init.js": "/assets/js/pages/references.init.js",
   "assets/js/pages/form-editor.init.js": "/assets/js/pages/form-editor.init.js",
   "assets/libs/moment/src/locale/ca.js": "/assets/libs/moment/src/locale/ca.js",
   "assets/libs/moment/locale/ms-my.js": "/assets/libs/moment/locale/ms-my.js",

@@ -37,3 +37,17 @@ liip_imagine:
                     size: [ 440, 290 ]
                     mode: outbound
                     allow_upscale: true
+
+        reference_thumb:
+            jpeg_quality: 85
+            png_compression_level: 8
+            # if your logos have transparency, keep PNG output:
+            # format: png
+
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail:
+                    size: [ 100, 35 ]      # max width x max height
+                    mode: inset          # ⟵ keep aspect ratio, no crop
+                    allow_upscale: false # avoid enlarging tiny logos

@@ -499,75 +499,17 @@
                 </div>
                 <div class="client-capsule-wrapper-box" data-t-throwable-scene="true">
                     <div class="client-capsule-wrapper">
-                        <p data-t-throwable-el="">
-                    <span class="client-box bg-theme">
-                      <img src="assets/imgs/client/client-9-light.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-10.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-11.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box bg-theme">
-                      <img src="assets/imgs/client/client-12-light.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-13.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-14.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box bg-theme">
-                      <img src="assets/imgs/client/client-15-light.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box bg-theme">
-                      <img src="assets/imgs/client/client-16-light.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-17.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box bg-theme">
-                      <img src="assets/imgs/client/client-18-light.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-19.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box bg-theme">
-                      <img src="assets/imgs/client/client-20-light.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-21.webp" alt="image">
-                    </span>
-                        </p>
-                        <p data-t-throwable-el="">
-                    <span class="client-box">
-                      <img src="assets/imgs/client/client-22.webp" alt="image">
-                    </span>
+                        {% if references|length %}
+                            {% for reference in references %}
+                                <p data-t-throwable-el="">
+                                    <span class="client-box{% if loop.index0 % 2 == 1 %} bg-theme {% else %} bg-secondary {% endif %}">
+                                        <a href="{{ reference.url }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ reference_logo(reference, 'reference_thumb') }}" alt="{{ reference.name }}" style="object-fit: contain;" />
+                                        </a>
+                                    </span>
+                                </p>
+                            {% endfor %}
+                        {% endif %}
                         </p>
                     </div>
                 </div>
@@ -585,8 +527,6 @@
         </div>
     </section>
     <!-- client area end  -->
-
-
 
     <section class="blog-section pb-130 pt-130 fade-wrapper">
         <div class="container rr-container-1405">
@@ -640,6 +580,33 @@
         </div>
     </section>
     <!-- ./ blog-section -->
+
+    <!-- client area start  -->
+    <div class="client-area-2 light">
+        <div class="client-area-2-inner">
+            <div class="clients-wrapper-box">
+                <div class="clients-wrapper">
+                    <div class="swiper client-slider-active">
+                        <div class="swiper-wrapper">
+                            {% if references|length %}
+                                {% for reference in references %}
+                                    <div class="swiper-slide">
+                                        <div class="client-box">
+                                            <a href="{{ reference.url }}" target="_blank" rel="noopener noreferrer">
+                                                <img src="{{ reference_logo(reference, 'reference_thumb') }}" alt="{{ reference.name }}" style="object-fit: contain;" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- client area end  -->
 
     <section class="cta-section-5">
         <div class="bg-item">

@@ -8,9 +8,11 @@
 namespace App\Controller;
 
 use App\Entity\PortfolioCategory;
+use App\Entity\Reference;
 use App\Entity\TermTemplate;
 use App\Entity\User;
 use App\Repository\PortfolioRepository;
+use App\Repository\ReferenceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,12 +32,15 @@ class HomepageController extends AbstractController
     #[Route('/', name: 'app_homepage_index', options: ['sitemap' => true])]
     public function index(
         PortfolioRepository $portfolioRepository,
+        ReferenceRepository $referenceRepository,
     ): Response {
-        // get all projects for the carousel
+        // get all dynamic stuff for the frontpage
         $projects = $portfolioRepository->findAllOrderedDesc();
+        $references = $referenceRepository->findAll();
 
         return $this->render('default/homepage.html.twig', [
             'projects' => $projects,
+            'references' => $references,
         ]);
     }
 

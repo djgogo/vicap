@@ -10,3 +10,7 @@ vich_uploader:
             uri_prefix: /media/portfolios
             upload_destination: '%kernel.project_dir%/public/media/portfolios'
             namer: App\Controller\Upload\Namer\UniqueIdFileNamer
+        references:
+            uri_prefix: /media/references
+            upload_destination: '%kernel.project_dir%/public/media/references'
+            namer: App\Controller\Upload\Namer\UniqueIdFileNamer
