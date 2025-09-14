@@ -1,3 +1,7 @@
+.client-area .line {
+	border-bottom: unset !important;
+}
+
 /* portfolio detail page */
 .text ul {
 	list-style-type: disc !important;
