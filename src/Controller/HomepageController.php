@@ -97,6 +97,54 @@ class HomepageController extends AbstractController
         ]);
     }
 
+    #[Route('/service', name: 'homepage_service', options: ['sitemap' => true])]
+    public function viewServices(
+    ): Response {
+        return $this->render('public/service/service.html.twig', []);
+    }
+
+    #[Route('/service/website', name: 'homepage_service_website', options: ['sitemap' => true])]
+    public function viewServiceWebsite(
+    ): Response {
+        return $this->render('public/service/service-website.html.twig', []);
+    }
+
+    #[Route('/service/app-development', name: 'homepage_service_app_development', options: ['sitemap' => true])]
+    public function viewServiceAppDevelopment(
+    ): Response {
+        return $this->render('public/service/service-app-development.html.twig', []);
+    }
+
+    #[Route('/service/digital-commerce', name: 'homepage_service_digital_commerce', options: ['sitemap' => true])]
+    public function viewServiceDigitalCommerce(
+    ): Response {
+        return $this->render('public/service/service-e-commerce.html.twig', []);
+    }
+
+    #[Route('/service/ai-powered-solutions', name: 'homepage_service_ai_powered_solutions', options: ['sitemap' => true])]
+    public function viewServiceAiPoweredSolutions(
+    ): Response {
+        return $this->render('public/service/service-ai-powered-solutions.html.twig', []);
+    }
+
+    #[Route('/service/wordpress', name: 'homepage_service_wordpress', options: ['sitemap' => true])]
+    public function viewServiceWordpress(
+    ): Response {
+        return $this->render('public/service/service-wordpress.html.twig', []);
+    }
+
+    #[Route('/service/web-hosting', name: 'homepage_service_web_hosting', options: ['sitemap' => true])]
+    public function viewServiceWebHosting(
+    ): Response {
+        return $this->render('public/service/service-web-hosting.html.twig', []);
+    }
+
+    #[Route('/service/internet-radio', name: 'homepage_service_internet_radio', options: ['sitemap' => true])]
+    public function viewServiceInternetRadio(
+    ): Response {
+        return $this->render('public/service/service-internet-radio.html.twig', []);
+    }
+
     #[Route('/contact', name: 'homepage_contact', options: ['sitemap' => true])]
     public function contact(
         #[CurrentUser] ?User $user,
