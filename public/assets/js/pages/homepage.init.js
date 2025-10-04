@@ -1,1 +1,0 @@
-if(document.querySelectorAll(".wow").length>0){new WOW({boxClass:"wow",animateClass:"animated",mobile:!0,live:!0}).init()}
