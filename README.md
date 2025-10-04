@@ -44,10 +44,21 @@ Requirements
    ```
 
 6. **Build Frontend Assets**:
+
+   Admin assets:
    ```bash
-   npm run build # For production
-   npm run dev # For development
-   npm run watch # For development with auto-rebuild
+   # development (watch mode, non-minified)
+   yarn dev:admin
+   # production build (optimized, versioned)
+   yarn build:admin
+   ```
+
+   Frontend assets:
+   ```bash
+   # development (watch mode, non-minified)
+   yarn dev:front
+   # production build (optimized, versioned)
+   yarn build:front
    ```
 
 ## Additional Development Information
@@ -69,13 +80,20 @@ Requirements
 
 - Frontend assets are managed with Webpack Encore
 - SCSS files are compiled to CSS
-- Configuration is in `webpack.admin.config.js`
+- Configurations are split:
+  - Admin: `webpack.admin.config.js`
+  - Frontend: `webpack.front.config.js`
 - Key commands:
-  ```bash
-  npm run dev # Build assets for development
-  npm run watch # Watch for changes and rebuild
-  npm run build # Build assets for production
-  ```
+  - Admin:
+    ```bash
+    yarn dev:admin   # development (watch mode, non-minified)
+    yarn build:admin # production (optimized, versioned)
+    ```
+  - Frontend:
+    ```bash
+    yarn dev:front   # development (watch mode, non-minified)
+    yarn build:front # production (optimized, versioned)
+    ```
 
 ### Database Migrations
 
@@ -106,7 +124,8 @@ Requirements
   ```
 - Build production assets:
   ```bash
-  npm run build
+  yarn build:admin
+  yarn build:front
   ```
 - Update database schema if needed:
   ```bash
