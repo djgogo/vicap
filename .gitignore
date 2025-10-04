@@ -6,8 +6,8 @@
 .junie
 
 ###> symfony/build folders  ###
-/assets
-/assets-front
+/public/assets
+/public/assets-front
 ###> symfony/build folders  ###
 
 ###> symfony/upload media  ###
