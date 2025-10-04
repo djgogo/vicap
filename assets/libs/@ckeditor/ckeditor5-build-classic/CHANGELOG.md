@@ -912,7 +912,7 @@ Besides new features introduced by the dependencies, this version also introduce
 
 ### Other changes
 
-* Aligned build and `webpack.config.js` to the new Translation Service ([ckeditor/ckeditor5#624](https://github.com/ckeditor/ckeditor5/issues/624)). ([a349ffb](https://github.com/ckeditor/ckeditor5-build-classic/commit/a349ffb))
+* Aligned build and `webpack.admin.config.js` to the new Translation Service ([ckeditor/ckeditor5#624](https://github.com/ckeditor/ckeditor5/issues/624)). ([a349ffb](https://github.com/ckeditor/ckeditor5-build-classic/commit/a349ffb))
 * Changed the webpack configuration so the styles are processed using PostCSS instead of SASS (see [ckeditor/ckeditor5-ui#144](https://github.com/ckeditor/ckeditor5-ui/issues/144)). ([040b92f](https://github.com/ckeditor/ckeditor5-build-classic/commit/040b92f))
 
 

@@ -23,6 +23,13 @@ framework:
     # See https://symfony.com/doc/current/reference/configuration/framework.html#ide
     ide: null
 
+    assets:
+        packages:
+            admin:
+                base_path: '/assets'
+            front:
+                base_path: '/assets-front'
+
     rate_limiter:
         registration_limit:
             policy: 'fixed_window'  # or 'sliding_window', 'token_bucket', etc.

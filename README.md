@@ -69,7 +69,7 @@ Requirements
 
 - Frontend assets are managed with Webpack Encore
 - SCSS files are compiled to CSS
-- Configuration is in `webpack.config.js`
+- Configuration is in `webpack.admin.config.js`
 - Key commands:
   ```bash
   npm run dev # Build assets for development

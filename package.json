@@ -28,10 +28,9 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "dev-server": "encore dev-server",
-    "dev": "encore dev",
-    "watch": "encore dev --watch",
-    "build": "encore production --progress",
-    "build:prod": "NODE_ENV=production encore production --progress"
+    "dev:admin": "encore dev --config webpack.admin.config.js",
+    "build:admin": "encore production --config webpack.admin.config.js",
+    "dev:front": "encore dev --config webpack.front.config.js",
+    "build:front": "encore production --config webpack.front.config.js"
   }
 }

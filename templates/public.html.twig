@@ -46,19 +46,8 @@
     {% block stylesheets %}
         <!-- SEO -->
         <link rel="canonical" href="{{ app.request.schemeAndHttpHost }}{{ app.request.pathInfo }}" />
-        <!-- Bootstrap Css -->
-        <link href="{{ asset('/assets-front/vendor/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- Frontend Website styles -->
-        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/fontawesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/swiper-bundle.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/progressbar.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/meanmenu.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/magnific-popup.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/animate.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets-front/vendor/carouselTicker.css') }}">
-        <!-- Template Main CSS File -->
-        <link rel="stylesheet" href="{{ asset('/assets-front/css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets-front/css/custom.css') }}">
+        {# Bundled frontend CSS via Webpack Encore (front build) #}
+        {{ encore_entry_link_tags('front', null, 'front') }}
     {% endblock %}
 
     {% block jsonLd %}{% endblock %}

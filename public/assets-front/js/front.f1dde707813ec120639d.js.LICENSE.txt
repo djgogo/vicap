@@ -1,0 +1,84 @@
+/*!
+   * TextPlugin 3.12.5
+   * https://gsap.com
+   *
+   * @license Copyright 2008-2024, GreenSock. All rights reserved.
+   * Subject to the terms at https://gsap.com/standard-license or for
+   * Club GSAP members, the agreement issued with that membership.
+   * @author: Jack Doyle, jack@greensock.com
+  */
+
+/*!
+  * Bootstrap v5.2.0-beta1 (https://getbootstrap.com/)
+  * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */
+
+/*!
+ * CustomEase 3.12.5
+ * https://gsap.com
+ * 
+ * @license Copyright 2024, GreenSock. All rights reserved.
+ * Subject to the terms at https://gsap.com/standard-license or for Club GSAP members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+ */
+
+/*!
+ * GSAP 3.11.4
+ * https://greensock.com
+ * 
+ * @license Copyright 2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+ */
+
+/*!
+ * ScrollSmoother 3.11.4
+ * https://greensock.com
+ * 
+ * @license Copyright 2022, GreenSock. All rights reserved.
+ * This plugin is a membership benefit of Club GreenSock and is only authorized for use in sites/apps/products developed by individuals/companies with an active Club GreenSock membership. See https://greensock.com/club
+ * @author: Jack Doyle, jack@greensock.com
+ */
+
+/*!
+ * ScrollToPlugin 3.11.1
+ * https://greensock.com
+ * 
+ * @license Copyright 2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+ */
+
+/*!
+ * ScrollTrigger 3.11.4
+ * https://greensock.com
+ * 
+ * @license Copyright 2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+ */
+
+/*!
+ * SplitText 3.11.2
+ * https://greensock.com
+ * 
+ * @license Copyright 2022, GreenSock. All rights reserved.
+ * This plugin is a membership benefit of Club GreenSock and is only authorized for use in sites/apps/products developed by individuals/companies with an active Club GreenSock membership. See https://greensock.com/club
+ * @author: Jack Doyle, jack@greensock.com
+ */
+
+/*!
+ * matter-js 0.19.0 by @liabru
+ * http://brm.io/matter-js/
+ * License MIT
+ */
+
+/*!
+Waypoints - 4.0.1
+Copyright © 2011-2016 Caleb Troughton
+Licensed under the MIT license.
+https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
+*/
+
+/*! jQuery v3.7.1 | (c) OpenJS Foundation and other contributors | jquery.org/license */

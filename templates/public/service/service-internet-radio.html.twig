@@ -352,10 +352,7 @@
 {% endblock %}
 
 {% block javascripts %}
-
+    {{ parent() }}
     <!--homepage init -->
     <script src="{{ asset('assets/js/pages/homepage.init.js') }}"></script>
-
-    {{ parent() }}
-
 {% endblock %}

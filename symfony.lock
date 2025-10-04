@@ -604,7 +604,7 @@
             "assets/styles/app.css",
             "config/packages/webpack_encore.yaml",
             "package.json",
-            "webpack.config.js"
+            "webpack.admin.config.js"
         ]
     },
     "symfony/yaml": {

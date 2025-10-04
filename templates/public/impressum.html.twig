@@ -36,27 +36,21 @@
 {% endblock %}
 
 {% block javascripts %}
-
+    {{ parent() }}
     <!--homepage init -->
     <script src="{{ asset('assets/js/pages/homepage.init.js') }}"></script>
-
     <!-- remove the unwanted &nbsp; in the description field -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Use a short delay to ensure the CKEditor content is fully rendered.
             setTimeout(function () {
                 document.querySelectorAll('.text-muted p').forEach(function(p) {
                     let html = p.innerHTML.trim();
                     let text = p.textContent.trim();
-                    // Check if the paragraph contains only a non-breaking space or is effectively empty.
                     if (html === '&nbsp;' || text === "\u00a0" || html === '' || text === '') {
                         p.remove();
                     }
                 });
-            }, 100); // Delay of 100ms; adjust if needed
+            }, 100);
         });
     </script>
-
-    {{ parent() }}
-
 {% endblock %}
