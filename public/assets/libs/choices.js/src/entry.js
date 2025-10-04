@@ -1,3 +1,1 @@
-import Choices from './scripts/choices';
-
-export default Choices;
+import Choices from"./scripts/choices";export default Choices;

@@ -1,2 +1,1 @@
-import{g as getSlideTransformEl,c as createElement}from"./utils.min.mjs";function createShadow(e,t,r){const s=`swiper-slide-shadow${r?`-${r}`:""}${e?` swiper-slide-shadow-${e}`:""}`,a=getSlideTransformEl(t);let i=a.querySelector(`.${s.split(" ").join(".")}`);return i||(i=createElement("div",s.split(" ")),a.append(i)),i}export{createShadow as c};
-//# sourceMappingURL=create-shadow.min.mjs.map
+import{g as s,c as i}from"./utils.min.mjs";function e(e,t,o){const r=`swiper-slide-shadow${o?`-${o}`:""}${e?` swiper-slide-shadow-${e}`:""}`,p=s(t);let l=p.querySelector(`.${r.split(" ").join(".")}`);return l||(l=i("div",r.split(" ")),p.append(l)),l}export{e as c};

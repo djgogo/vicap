@@ -5440,8 +5440,3 @@ yargs-parser@^21.0.0:
   version "21.1.1"
   resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz"
   integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
-
-yarn@^1.22.21:
-  version "1.22.21"
-  resolved "https://registry.npmjs.org/yarn/-/yarn-1.22.21.tgz"
-  integrity sha512-ynXaJsADJ9JiZ84zU25XkPGOvVMmZ5b7tmTSpKURYwgELdjucAOydqIOrOfTxVYcNXe91xvLZwcRh68SR3liCg==

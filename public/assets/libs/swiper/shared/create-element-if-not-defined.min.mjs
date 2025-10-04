@@ -1,2 +1,1 @@
-import{e as elementChildren,c as createElement}from"./utils.min.mjs";function createElementIfNotDefined(e,t,n,a){return e.params.createElements&&Object.keys(a).forEach((l=>{if(!n[l]&&!0===n.auto){let r=elementChildren(e.el,`.${a[l]}`)[0];r||(r=createElement("div",a[l]),r.className=a[l],e.el.append(r)),n[l]=r,t[l]=r}})),n}export{createElementIfNotDefined as c};
-//# sourceMappingURL=create-element-if-not-defined.min.mjs.map
+import{e,c as a}from"./utils.min.mjs";function s(s,t,r,c){return s.params.createElements&&Object.keys(c).forEach((m=>{if(!r[m]&&!0===r.auto){let i=e(s.el,`.${c[m]}`)[0];i||(i=a("div",c[m]),i.className=c[m],s.el.append(i)),r[m]=i,t[m]=i}})),r}export{s as c};

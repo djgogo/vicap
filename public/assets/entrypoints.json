@@ -2,8 +2,8 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/assets/runtime.js",
-        "/assets/app.js"
+        "/assets/runtime.5ddb34e8.js",
+        "/assets/app.9148f6bc.js"
       ],
       "css": [
         "/assets/css/app.min.css"
@@ -11,8 +11,8 @@
     },
     "bootstrap": {
       "js": [
-        "/assets/runtime.js",
-        "/assets/bootstrap.js"
+        "/assets/runtime.5ddb34e8.js",
+        "/assets/bootstrap.f9e2f6e8.js"
       ],
       "css": [
         "/assets/css/bootstrap.min.css"
@@ -20,8 +20,8 @@
     },
     "icons": {
       "js": [
-        "/assets/runtime.js",
-        "/assets/icons.js"
+        "/assets/runtime.5ddb34e8.js",
+        "/assets/icons.4edc0a79.js"
       ],
       "css": [
         "/assets/css/icons.min.css"
@@ -29,8 +29,8 @@
     },
     "custom": {
       "js": [
-        "/assets/runtime.js",
-        "/assets/custom.js"
+        "/assets/runtime.5ddb34e8.js",
+        "/assets/custom.25ec6f4c.js"
       ],
       "css": [
         "/assets/css/custom.min.css"
