@@ -5,6 +5,11 @@
 .idea
 .junie
 
+###> symfony/build folders  ###
+/assets
+/assets-front
+###> symfony/build folders  ###
+
 ###> symfony/upload media  ###
 /public/media/
 ###> symfony/upload media ###

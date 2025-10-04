@@ -31,6 +31,7 @@ Encore
     .copyFiles({ from: './assets-front/fonts',     to: 'fonts/[name].[ext]' })
     .copyFiles({ from: './assets-front/webfonts',  to: 'webfonts/[name].[ext]' })
     .copyFiles({ from: './assets-front/vendor',    to: 'vendor/[name].[ext]' })
+    .copyFiles({ from: './assets-front/css',       to: 'css/[name].[ext]', pattern: /auth\.css$/ })
 
     /*
     * FEATURE CONFIG
@@ -38,6 +39,10 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
+    .configureCssMinimizerPlugin((options) => {
+        // Exclude copied, non-standard CSS (contains SCSS syntax) from minification
+        options.exclude = /css\/auth\.css$/;
+    })
     .enableVersioning(Encore.isProduction());
 
 module.exports = Encore.getWebpackConfig();
