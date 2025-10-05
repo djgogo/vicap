@@ -21,13 +21,13 @@ use Symfony\Component\Routing\Attribute\Route;
  *
  * @package App\Controller
  */
-#[Route('/upload')]
+//#[Route('/upload')]
 class FileUploadController extends AbstractController
 {
     /**
      * AJAX profile image upload
      */
-    #[Route('/profile-image/{id}', name: 'user_profile_image_upload', requirements: ['id' => '\d+'], methods: ['POST'])]
+//    #[Route('/profile-image/{id}', name: 'user_profile_image_upload', requirements: ['id' => '\d+'], methods: ['POST'])]
     public function uploadProfileImage(
         Security $security,
         Request $request,

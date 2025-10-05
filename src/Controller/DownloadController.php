@@ -16,10 +16,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use ZipArchive;
 
-#[Route('/download')]
+//#[Route('/download')]
 class DownloadController extends AbstractController
 {
-    #[Route('/application/{id}', name: 'public_applications_documents_download', requirements: ['id' => '\d+'])]
+//    #[Route('/application/{id}', name: 'public_applications_documents_download', requirements: ['id' => '\d+'])]
     public function publicDownloadApplicationDocuments(
         Request $request,
         EntityManagerInterface $entityManager,
