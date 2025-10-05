@@ -48,7 +48,7 @@ class RegistrationController extends AbstractController
         $this->reCaptcha = $reCaptcha;
     }
 
-    #[Route("/registration", name: "security_registration")]
+//    #[Route("/registration", name: "security_registration")]
     public function register(
         Request $request,
         AuthManager $authManager,
@@ -155,7 +155,7 @@ class RegistrationController extends AbstractController
     /**
      * Reads email confirmation code from request and validates it.
      */
-    #[Route("/registration/confirm/{code}", name: "registration_confirm")]
+//    #[Route("/registration/confirm/{code}", name: "registration_confirm")]
     public function confirm(
         string $code,
         EntityManagerInterface $manager
@@ -189,7 +189,7 @@ class RegistrationController extends AbstractController
     /**
      * Success page after email confirmation
      */
-    #[Route("/registration/success", name: "registration_success")]
+//    #[Route("/registration/success", name: "registration_success")]
     public function success(): \Symfony\Component\HttpFoundation\Response
     {
         // Render the success page
