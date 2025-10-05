@@ -55,12 +55,12 @@ work page css
   --secondary: #555555;
   --border: rgba(17, 17, 17, 0.1);
   --bg: #111111;
-  --theme: #326295;
+  --theme: #a31835;
   --black: #111111;
   --black-2: #999999;
   --white: #FFFFFF;
   --white-2: #999999;
-  --action: #326295;
+  --action: #a31835;
 }
 :root .dark {
   --primary: #ffffff;
@@ -25230,8 +25230,8 @@ video.video-area {
   --rr-color-heading-primary: #0a131d;
   --rr-color-text-body: #B0B2B7;
   --rr-color-text-body-light: #74787C;
-  --rr-color-theme-primary: #326295;
-  --rr-color-theme-secondary: #1e3a59;
+  --rr-color-theme-primary: #a31835;
+  --rr-color-theme-secondary: #82132a;
   --rr-color-bg-1: #0a131d;
   --rr-color-grey-1: #F8F8F8;
   --rr-color-grey-2: #2D343E;
@@ -25308,8 +25308,8 @@ video.video-area {
   }
 }
 .section-heading .sub-heading:after, .section-heading .sub-heading:before {
-  background: linear-gradient(270deg, rgba(63, 90, 243, 0.4) 0%, transparent 100%);
-  content: "";
+	background: linear-gradient(270deg, rgba(163, 24, 53, 0.4) 0%, transparent 100%);
+	content: "";
   width: 37px;
   height: 10px;
   position: absolute;
@@ -25324,7 +25324,7 @@ video.video-area {
   transition: all 0.3s ease-in-out;
 }
 .section-heading .sub-heading:after {
-  background: linear-gradient(90deg, rgba(63, 90, 243, 0.4) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(163, 24, 53, 0.4) 0%, transparent 100%);
   left: auto;
   right: 10px;
 }
@@ -25399,7 +25399,7 @@ video.video-area {
   object-position: -266px 100px;
 }
 .hero-section-3 .round-shape {
-  background-color: #02050A;
+  background-color: var(--rr-color-theme-primary);
   height: 800px;
   width: 800px;
   border-radius: 50%;
@@ -30691,7 +30691,7 @@ START: Footer CSS
   }
 }
 .it-hero-content .title:before {
-  background: linear-gradient(270deg, #326295 0%, transparent 100%);
+  background: linear-gradient(270deg, #a31835 0%, transparent 100%);
   content: "";
   width: 100%;
   height: 76%;
@@ -30752,7 +30752,7 @@ START: Footer CSS
   transition: all 0.3s ease-in-out;
 }
 .it-hero-content .hero-btn:before {
-  background-color: #326295;
+  background-color: #a31835;
   mix-blend-mode: multiply;
   content: "";
   width: 170px;
@@ -31221,7 +31221,7 @@ START: Footer CSS
   z-index: -1;
 }
 .cta-section-5 .overlay {
-  background: #326295;
+  background: #a31835;
   mix-blend-mode: multiply;
   transform: rotate(180deg);
   width: 100%;

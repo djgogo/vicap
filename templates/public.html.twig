@@ -6,11 +6,11 @@
     <meta name="theme-style-mode" content="0"> <!-- 0 == light, 1 == dark -->
 
     {# Allow pages to override the title #}
-    <title>{% block title %}Websitemaster | Professional Web Solutions{% endblock %}</title>
+    <title>{% block title %}DonHuber | Selected Spirits Import{% endblock %}</title>
 
     {# Default meta description which can be overridden #}
     {% block meta_description %}
-        <meta name="description" content="Ob Sie einen passenden Job suchen oder die richtige Arbeitskraft finden, wir bringen die perfekten Partner zusammen.">
+        <meta name="description" content="Wir beliefern Privatkunden, Gastronomiebetriebe und den Getränkefachhandel und versogen so die ganze Schweiz mit unseren erlesenen Spirituosen.">
     {% endblock %}
 
     <meta content="Websitemaster" name="author" />
@@ -22,7 +22,7 @@
     {% block opengraph %}
         <meta property="og:url" content="https://websitemaster.ch" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Professional Web Solutions" />
+        <meta property="og:title" content="Selected Spirits Import" />
         <meta property="og:description" content="Website, App & E-Commerce Development Expert" />
         <meta property="og:image" content="{{ asset('assets/images/logo/logo-light.png') }}" />
     {% endblock %}
@@ -30,7 +30,7 @@
     {# Twitter Meta Tags Block - default values #}
     {% block twitter_meta %}
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Professional Web Solutions">
+        <meta name="twitter:title" content="Selected Spirits Import">
         <meta name="twitter:description" content="Website, App & E-Commerce Development Expert">
         <meta name="twitter:image" content="{{ asset('assets/images/logo/logo-light.png') }}">
     {% endblock %}
@@ -52,7 +52,7 @@
 
     {% block jsonLd %}{% endblock %}
 </head>
-<body class="web-design">
+<body class="web-development">
     {% set _route = app.request.get('_route') %}
     {% include 'default/_toast_messages.html.twig' %}
 
@@ -81,14 +81,14 @@
     <div class="has-smooth" id="has_smooth"></div>
         <div id="smooth-wrapper">
             <div id="smooth-content">
-                <main>
+                <div>
                     {% block content %}
 
                     {% endblock %}
                     <!-- Start Footer Area -->
                     {% include "public/partials/footer.html.twig" %}
                     <!-- End Footer Area -->
-                </main>
+                </div>
         </div>
     </div>
 

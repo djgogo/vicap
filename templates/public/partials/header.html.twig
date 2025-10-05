@@ -4,7 +4,7 @@
         <div class="container rr-container-1630">
             <div class="header-area-2__inner">
                 <div class="header__logo">
-                    <a href="index.html">
+                    <a href="{{ path('app_homepage_index') }}">
                         <img src="{{ asset('assets/images/logo/logo-dark.png') }}" class="normal-logo light-logo" alt="Site Logo">
                     </a>
                 </div>
@@ -14,45 +14,45 @@
                             <li>
                                 <a href="{{ path('app_homepage_index') }}">Home</a>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="{{ path('homepage_service') }}">Services</a>
-                                <ul class="dp-menu">
-                                    <li><a href="{{ path('homepage_service_website') }}">Website</a></li>
-                                    <li><a href="{{ path('homepage_service_digital_commerce') }}">E-Commerce</a></li>
-                                    <li><a href="{{ path('homepage_service_app_development') }}">App Development</a></li>
-                                    <li><a href="{{ path('homepage_service_ai_powered_solutions') }}">AI Powered Solutions</a></li>
-                                    <li><a href="{{ path('homepage_service_web_hosting') }}">Web-Hosting</a></li>
-                                    <li><a href="{{ path('homepage_service_wordpress') }}">Wordpress Services</a></li>
-                                    <li><a href="{{ path('homepage_service_internet_radio') }}">Internet Radio</a></li>
-                                </ul>
+{#                            <li class="menu-item-has-children">#}
+{#                                <a href="{{ path('homepage_service') }}">Services</a>#}
+{#                                <ul class="dp-menu">#}
+{#                                    <li><a href="{{ path('homepage_service_website') }}">Website</a></li>#}
+{#                                    <li><a href="{{ path('homepage_service_digital_commerce') }}">E-Commerce</a></li>#}
+{#                                    <li><a href="{{ path('homepage_service_app_development') }}">App Development</a></li>#}
+{#                                    <li><a href="{{ path('homepage_service_ai_powered_solutions') }}">AI Powered Solutions</a></li>#}
+{#                                    <li><a href="{{ path('homepage_service_web_hosting') }}">Web-Hosting</a></li>#}
+{#                                    <li><a href="{{ path('homepage_service_wordpress') }}">Wordpress Services</a></li>#}
+{#                                    <li><a href="{{ path('homepage_service_internet_radio') }}">Internet Radio</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="{{ path('homepage_portfolio') }}">Portfolio</a>#}
+{#                            </li>#}
+{#                            <li class="menu-item-has-children">#}
+{#                                <a href="#">Blog</a>#}
+{#                                <ul class="dp-menu">#}
+{#                                    <li><a href="blog.html">Blog</a></li>#}
+{#                                    <li><a href="blog-details.html">Blog Details</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+                            <li>
+                                <a href="#section1">Über uns</a>
                             </li>
                             <li>
-                                <a href="{{ path('homepage_portfolio') }}">Portfolio</a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Blog</a>
-                                <ul class="dp-menu">
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="about.html">About Us</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('homepage_contact') }}">Contact</a>
+                                <a class="side-toggle" style="background-color: inherit; padding-top: 28px;">Kontakt</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                <div class="header__button">
-                    <a href="{{ path('homepage_contact') }}" class="rr-btn">
-                            <span class="btn-wrap">
-                                <span class="text-one">Let’s Talk</span>
-                                <span class="text-two">Let’s Talk</span>
-                            </span>
-                    </a>
-                </div>
+                {#<div class="header__button">#}
+                {#    <a href="{{ path('homepage_contact') }}" class="rr-btn">#}
+                {#            <span class="btn-wrap">#}
+                {#                <span class="text-one">Let’s Talk</span>#}
+                {#                <span class="text-two">Let’s Talk</span>#}
+                {#            </span>#}
+                {#    </a>#}
+                {#</div>#}
                 <div class="header__navicon">
                     <button class="side-toggle"><img src="{{ asset('assets-front/imgs/icon/icon-2.webp') }}" alt="image"></button>
                 </div>
