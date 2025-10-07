@@ -1,7 +1,7 @@
-Websitemaster Website
+ViCAP Systems Website
 =====================
 
-The "Websitemaster Website App" is a professional website application developed with the symfony framework.
+The "ViCap Systems Website App" is a professional website application developed with the symfony framework.
 
 Requirements
 ------------
