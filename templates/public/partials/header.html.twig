@@ -1,11 +1,10 @@
-<!-- Header area start -->
-<header class="header-area-2">
+<header class="header-area-7 header-p-inline-60">
     <div class="header-main">
-        <div class="container rr-container-1630">
-            <div class="header-area-2__inner">
+        <div class="container rr-container-1405">
+            <div class="header-area-7__inner">
                 <div class="header__logo">
                     <a href="{{ path('app_homepage_index') }}">
-                        <img src="{{ asset('assets/images/logo/logo-dark.png') }}" class="normal-logo light-logo" alt="Site Logo">
+                        <img src="{{ asset('assets-front/imgs/logo/vicap-logo-red.png') }}" class="normal-logo" alt="imageSite Logo">
                     </a>
                 </div>
                 <div class="header__nav pos-center">
@@ -37,27 +36,35 @@
 {#                                </ul>#}
 {#                            </li>#}
                             <li>
-                                <a href="#section1">Über uns</a>
+                                <a href="#!">About Us</a>
                             </li>
-                            <li>
-                                <a class="side-toggle" style="background-color: inherit; padding-top: 28px;">Kontakt</a>
+                            <li class="menu-item-has-children">
+                                <a href="#">Pages</a>
+                                <ul class="dp-menu">
+                                    <li><a href="portfolio.html">Core Portfolio</a></li>
+                                    <li><a href="portfolio-2.html">Portfolio ST. Classic</a></li>
+                                    <li><a href="portfolio-3.html">Portfolio ST. Minimal</a></li>
+                                    <li><a href="portfolio-4.html">Portfolio ST. Modern</a></li>
+                                    <li><a href="portfolio-5.html">Portfolio ST. Interactive</a></li>
+                                    <li><a href="portfolio-6.html">Portfolio ST. Metro</a></li>
+                                    <li><a href="portfolio-details.html">Portfolio Details</a></li>
+                                    <li><a href="team.html">Team</a></li>
+                                    <li><a href="team-details.html">Team Details</a></li>
+                                    <li><a href="faq.html">FAQ Page</a></li>
+                                    <li><a href="404.html">404 Page</a></li>
+                                </ul>
                             </li>
+                            <li><a href="{{ path('homepage_contact') }}">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
-                {#<div class="header__button">#}
-                {#    <a href="{{ path('homepage_contact') }}" class="rr-btn">#}
-                {#            <span class="btn-wrap">#}
-                {#                <span class="text-one">Let’s Talk</span>#}
-                {#                <span class="text-two">Let’s Talk</span>#}
-                {#            </span>#}
-                {#    </a>#}
-                {#</div>#}
                 <div class="header__navicon">
-                    <button class="side-toggle"><img src="{{ asset('assets-front/imgs/icon/icon-2.webp') }}" alt="image"></button>
+                    <button class="side-toggle">
+                        <img src="{{ asset('assets-front/imgs/icon/icon-11.webp') }}" alt="imageimage">
+                        Menu
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<!-- Header area end -->

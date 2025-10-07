@@ -6,6 +6,7 @@ import '../vendor/progressbar.css';
 import '../vendor/meanmenu.min.css';
 import '../vendor/magnific-popup.css';
 import '../vendor/animate.min.css';
+import '../vendor/odometer.min.css';
 import '../vendor/carouselTicker.css';
 import '../vendor/jquery.animatedheadline.css';
 // Project CSS
@@ -18,6 +19,7 @@ import '../vendor/jquery.animatedheadline.min.js';
 import '../vendor/bootstrap.bundle.min.js';
 import '../vendor/jquery.magnific-popup.min.js';
 import '../vendor/counter.js';
+import '../vendor/odometer.min.js';
 import '../vendor/progressbar.js';
 import '../vendor/gsap.min.js';
 import '../vendor/ScrollSmoother.min.js';
@@ -2889,6 +2891,12 @@ import './magiccursor.js';
         var runokEl = document.querySelector('.runok-slider');
         if (runokEl && runokEl.querySelectorAll('.swiper-slide').length > 0) {
             var swiper2 = new Swiper(runokEl, slider2Options);
+        } else {
+            // Fallback: trigger animations on static hero if no .runok-slider present
+            var animatingElements = $('.slider-section').find('[data-animation]');
+            if (animatingElements && animatingElements.length) {
+                sliderAnimations(animatingElements);
+            }
         }
     });
 })(jQuery);

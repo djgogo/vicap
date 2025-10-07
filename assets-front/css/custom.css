@@ -14,6 +14,89 @@
 	}
 }
 
+/* vicap button */
+.vicap-button {
+	max-width: 40%;
+}
+@media (max-width: 480px) {
+	.vicap-button {
+		margin-top: 1rem;
+	}
+}
+
+/* video header background */
+.hero-header {
+	position: relative;
+	width: 100%;
+	max-height: 820px;
+	overflow: hidden;
+	/*aspect-ratio: 16 / 9; !* keeps proportions on large screens *!*/
+}
+
+/* video container */
+.video-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.video-background iframe {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100vw;
+	/*height: 56.25vw; !* 16:9 aspect ratio *!*/
+	min-width: 177.77vh;
+	min-height: 100vh;
+	transform: translate(-50%, -50%);
+}
+
+/* content overlay */
+.header-content {
+	position: relative;
+	z-index: 2;
+	text-align: center;
+	color: #fff;
+	padding: 4rem 2rem;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* dark overlay */
+.hero-header::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.50);
+	z-index: 1;
+}
+
+/* ✅ responsive handling */
+@media (max-width: 1024px) {
+	.hero-header {
+		max-height: 800px;
+	}
+}
+
+@media (max-width: 768px) {
+	.hero-header {
+		max-height: 760px;
+	}
+	.header-content {
+		padding: 2rem 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.hero-header {
+		max-height: 580px;
+	}
+}
+
 /* portfolio detail page */
 .text ul {
 	list-style-type: disc !important;
