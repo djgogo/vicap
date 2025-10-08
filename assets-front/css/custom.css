@@ -24,6 +24,59 @@
 	}
 }
 
+/* footer video background */
+/* Footer keeps its natural height from content */
+.footer-with-video {
+	position: relative;
+	overflow: hidden; /* hide any video overflow */
+	margin-top: 0; /* prevent any unexpected offset above footer */
+}
+
+/* 🔧 Make the video layer NOT affect layout */
+.footer-with-video .footer-video-bg {
+	position: absolute;
+	inset: 0;           /* top:0 right:0 bottom:0 left:0 */
+	z-index: 0;         /* behind content */
+	pointer-events: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Video fills the footer box without changing its height */
+.footer-with-video .footer-video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;       /* key: match footer’s actual height */
+	object-fit: cover;
+	display: block;
+}
+
+/* 80% black overlay over the video layer only */
+.footer-with-video .footer-video-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0,0,0,0.8);
+}
+
+/* Ensure all normal footer content sits above the video */
+.footer-with-video > .shape,
+.footer-with-video .container,
+.footer-with-video .it-copyright-area {
+	position: relative;
+	z-index: 1;
+}
+
+/* optional: reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+	.footer-with-video .footer-video {
+		display: none;
+	}
+	.footer-with-video .footer-video-overlay {
+		background: #000; /* keep dark background if video hidden */
+	}
+}
+
 /* video header background */
 .hero-header {
 	position: relative;

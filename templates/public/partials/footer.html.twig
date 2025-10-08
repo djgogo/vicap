@@ -1,74 +1,80 @@
 <!-- footer area start  -->
-<footer class="footer-section footer-2 footer-4 bg-dark-1">
-    <div class="shape"><img src="{{ asset('assets-front/imgs/it-solution/footer-bg-shape.webp') }}" alt="footer"></div>
+<footer class="footer-section footer-2 footer-4 bg-dark-1 footer-with-video">
+    <!-- Background video -->
+    <div class="footer-video-bg" aria-hidden="true">
+        <video
+                id="footerBgVideo"
+                class="footer-video"
+                muted
+                autoplay
+                playsinline
+                preload="metadata"
+                poster="{{ asset('assets-front/imgs/it-solution/footer-bg-shape.webp') }}"
+        >
+            <source src="{{ asset('assets-front/imgs/vicap/highway.webm') }}" type="video/webm">
+        </video>
+        <div class="footer-video-overlay"></div>
+    </div>
     <div class="container rr-container-1405">
         <div class="row footer-wrap">
             <div class="col-lg-6 col-md-6">
                 <div class="footer-widget logo-widget">
                     <div class="widget-header">
                         <div class="footer-logo">
-                            <a href="{{ path('app_homepage_index') }}"><img src="{{ asset('assets-front/imgs/logo/vicap-logo-light.png') }}" alt="logo"></a>
+                            <a href="{{ path('app_homepage_index') }}"><img src="{{ asset('assets-front/imgs/logo/vicap-systems-logo-light.png') }}" alt="logo"></a>
                         </div>
                     </div>
-                    <p>Erleben Sie mit DonHuber ein Stück Ibiza, <br> ein Gefühl von Sonne, Meer und purem Genuss.</p>
+                    <p>Our mission is to innovate and produce the most effective dispenser cap system and pioneer the new beverage packaging revolution.</p>
                     <ul class="social-list list-2">
                         <li class="facebook">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/vicapsystems"><i class="fab fa-facebook-f"></i></a>
                         </li>
-                        <li class="pinterest">
-                            <a href="#"><i class="fab fa-pinterest"></i></a>
-                        </li>
-                        <li class="twitter">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        <li class="linkedin">
+                            <a href="https://www.linkedin.com/company/vicap-systems-europe-&-asia/"><i class="fab fa-linkedin"></i></a>
                         </li>
                         <li class="instagram">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/vicap_systems_global_ag/"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li class="vimeo">
+                            <a href="https://vimeo.com/16461385"><i class="fab fa-vimeo"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="footer-widget">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget footer-col-2">
                     <div class="widget-header">
-                        <h3 class="widget-title">Kontakt</h3>
+                        <h3 class="widget-title">Links</h3>
                     </div>
-                    <ul class="address-list">
-                        <li><a href="mailto:info@donhuber.ch">info@donhuber.ch</a></li>
-                        <li><a href="tel:+41794166526">+41 79 663 99 92</a></li>
-                        <li>In der Weid 1 <br> CH-8143 Stallikon</li>
+                    <ul class="footer-list">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
-{#            <div class="col-lg-4 col-md-6">#}
-{#                <div class="footer-widget">#}
-{#                    <div class="widget-header">#}
-{#                        <h3 class="widget-title">Subscribe newsletter</h3>#}
-{#                    </div>#}
-{#                    <div class="footer-form mb-20">#}
-{#                        <form action="#" class="rr-subscribe-form">#}
-{#                            <input class="form-control" type="email" name="email"#}
-{#                                   placeholder="Email address">#}
-{#                            <input type="hidden" name="action" value="mailchimpsubscribe">#}
-{#                            <button class="submit">Sign Up</button>#}
-{#                            <div class="clearfix"></div>#}
-{#                        </form>#}
-{#                    </div>#}
-{#                    <div class="form-check form-item">#}
-{#                        <input class="form-check-input" type="checkbox" value="" id="man">#}
-{#                        <label class="form-check-label" for="man">#}
-{#                            I’m okay with getting emails and having#}
-{#                            that tracked to improve my experience#}
-{#                        </label>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Contact Us</h3>
+                    </div>
+                    <ul class="address-list">
+                        <li><a href="mailto:info@websitemaster.ch">info@websitemaster.ch</a></li>
+                        <li><a href="tel:+41794166526">+41 79 416 65 26</a></li>
+                        <li>Lindenstrasse 4 <br> 8600 Dübendorf, Switzerland</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div class="it-copyright-area">
         <div class="container rr-container-1405">
             <div class="row copyright-content justify-content-center">
                 <div class="col-lg-6 col-md-12">
-                    <p class="mb-0">© 2025 DonHuber. Made with <i class="fas fa-heart color-websitemaster"></i> by <a
+                    <p class="mb-0">© {{ "now"|date("Y") }} ViCAP Systems. Made with <i
+                                class="fas fa-heart color-websitemaster"></i> by <a
                                 href="https://websitemaster.ch" style="transition: color 0.3s; color: #b0b2b7;"
                                 onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#b0b2b7'">Websitemaster</a>.
                     </p>
