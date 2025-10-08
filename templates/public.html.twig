@@ -6,11 +6,13 @@
     <meta name="theme-style-mode" content="0"> <!-- 0 == light, 1 == dark -->
 
     {# Allow pages to override the title #}
-    <title>{% block title %}DonHuber | Selected Spirits Import{% endblock %}</title>
+    <title>{% block title %}ViCap Systems{% endblock %}</title>
 
     {# Default meta description which can be overridden #}
     {% block meta_description %}
-        <meta name="description" content="Wir beliefern Privatkunden, Gastronomiebetriebe und den Getränkefachhandel und versogen so die ganze Schweiz mit unseren erlesenen Spirituosen.">
+        <meta name="description" content="Vicapsystems Ltd. is a Swiss based innovator in the beverage packaging industry. T
+        he company conceptulized and developed the world’s only dispenser sports-cap system as from 2006,
+        a revolutionary way to store and protect vital ingredients until the moment of consumption.">
     {% endblock %}
 
     <meta content="Websitemaster" name="author" />
@@ -20,18 +22,22 @@
 
     {# Facebook Open Graph Tags Block - default values #}
     {% block opengraph %}
-        <meta property="og:url" content="https://websitemaster.ch" />
+        <meta property="og:url" content="https://vicapsystems.eu" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Selected Spirits Import" />
-        <meta property="og:description" content="Website, App & E-Commerce Development Expert" />
+        <meta property="og:title" content="Revolutionize the beverage industry" />
+        <meta property="og:description" content="Vicapsystems Ltd. is a Swiss based innovator in the beverage packaging industry.
+        The company conceptulized and developed the world’s only dispenser sports-cap system as from 2006, a revolutionary way to
+        store and protect vital ingredients until the moment of consumption." />
         <meta property="og:image" content="{{ asset('assets/images/logo/logo-light.png') }}" />
     {% endblock %}
 
     {# Twitter Meta Tags Block - default values #}
     {% block twitter_meta %}
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Selected Spirits Import">
-        <meta name="twitter:description" content="Website, App & E-Commerce Development Expert">
+        <meta name="twitter:title" content="Revolutionize the beverage industry">
+        <meta name="twitter:description" content="Vicapsystems Ltd. is a Swiss based innovator in the beverage packaging industry. T
+        he company conceptulized and developed the world’s only dispenser sports-cap system as from 2006,
+        a revolutionary way to store and protect vital ingredients until the moment of consumption.">
         <meta name="twitter:image" content="{{ asset('assets/images/logo/logo-light.png') }}">
     {% endblock %}
 

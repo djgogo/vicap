@@ -35675,6 +35675,7 @@ START: Footer CSS
 @media only screen and (max-width: 767px) {
 	.it-hero-content .bottom-title {
 		font-size: 18px;
+		margin-top: 20px;
 	}
 }
 
