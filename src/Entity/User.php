@@ -115,6 +115,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: NotificationRecipient::class, mappedBy: "recipient", cascade: ["persist", "remove"])]
     private Collection $notifications;
 
+    #[ORM\OneToMany(targetEntity: Blog::class, mappedBy: 'author', cascade: ["persist", "remove"])]
+    private Collection $blogs;
+
     public function __construct(string $email = '', string $hashedPassword = '')
     {
         $this->email = $email;
@@ -125,6 +128,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->userLogs = new ArrayCollection();
         $this->userOptions = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->blogs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -468,6 +472,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             fn(NotificationRecipient $nr) => $nr->getNotification(),
             $this->notifications->toArray()
         );
+    }
+
+    /**
+     * @return Collection<int, Blog>
+     */
+    public function getBlogs(): Collection
+    {
+        return $this->blogs;
+    }
+
+    public function addBlog(Blog $blog): static
+    {
+        if (!$this->blogs->contains($blog)) {
+            $this->blogs->add($blog);
+            $blog->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlog(Blog $blog): static
+    {
+        if ($this->blogs->removeElement($blog)) {
+            // set the owning side to null (unless already changed)
+            if ($blog->getAuthor() === $this) {
+                $blog->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 
 }

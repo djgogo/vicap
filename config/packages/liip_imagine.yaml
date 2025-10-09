@@ -38,6 +38,18 @@ liip_imagine:
                     mode: outbound
                     allow_upscale: true
 
+        blog_780:
+            jpeg_quality: 85
+            png_compression_level: 8
+
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail:
+                    size: [ 780, 550 ]
+                    mode: outbound
+                    allow_upscale: true
+
         reference_thumb:
             jpeg_quality: 85
             png_compression_level: 8

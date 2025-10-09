@@ -1,0 +1,194 @@
+{% extends 'app.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {{ include('partials/page-title.html.twig', {pagetitle: 'Blog', title: 'Blog'}) }}
+
+            <div class="row g-4 mb-3">
+                <div class="col-sm-auto">
+                    <div>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add New</button>
+                    </div>
+                </div>
+                <div class="col-sm ms-auto">
+                    <div class="d-flex justify-content-sm-end gap-2">
+                        <div class="search-box ms-2">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <i class="ri-search-line search-icon"></i>
+                        </div>
+
+                        <select class="form-control w-md" data-choices data-choices-search-false>
+                            <option value="All">All</option>
+                            <option value="Today">Today</option>
+                            <option value="Yesterday" selected>Yesterday</option>
+                            <option value="Last 7 Days">Last 7 Days</option>
+                            <option value="Last 30 Days">Last 30 Days</option>
+                            <option value="This Month">This Month</option>
+                            <option value="Last Year">Last Year</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                {% for blog in blogs %}
+                    <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6">
+                        <div class="card overflow-hidden blog-grid-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="{{ blog_image(blog) | imagine_filter('blog_780') }}" alt="" class="blog-img object-fit-cover">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title"><a href="{{ url('admin_blogs_edit', {'id': blog.id}) }}" class="text-reset">{{ blog.title }}</a></h5>
+                                <p class="text-muted mb-2">Exploring the beauty of slow living and intentional growth. Discover tips on mindfulness, wellness, and living a balanced life.</p>
+                                <div class="mt-auto">
+                                    <a href="{{ url('admin_blogs_edit', {'id': blog.id}) }}" class="link link-primary text-decoration-underline link-offset-1">Read Post <i class="ri-arrow-right-up-line"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                {% else %}
+                    <div class="col-12">
+                        <div class="text-center text-muted py-5">No blogs found.</div>
+                    </div>
+                {% endfor %}
+            </div><!--end row-->
+
+            <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-center">
+                    {{ knp_pagination_render(blogs) }}
+                </div>
+            </div>
+
+            <!--create blog modal -->
+            <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="createBlog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light p-3">
+                            <h5 class="modal-title" id="createBlog">{{ 'label.create_blog'|trans }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                        </div>
+
+                        {{ form_errors(form) }}
+
+                        <form id="blogForm" autocomplete="off" class="needs-validation" novalidate action="{{ path('admin_blogs_create') }}" method="post" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        {{ form_row(form.title) }}
+                                        <div class="invalid-feedback">Please enter name</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        {{ form_row(form.author) }}
+                                        <div class="invalid-feedback">Please choose Author</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        {{ form_label(form.content) }}
+                                        {{ form_widget(form.content, {'id': 'ckeditor-classic'}) }}
+                                        {{ form_errors(form.content) }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        {{ form_row(form.blogCategories) }}
+                                        <div class="invalid-feedback">Please choose Categories</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        {{ form_label(form.imageFile) }}
+                                        {% if form.vars.value.image %}
+                                            <div class="mb-3">
+                                                <img src="{{ vich_uploader_asset(form.vars.value, 'imageFile') }}" alt="Blog Image" />
+                                            </div>
+                                        {% endif %}
+                                        {{ form_widget(form.imageFile) }}
+                                        {{ form_errors(form.imageFile) }}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <div class="hstack gap-2 justify-content-end">
+                                    <!-- Submit Button -->
+                                    <div class="form-group d-flex justify-content-end gap-3">
+                                        <button type="submit" class="btn btn-dark right">{{ 'button.create'|trans }}</button>
+                                    </div>
+                                    <button type="button" class="btn btn-soft-dark" data-bs-dismiss="modal">{{ 'button.close'|trans }}</button>
+                                </div>
+                            </div>
+                            {{ form_row(form._token) }}
+                            {{ form_rest(form) }}
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!--end modal-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- ckeditor -->
+    <script src="{{ asset('assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/ckeditor-config.init.js') }}"></script>
+    <!-- validation init -->
+    <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
+    <!-- Custom Company js -->
+    <script src="{{ asset('assets/js/pages/blog.init.js') }}"></script>
+    <!-- choices.js -->
+    <script src="{{ asset('assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+    <!-- choices js override for symfony's default basic multi-select field! -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // find all .js-choices elements
+            const elements = document.querySelectorAll('.js-choices');
+            elements.forEach(function(element) {
+                new Choices(element, {
+                    removeItemButton: true,        // user can remove selected items
+                    placeholderValue: 'Auswählen...',
+                    searchPlaceholderValue: 'Search...',
+                    allowHTML: false
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // ckeditor
+        var ckeditorClassic = document.querySelector('#ckeditor-classic');
+        if (ckeditorClassic) {
+            ClassicEditor
+                .create(document.querySelector('#ckeditor-classic'))
+                .then(function (editor) {
+                    editor.ui.view.editable.element.style.height = '200px';
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        }
+    </script>
+
+
+    {{ parent() }}
+{% endblock %}
