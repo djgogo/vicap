@@ -11,86 +11,75 @@
 
 {% block content %}
 
-    <div class="has-smooth" id="has_smooth"></div>
-    <div id="smooth-wrapper">
-        <div id="smooth-content">
-
-            <main>
-
-                <!-- page title area start  -->
-                <section class="page-title-area">
-                    <div class="container large">
-                        <div class="page-title-area-inner section-spacing-top">
-                            <div class="page-title-wrapper">
-                                <h2 class="page-title fade-anim">Portfolio</h2>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- page title area end  -->
-
-                <!-- category filter area start -->
-                <section class="category-filter-area">
-                    <div class="container large">
-                        <div class="category-filter-wrapper">
-                            <div class="filter-buttons text-center mb-5">
-                                <a href="{{ path('homepage_portfolio') }}" 
-                                   class="filter-btn {{ selectedCategoryId == 0 ? 'active' : '' }}">
-                                    All Projects
-                                </a>
-                                {% for category in categories %}
-                                    <a href="{{ path('homepage_portfolio', {'category': category.id}) }}" 
-                                       class="filter-btn {{ selectedCategoryId == category.id ? 'active' : '' }}">
-                                        {{ category.name }}
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- category filter area end -->
-
-                <!-- work area start  -->
-                <section class="work-area-work-page pb-5">
-                    <div class="work-area-work-page-inner">
-                        <div class="works-wrapper-box">
-                            <div class="container large">
-                                <div class="works-wrapper-2">
-
-                                    {% if projects|length %}
-                                        {% for project in projects %}
-                                            <div class="work-box">
-                                                <div class="thumb" data-cursor-text="View Project">
-                                                    <a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}"><img src="{{ portfolio_image(project) | imagine_filter('portfolio_440')  }}" alt="image"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="title"><a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}">{{ project.name }}</a></h3>
-                                                    <div class="portfolio-meta-inline">
-                                                        <span class="date">{{ project.created|date('d.m.Y') }}</span>
-                                                        <div class="tags">
-                                                            {% for category in project.portfolioCategories %}
-                                                                <span class="tag">{{ category.name }}</span>
-                                                            {% else %}
-                                                                <span class="tag">Uncategorized</span>
-                                                            {% endfor %}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- work area end  -->
-
-            </main>
-
+    <!-- page title area start  -->
+    <section class="page-title-area">
+        <div class="container large">
+            <div class="page-title-area-inner section-spacing-top">
+                <div class="page-title-wrapper">
+                    <h2 class="page-title fade-anim">Portfolio</h2>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+    <!-- page title area end  -->
+
+    <!-- category filter area start -->
+    <section class="category-filter-area">
+        <div class="container large">
+            <div class="category-filter-wrapper">
+                <div class="filter-buttons text-center mb-5">
+                    <a href="{{ path('homepage_portfolio') }}"
+                       class="filter-btn {{ selectedCategoryId == 0 ? 'active' : '' }}">
+                        All Projects
+                    </a>
+                    {% for category in categories %}
+                        <a href="{{ path('homepage_portfolio', {'category': category.id}) }}"
+                           class="filter-btn {{ selectedCategoryId == category.id ? 'active' : '' }}">
+                            {{ category.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- category filter area end -->
+
+    <!-- work area start  -->
+    <section class="work-area-work-page pb-5">
+        <div class="work-area-work-page-inner">
+            <div class="works-wrapper-box">
+                <div class="container large">
+                    <div class="works-wrapper-2">
+
+                        {% if projects|length %}
+                            {% for project in projects %}
+                                <div class="work-box">
+                                    <div class="thumb" data-cursor-text="View Project">
+                                        <a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}"><img src="{{ portfolio_image(project) | imagine_filter('portfolio_440')  }}" alt="image"></a>
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="title"><a href="{{ path('homepage_portfolio_details', {'id': project.id}) }}">{{ project.name }}</a></h3>
+                                        <div class="portfolio-meta-inline">
+                                            <span class="date">{{ project.created|date('d.m.Y') }}</span>
+                                            <div class="tags">
+                                                {% for category in project.portfolioCategories %}
+                                                    <span class="tag">{{ category.name }}</span>
+                                                {% else %}
+                                                    <span class="tag">Uncategorized</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- work area end  -->
 
 {% endblock %}
 

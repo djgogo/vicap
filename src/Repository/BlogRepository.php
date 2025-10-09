@@ -67,7 +67,7 @@ class BlogRepository extends ServiceEntityRepository
      * @param int $categoryId
      * @return Blog[]
      */
-    public function getProjectsByCategory(int $categoryId): array
+    public function getBlogsByCategory(int $categoryId): array
     {
         $qb = $this->createQueryBuilder('b')
             ->leftJoin('b.blogCategories', 'bc')

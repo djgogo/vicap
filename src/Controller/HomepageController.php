@@ -7,10 +7,12 @@
 
 namespace App\Controller;
 
+use App\Entity\BlogCategory;
 use App\Entity\PortfolioCategory;
 use App\Entity\Reference;
 use App\Entity\TermTemplate;
 use App\Entity\User;
+use App\Repository\BlogRepository;
 use App\Repository\PortfolioRepository;
 use App\Repository\ReferenceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,16 +33,53 @@ class HomepageController extends AbstractController
 {
     #[Route('/', name: 'app_homepage_index', options: ['sitemap' => true])]
     public function index(
-        PortfolioRepository $portfolioRepository,
         ReferenceRepository $referenceRepository,
+        BlogRepository $blogRepository,
     ): Response {
         // get all dynamic stuff for the frontpage
-        $projects = $portfolioRepository->findAllOrderedDesc();
+        $blogs = $blogRepository->findAllOrderedDesc();
         $references = $referenceRepository->findAll();
 
         return $this->render('default/homepage.html.twig', [
-            'projects' => $projects,
+            'blogs' => $blogs,
             'references' => $references,
+        ]);
+    }
+
+    #[Route('/blog', name: 'homepage_blog', options: ['sitemap' => true])]
+    public function viewBlog(
+        EntityManagerInterface $entityManager,
+        BlogRepository $blogRepository,
+    ): Response {
+        // No category filter – get all projects ordered DESC (latest first)
+        $blogs = $blogRepository->findAllOrderedDesc();
+
+        return $this->render('public/blog/blog.html.twig', [
+            'blogs' => $blogs
+        ]);
+    }
+
+    #[Route('/blog/{id}', name: 'homepage_blog_details')]
+    public function viewBlogDetails(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        BlogRepository $blogRepository,
+    ): Response {
+        // Fetch project
+        $blog = $blogRepository->find($request->get('id'));
+
+        if (!$blog) {
+            throw $this->createNotFoundException('Blog not found');
+        }
+
+        // Fetch previous and next blog projects for pagination
+        $previousBlog = $blogRepository->findPreviousBlog($blog->getId());
+        $nextBlog = $blogRepository->findNextBlog($blog->getId());
+
+        return $this->render('public/blog/blog-details.html.twig', [
+            'blog' => $blog,
+            'previousBlog' => $previousBlog,
+            'nextBlog' => $nextBlog,
         ]);
     }
 

@@ -1,7 +1,8 @@
-<header class="header-area-7 header-p-inline-60">
+{% set is_home = ((_route is defined) ? _route : app.request.attributes.get('_route')) == 'homepage' %}
+<header class="{{ is_home ? 'header-area-7' : 'header-area-2' }} header-p-inline-60">
     <div class="header-main">
         <div class="container rr-container-1405">
-            <div class="header-area-7__inner">
+            <div class="{{ is_home ? 'header-area-7__inner' : 'header-area-2__inner' }}">
                 <div class="header__logo">
                     <a href="{{ path('app_homepage_index') }}">
                         <img src="{{ asset('assets-front/imgs/logo/vicap-logo-red.png') }}" class="normal-logo" alt="imageSite Logo">

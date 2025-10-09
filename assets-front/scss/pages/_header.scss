@@ -608,7 +608,7 @@
 
 }
 
-/* header area 8 style  */
+/* header area 7 style  */
 .header-area-7 {
     position: absolute;
     top: 0;
@@ -648,7 +648,7 @@
     .header__logo {
 
         img {
-            max-width: 95px;
+            max-width: 160px;
         }
     }
 
@@ -781,4 +781,97 @@
         }
     }
 
+}
+
+/* Blog hero header (SCSS refactor) */
+.page-hero-header {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    /* dark overlay over the image header */
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.50);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* legacy support: keep old structure styles if still used elsewhere */
+    .header-background {
+        position: relative;
+        width: 100%;
+        min-height: 300px; /* required minimum height */
+
+        img {
+            position: absolute;
+            inset: 0; /* top:0 right:0 bottom:0 left:0 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* fill and crop to cover */
+            object-position: center; /* center the image */
+            display: block;
+        }
+  }
+
+  /* ensure the content sits above the background image */
+  .slider-content-wrap {
+      position: relative;
+      z-index: 2; /* keep above overlay */
+  }
+
+  /* Mobile: ensure the hero header has sufficient height for title and spacing */
+  @media #{$xs} {
+     min-height: 200px;
+  }
+}
+
+/* Blog specific hero variants */
+.vicap-blog-hero {
+    display: block;
+    width: 100%;
+
+    &__bg {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center center; /* centered position */
+    background-size: contain; /* show complete image, no cropping */
+    max-height: 420px; /* keep header compact on larger screens */
+
+    /* Invisible sizing image to preserve the natural height */
+    & > .vicap-blog-hero__sizer {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: inherit; /* respect the parent cap */
+      opacity: 0; /* keep layout height, but visually hide */
+      pointer-events: none;
+    }
+
+    @media #{$xs} {
+      min-height: 200px;
+      max-height: none; /* allow more space decisions on mobile via min-height */
+    }
+  }
+
+    &__content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2; /* above ::after overlay */
+        text-align: center;
+        padding: 20px;
+
+        .title {
+            color: #fff;
+            margin: 0;
+        }
+    }
 }

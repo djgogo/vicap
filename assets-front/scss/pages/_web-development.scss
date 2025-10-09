@@ -391,7 +391,7 @@ $breakpoints: (
 
         &:after,
         &:before {
-            background: linear-gradient(270deg, rgba(63, 90, 243, 0.4) 0%, transparent 100%);
+            background: linear-gradient(270deg, rgba(204, 0, 0, 0.4) 0%, transparent 100%);
             content: "";
             width: 37px;
             height: 10px;
@@ -404,7 +404,7 @@ $breakpoints: (
         }
 
         &:after {
-            background: linear-gradient(90deg, rgba(63, 90, 243, 0.4) 0%, transparent 100%);
+            background: linear-gradient(270deg, rgba(204, 0, 0, 0.4) 0%, transparent 100%);
             left: auto;
             right: 10px;
         }

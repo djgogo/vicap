@@ -59,7 +59,7 @@
     {% block jsonLd %}{% endblock %}
 </head>
 <body class="web-development">
-    {% set _route = app.request.get('_route') %}
+    {% set _route = app.request.attributes.get('_route') %}
     {% include 'default/_toast_messages.html.twig' %}
 
     <!-- Start PreLoader Area -->

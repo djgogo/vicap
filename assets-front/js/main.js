@@ -10,7 +10,7 @@ import '../vendor/odometer.min.css';
 import '../vendor/carouselTicker.css';
 import '../vendor/jquery.animatedheadline.css';
 // Project CSS
-import '../css/style.css';
+import '../scss/style.scss';
 import '../css/custom.css';
 import '../css/custom-animated-headline.css';
 
