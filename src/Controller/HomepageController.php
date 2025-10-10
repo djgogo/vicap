@@ -72,14 +72,18 @@ class HomepageController extends AbstractController
             throw $this->createNotFoundException('Blog not found');
         }
 
-        // Fetch previous and next blog projects for pagination
+        // Fetch previous and next blog news for pagination
         $previousBlog = $blogRepository->findPreviousBlog($blog->getId());
         $nextBlog = $blogRepository->findNextBlog($blog->getId());
+        
+        // fetch all related blog posts with the same category
+        $relatedPosts = $blogRepository->findRelatedPostsByCategory($blog->getBlogCategories()->first());
 
         return $this->render('public/blog/blog-details.html.twig', [
             'blog' => $blog,
             'previousBlog' => $previousBlog,
             'nextBlog' => $nextBlog,
+            'blogs' => $relatedPosts,
         ]);
     }
 

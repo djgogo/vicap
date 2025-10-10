@@ -65,6 +65,16 @@ liip_imagine:
                     size: [ 780, 550 ]
                     mode: outbound
                     allow_upscale: true
+        blog_1920:
+            jpeg_quality: 80
+            png_compression_level: 8
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail:
+                    size: [ 1920, 950 ]
+                    mode: outbound
+                    allow_upscale: true
 
         reference_thumb:
             jpeg_quality: 85

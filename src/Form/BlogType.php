@@ -58,7 +58,7 @@ class BlogType extends AbstractType
                 ]
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Description',
+                'label' => 'Content',
                 'required' => false, // important: this have to be false! as this field will be hidden
                 'attr' => [
                     'class' => 'ckeditor'

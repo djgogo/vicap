@@ -8,19 +8,35 @@
     {{ parent() }}
 {% endblock %}
 
+{% block header %}
+    {% include "public/partials/header-invers.html.twig" %}
+{% endblock %}
+
 {% block content %}
 
-    <div class="vicap-blog-hero-section">
-        <header class="page-hero-header vicap-blog-hero">
-            <div class="vicap-blog-hero__bg" style="background-image: url('{{ asset('assets-front/imgs/vicap/vicap-header-orange.jpg') }}');">
-                <img src="{{ asset('assets-front/imgs/vicap/vicap-header-orange.jpg') }}" alt="Blog header" class="vicap-blog-hero__sizer" aria-hidden="true">
+{#    <div class="vicap-blog-hero-section">#}
+{#        <header class="page-hero-header vicap-blog-hero">#}
+{#            <div class="vicap-blog-hero__bg" style="background-image: url('{{ asset('assets-front/imgs/vicap/vicap-header-orange.jpg') }}');">#}
+{#                <img src="{{ asset('assets-front/imgs/vicap/vicap-header-orange.jpg') }}" alt="Blog header" class="vicap-blog-hero__sizer" aria-hidden="true">#}
+{#            </div>#}
+{#            <div class="vicap-blog-hero__content">#}
+{#                <h1 class="title" data-animation="runok-fadeInUp" data-delay="800ms" data-duration="1000ms">News</h1>#}
+{#            </div>#}
+{#        </header>#}
+{#    </div>#}
+{#    <!-- ./ header-section -->#}
+
+    <!-- page title area start  -->
+    <section class="page-title-area">
+        <div class="container large">
+            <div class="page-title-area-inner section-spacing-top">
+                <div class="page-title-wrapper">
+                    <h2 class="page-title fade-anim">News</h2>
+                </div>
             </div>
-            <div class="vicap-blog-hero__content">
-                <h1 class="title" data-animation="runok-fadeInUp" data-delay="800ms" data-duration="1000ms">News</h1>
-            </div>
-        </header>
-    </div>
-    <!-- ./ header-section -->
+        </div>
+    </section>
+    <!-- page title area end  -->
 
     <!-- blog area start  -->
     <section class="blog-area-2">

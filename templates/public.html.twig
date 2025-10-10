@@ -59,7 +59,7 @@
     {% block jsonLd %}{% endblock %}
 </head>
 {% set is_home = ((_route is defined) ? _route : app.request.attributes.get('_route')) == 'homepage' %}
-<body class="web-development {{ is_home ? '' : 'font-heading-sequelsans-romanbody' }}">
+<body class="{{ is_home ? 'web-development' : 'body-wrapper body-page-inner font-heading-sequelsans-romanbody' }}">
     {% set _route = app.request.attributes.get('_route') %}
     {% include 'default/_toast_messages.html.twig' %}
 
@@ -76,7 +76,9 @@
     <!-- End OffCanvas Side Area -->
 
     <!-- Start Header Area  -->
-    {% include "public/partials/header.html.twig" %}
+    {% block header %}
+        {% include "public/partials/header.html.twig" %}
+    {% endblock %}
     <!-- End Header Area -->
 
     <!-- Start Theme Style -->

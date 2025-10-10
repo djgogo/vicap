@@ -55,6 +55,7 @@
     .image-wrapper {
         margin-top: 89px;
         margin-bottom: 50px;
+        max-height: 600px;
 
         @media #{$xxl} {
             margin-top: 59px;
@@ -70,7 +71,7 @@
 
     .section-details {
 
-        .text {
+        .text p {
             font-size: 18px;
             font-weight: 400;
             line-height: 26px;

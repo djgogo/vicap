@@ -125,4 +125,29 @@ class BlogRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Find related blog posts by category.
+     *
+     * @param \App\Entity\BlogCategory $category The category to match.
+     * @param int|null $excludeId Optionally exclude a specific blog ID (e.g., the current one).
+     * @param int $limit Maximum number of related posts to return.
+     * @return Blog[]
+     */
+    public function findRelatedPostsByCategory(\App\Entity\BlogCategory $category, ?int $excludeId = null, int $limit = 3): array
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->innerJoin('b.blogCategories', 'bc')
+            ->where('bc = :category')
+            ->setParameter('category', $category)
+            ->orderBy('b.id', 'DESC')
+            ->setMaxResults($limit);
+
+        if ($excludeId !== null) {
+            $qb->andWhere('b.id <> :excludeId')
+               ->setParameter('excludeId', $excludeId);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }
