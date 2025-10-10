@@ -1,7 +1,14 @@
 /*
-Template Name: Velzon - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://themesbrand.com/
-Contact: support@themesbrand.com
+Author: Websitemaster
+Website: https://websitemaster.ch/
+Contact: info@websitemaster.ch
 File: Custom Css File
 */
+
+/* ckeditor increase height */
+.ck.ck-editor .ck-editor__editable[role="textbox"] {
+  min-height: 240px;   /* starting size */
+  max-height: 80vh;    /* don’t let it go off screen */
+  overflow: auto;      /* required for the resize handle to appear */
+  resize: vertical;    /* show the handle (bottom-right in Chrome/Edge) */
+}

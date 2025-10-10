@@ -47,7 +47,7 @@ class BlogController extends AbstractController
         $page = $request->query->getInt('page', 1);
         $search = $request->query->get('query', null);
         $query = $blogRepository->getListQuery($search);
-        $pagination = $paginator->paginate($query, $page, 20);
+        $pagination = $paginator->paginate($query, $page, 12);
         $pagination->setCustomParameters([
             'align' => 'right',
         ]);

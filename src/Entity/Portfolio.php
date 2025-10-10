@@ -78,7 +78,7 @@ class Portfolio
      *
      * Not persisted.
      */
-    private ?string $imageCropData = '';
+    private ?string $imageCropData = null;
 
     public function __construct()
     {

@@ -1,7 +1,23 @@
 liip_imagine:
+    driver: "gd"
+    resolvers:
+        default:
+            web_path: ~
+
     twig:
         mode: lazy
+
     filter_sets:
+        cache: ~
+
+        editor_preview:
+            filters:
+                thumbnail:
+                    size: [ 600, 600 ]
+                    mode: inset
+                strip: ~
+            quality: 82
+
         user_avatar:
             jpeg_quality:          85
             png_compression_level: 8

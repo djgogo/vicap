@@ -29,7 +29,7 @@
 .footer-with-video {
 	position: relative;
 	overflow: hidden; /* hide any video overflow */
-	margin-top: 0; /* prevent any unexpected offset above footer */
+	margin-top: 130px; /* prevent any unexpected offset above footer */
 }
 
 /* 🔧 Make the video layer NOT affect layout */

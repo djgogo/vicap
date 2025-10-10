@@ -58,7 +58,8 @@
 
     {% block jsonLd %}{% endblock %}
 </head>
-<body class="web-development">
+{% set is_home = ((_route is defined) ? _route : app.request.attributes.get('_route')) == 'homepage' %}
+<body class="web-development {{ is_home ? '' : 'font-heading-sequelsans-romanbody' }}">
     {% set _route = app.request.attributes.get('_route') %}
     {% include 'default/_toast_messages.html.twig' %}
 

@@ -84,7 +84,13 @@
                                                             </div>
                                                             <div class="col-12 mb-3">
                                                                 {{ form_label(form.content) }}
-                                                                {{ form_widget(form.content, {'id': 'ckeditor-classic'}) }}
+                                                                {{ form_widget(form.content, {
+                                                                    id: 'ckeditor-classic',
+                                                                    attr: {
+                                                                        'data-upload-url': path('admin_ckeditor_upload'),
+                                                                        'data-upload-csrf': csrf_token('ckeditor_upload')
+                                                                    }
+                                                                }) }}
                                                                 {{ form_errors(form.content) }}
                                                             </div>
                                                             <div class="col-12 mb-3">
@@ -143,7 +149,6 @@
 
     <!-- ckeditor -->
     <script src="{{ asset('assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/ckeditor-config.init.js') }}"></script>
     <!-- Custom Blog js -->
     <script src="{{ asset('assets/js/pages/blog.init.js') }}"></script>
     <!-- choices.js -->
@@ -165,18 +170,86 @@
     </script>
 
     <script>
-        // ckeditor
-        var ckeditorClassic = document.querySelector('#ckeditor-classic');
-        if (ckeditorClassic) {
-            ClassicEditor
-                .create(document.querySelector('#ckeditor-classic'))
-                .then(function (editor) {
-                    editor.ui.view.editable.element.style.height = '200px';
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
+        // CKEditor Classic Editor with ImageUpload
+        class SymfonyUploadAdapter {
+            constructor(loader, { uploadUrl, csrfToken }) {
+                this.loader = loader;
+                this.uploadUrl = uploadUrl;
+                this.csrfToken = csrfToken;
+                this.xhr = null;
+            }
+
+            upload() {
+                return this.loader.file.then(file => new Promise((resolve, reject) => {
+                    const data = new FormData();
+                    data.append('upload', file); // <-- CKEditor expects field name "upload"
+
+                    const xhr = this.xhr = new XMLHttpRequest();
+                    xhr.open('POST', this.uploadUrl, true);
+                    xhr.responseType = 'json';
+                    xhr.setRequestHeader('X-CSRF-TOKEN', this.csrfToken);
+
+                    xhr.addEventListener('error', () => reject('Upload failed.'));
+                    xhr.addEventListener('abort', () => reject());
+                    xhr.addEventListener('load', () => {
+                        const res = xhr.response;
+                        if (!res || res.error) {
+                            reject(res && res.error && res.error.message ? res.error.message : 'Upload error.');
+                            return;
+                        }
+                        // CKEditor expects { default: 'https://...' }
+                        resolve({ default: res.url });
+                    });
+
+                    xhr.send(data);
+                }));
+            }
+
+            abort() {
+                if (this.xhr) this.xhr.abort();
+            }
         }
+
+        (function initCKE() {
+            const el = document.querySelector('#ckeditor-classic');
+            if (!el) return;
+
+            ClassicEditor.create(el, {
+                toolbar: {
+                    items: [
+                        'heading','|',
+                        'bold','italic','|',
+                        'bulletedList','numberedList','|',
+                        'insertTable','|',
+                        'link','blockQuote','|',
+                        'imageUpload',            // keep this (you have ImageUpload)
+                        'undo','redo'
+                    ]
+                },
+                image: {
+                    toolbar: ['imageTextAlternative','|','imageStyle:inline','imageStyle:block','imageStyle:side'],
+                    styles: ['inline','block','side']
+                },
+                table: { contentToolbar: ['tableColumn','tableRow','mergeTableCells'] },
+                language: 'en'
+                // NOTE: no simpleUpload block needed when we provide our own adapter below
+            })
+                .then(editor => {
+                    // Register our upload adapter
+                    editor.plugins.get('FileRepository').createUploadAdapter = loader =>
+                        new SymfonyUploadAdapter(loader, {
+                            uploadUrl: el.dataset.uploadUrl,           // set via Twig
+                            csrfToken: el.dataset.uploadCsrf
+                        });
+
+                    editor.ui.view.editable.element.style.height = '200px';
+
+                    // Optional sanity checks:
+                    // console.log('Has FileRepository?', !!editor.plugins.get('FileRepository'));
+                    // console.log('createUploadAdapter set?', typeof editor.plugins.get('FileRepository').createUploadAdapter === 'function');
+                })
+                .catch(console.error);
+        })();
     </script>
 
     {{ parent() }}
