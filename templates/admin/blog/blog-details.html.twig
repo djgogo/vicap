@@ -85,7 +85,7 @@
                                                             <div class="col-12 mb-3">
                                                                 {{ form_label(form.content) }}
                                                                 {{ form_widget(form.content, {
-                                                                    id: 'ckeditor-classic',
+                                                                    id: 'ckeditor-edit',
                                                                     attr: {
                                                                         'data-upload-url': path('admin_ckeditor_upload'),
                                                                         'data-upload-csrf': csrf_token('ckeditor_upload')
@@ -211,7 +211,7 @@
         }
 
         (function initCKE() {
-            const el = document.querySelector('#ckeditor-classic');
+            const el = document.querySelector('#ckeditor-edit');
             if (!el) return;
 
             ClassicEditor.create(el, {
@@ -222,7 +222,7 @@
                         'bulletedList','numberedList','|',
                         'insertTable','|',
                         'link','blockQuote','|',
-                        'imageUpload',            // keep this (you have ImageUpload)
+                        'imageUpload',
                         'undo','redo'
                     ]
                 },
