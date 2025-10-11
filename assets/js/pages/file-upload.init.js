@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink${data.file.id}">
                                     <li><a class="dropdown-item" href="/media/uploads/${data.file.filePath}" target="_blank"><i class="ri-eye-fill me-2 align-middle text-muted"></i>View</a></li>
+                                    <li><a class="dropdown-item copy-link" href="javascript:void(0);" data-url="/media/uploads/${data.file.filePath}"><i class="ri-file-copy-line me-2 align-middle text-muted"></i>Copy Link</a></li>
                                     <li><a class="dropdown-item" href="/media/uploads/${data.file.filePath}" download><i class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a></li>
                                     <li class="dropdown-divider"></li>
                                     <li><a class="dropdown-item delete-file" href="javascript:void(0);" data-id="${data.file.id}" data-delete-url="${data.file.deleteUrl}"><i class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a></li>
@@ -152,6 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
 
                     tbody.appendChild(newRow);
+
+                    // Attach event listener to any new copy-link items
+                    attachCopyLinkEventListeners();
 
                     // Attach event listener to the new delete link
                     const newDeleteLink = newRow.querySelector('.delete-file');
@@ -220,8 +224,46 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Function to attach copy-link event listeners to all existing copy link items
+    function attachCopyLinkEventListeners() {
+        const copyLinks = document.querySelectorAll('.copy-link');
+        copyLinks.forEach(function (link) {
+            if (link.getAttribute('data-copy-bound') === '1') {
+                return; // prevent double-binding
+            }
+            link.setAttribute('data-copy-bound', '1');
+            link.addEventListener('click', async function (e) {
+                e.preventDefault();
+                const url = this.getAttribute('data-url');
+                if (!url) {
+                    showToast('No URL to copy.', 'error');
+                    return;
+                }
+                try {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        await navigator.clipboard.writeText(url);
+                    } else {
+                        // Fallback for older browsers
+                        const tempInput = document.createElement('input');
+                        tempInput.value = url;
+                        document.body.appendChild(tempInput);
+                        tempInput.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempInput);
+                    }
+                    showToast('Link copied to clipboard.', 'success');
+                } catch (err) {
+                    console.error('Clipboard copy failed:', err);
+                    showToast('Could not copy the link.', 'error');
+                }
+            });
+        });
+    }
+
     // Initial attachment for existing delete links
     attachDeleteEventListeners();
+    // Initial attachment for existing copy links
+    attachCopyLinkEventListeners();
 
     // Handle the confirmation of file deletion
     confirmDeleteFileBtn.addEventListener('click', function () {

@@ -86,6 +86,7 @@
                                                         </a>
                                                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink{{ file.id }}">
                                                             <li><a class="dropdown-item" href="/media/uploads/{{ file.filePath }}" target="_blank"><i class="ri-eye-fill me-2 align-middle text-muted"></i>{{ 'link.view'|trans }}</a></li>
+                                                            <li><a class="dropdown-item copy-link" href="javascript:void(0);" data-url="/media/uploads/{{ file.filePath }}"><i class="ri-file-copy-line me-2 align-middle text-muted"></i>Copy Link</a></li>
                                                             <li><a class="dropdown-item" href="/media/uploads/{{ file.filePath }}" download><i class="ri-download-2-fill me-2 align-middle text-muted"></i>{{ 'link.download'|trans }}</a></li>
                                                             <li class="dropdown-divider"></li>
                                                             <li>
