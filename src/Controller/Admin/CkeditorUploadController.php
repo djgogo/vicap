@@ -46,8 +46,10 @@ final class CkeditorUploadController extends AbstractController
 
         // Persist via VichUploader (sets filename and moves to mapping destination)
         $img = new Media();
+        $fileOriginalName = $file->getClientOriginalName();
+        $fileNameWithoutExt = pathinfo($fileOriginalName, PATHINFO_FILENAME);
         $img->setFile($file);
-        $img->setFileName($file->getClientOriginalName());
+        $img->setFileName($fileNameWithoutExt);
         $img->setFileType($file->getMimeType());
         $img->setFileSize($file->getSize());
         $em->persist($img);

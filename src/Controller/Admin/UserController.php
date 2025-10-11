@@ -11,7 +11,6 @@ use App\Repository\UserRepository;
 use App\Security\AuthManager;
 use App\Service\AvatarFileService;
 use App\Service\DateFormatService;
-use App\Service\DocumentFileService;
 use App\Service\GravatarSupplier;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;

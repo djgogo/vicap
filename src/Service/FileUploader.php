@@ -39,6 +39,8 @@ class FileUploader
 
         $targetDirectory = $this->vichConfig[$mapping]['upload_destination'];
 
+        $this->debug->log('File Uploader: ' . $targetDirectory);
+
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
@@ -54,7 +56,7 @@ class FileUploader
     }
 
     /**
-     * Validates an uploaded image file.
+     * Validates an uploaded media file.
      *
      * @param UploadedFile $file
      * @return array An array of error messages, empty if valid
@@ -67,14 +69,18 @@ class FileUploader
         $constraints = new Assert\Collection([
             'file' => [
                 new Assert\File([
-                    'maxSize' => '1024k',
+                    'maxSize' => '10000k',
                     'mimeTypes' => [
-                        'image/jpeg',
-                        'image/jpg',
-                        'image/png',
-                        'image/gif'
+                        // plain text
+                        'text/plain', // .txt
+                        // images
+                        'image/jpeg', 'image/jpg', 'image/png', 'image/gif',
+                        // documents
+                        'application/pdf',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',      // .xlsx
                     ],
-                    'mimeTypesMessage' => 'Please upload a valid image file',
+                    'mimeTypesMessage' => 'Please upload a valid media file',
                 ])
             ]
         ]);

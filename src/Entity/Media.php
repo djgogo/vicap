@@ -31,7 +31,7 @@ class Media
     private ?string $fileName = null;
 
     /** Virtual file property handled by VichUploader - not persisted! */
-    #[Vich\UploadableField(mapping: 'media_images', fileNameProperty: 'filePath')]
+    #[Vich\UploadableField(mapping: 'media_files', fileNameProperty: 'filePath')]
     private ?File $file = null;
 
     #[ORM\Column(length: 255, nullable: true)]
